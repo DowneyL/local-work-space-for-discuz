@@ -1,0 +1,126 @@
+<!--{template forum/navigation/header}-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-md-offset-2 col-lg-offset-2">
+            <div class="block-items">
+                <header>
+                    <!--{if $follow_flag}-->
+                    <h1>{$lang[block_title]}</h1>
+                    <!--{else}-->
+                    <h1>{$lang[tag_title]}</h1>
+                    <!--{/if}-->
+                    <p>{$lang[block_l_title]}</p>
+                </header>
+                <section class="block-item-list">
+                    <div class="row">
+                        <!--{loop $blocks $block}-->
+                        <div class="col-lg-3 col-md-4 col-sm-6 ">
+                            <div class='block-item'>
+                                <p>$block[block_name]</p>
+                                <!--{if $follow_flag}-->
+                                <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
+                                <!--{else}-->
+                                <!--{if in_array($block[block_id], array_column($follow_ids,'block_id'))}-->
+                                <button class="unfollow-tag" value="{$block[block_id]}">{$lang[unfollow]}</button>
+                                <!--{else}-->
+                                <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
+                                <!--{/if}-->
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <!--{/loop}-->
+                    </div>
+                </section>
+                <footer>
+                    <span>{$lang[more_block]}</span>
+                </footer>
+            </div>
+            <div class="get-next">
+                <button class="disabled-btn">{$lang[finish]}</button>
+                <!--{if !$follow_flag}-->
+                <button class="kouei-back">{$lang[back]}</button>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('.get-next .kouei-back').click(function () {
+            location.href = '/forum.php?mod=navigation';
+        });
+        $('.block-item-list button').click(function () {
+            var tagClassName = $(this)[0].className;
+            if (tagClassName == 'follow-tag') {
+                $.post('forum.php?mod=navigation&action=tag&type=follow', {
+                    'follow_block_id': this.value,
+                    'formhash': "{FORMHASH}"
+                }, function (results) {
+                    var flag = $.parseJSON(results).flag;
+                    var code = $.parseJSON(results).code;
+                    var bid = $.parseJSON(results).block_id;
+                    if (flag) {
+                        var oFollowed = $('.block-item-list button[value=' + bid + ']');
+                        var oDb = $('.disabled-btn');
+                        oFollowed.removeClass().addClass('unfollow-tag').text("{$lang[unfollow]}");
+                        if (oDb.length > 0) {
+                            oDb.css('background-color', '#007fff');
+                            oDb.click(function () {
+                                location.href = 'forum.php?mod=navigation';
+                            });
+                        }
+                    } else {
+                        if (code == 0) {
+                            swal({
+                                'title': "{$lang[unknowerror]}",
+                                'text': "{$lang[connect_manager]}",
+                                'type': 'error',
+                                'confirmButtonText': "{$lang[notice][ok]}",
+                                'confirmButtonColor': '#DD6B55'
+                            });
+                        } else if (code == 4) {
+                            swal({
+                                'title': 'Oops..',
+                                'text': "{$lang[followed]}",
+                                'type': 'error',
+                                'confirmButtonText': "{$lang[notice][ok]}",
+                                'confirmButtonColor': '#DD6B55'
+                            });
+                        }
+                    }
+                });
+            } else if (tagClassName == 'unfollow-tag') {
+                $.post('forum.php?mod=navigation&action=tag&type=unfollow', {'unfollow_block_id': this.value}, function (results) {
+                    var flag = $.parseJSON(results).flag;
+                    var bid = $.parseJSON(results).block_id;
+                    if (flag) {
+                        var oUnfollowed = $('.block-item-list button[value=' + bid + ']');
+                        oUnfollowed.removeClass().addClass('follow-tag').text("{$lang[follow]}");
+                        var oDb = $('.disabled-btn');
+                        if (oDb.length > 0) {
+                            oDb.css('background-color', '#007fff');
+                            oDb.click(function () {
+                                location.href = 'forum.php?mod=navigation';
+                            });
+                            if ($('.block-item-list .unfollow-tag').length == 0) {
+                                oDb.css('background-color', '#ddd');
+                                oDb.unbind('click');
+                            }
+                        }
+                    } else {
+                        swal({
+                            'title': "{$lang[unknowerror]}",
+                            'text': "{$lang[connect_manager]}",
+                            'type': 'error',
+                            'confirmButtonText': "{$lang[notice][ok]}",
+                            'confirmButtonColor': '#DD6B55'
+                        });
+                    }
+                });
+            } else {
+                return false;
+            }
+        });
+    });
+</script>
+<!--{template forum/navigation/footer}-->

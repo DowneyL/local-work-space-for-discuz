@@ -1,0 +1,50 @@
+<!--{template common/header}-->
+<!--{if $_GET['action']==''}-->
+<div class="tm_c" id="floatlayout_topicadmin">
+<h3 class="flb">
+<em id="return_mods">{lang xj_sort:xzl} $selectcount {lang xj_sort:ptz}</em>
+<span>
+<a href="javascript:;" class="flbc" onclick="hideWindow('sortmods')" title="{lang xj_sort:close}">{lang xj_sort:close}</a>
+</span>
+</h3>
+<form id="sortform" method="post" autocomplete="off" action="plugin.php?id=xj_sort:batch_sort_form&action=full&fid={$fid}&sid={$sid}&modsubmit=yes&infloat=yes&inajax=1" onsubmit="ajaxpost('sortform', 'sortmods', 'sortmods', 'onerror');return false;">
+<input type="hidden" name="frommodcp" value="" />
+<input type="hidden" name="formhash" value="{$_GET['formhash']}" />
+<input type="hidden" name="fid" value="{$_GET['fid']}" />
+<input type="hidden" name="redirect" value="{$_SERVER['HTTP_REFERER']}" />
+<input type="hidden" name="listextra" value="page%3D1" /><input type="hidden" name="handlekey" value="mods" />
+<!--{loop $moderate $key $value}-->
+<input type="hidden" name="moderate[]" value="{$value}" />
+<!--{/loop}-->
+<div class="c">
+<div class="tplw">
+<input type="hidden" name="operations[]" value="{$_GET['operations']}" />
+<p>{lang xj_sort:gdflxz}</p>
+<!--{loop $sort $key $sortitem}-->
+<div>{$sortitem['classname']}:
+<select name="sortid{$sortitem['classid']}" id="sortid{$sortitem['classid']}" width="80">
+<option value="0">{lang xj_sort:xz}{$sortitem['classname']}{lang xj_sort:fl}</option>
+<option value="-1">*{lang xj_sort:qxxz}*</option>
+<!--{loop $sortitem['subclass'] $subkey $subsortitem}-->
+<!--{if $subsortitem['select']=='yes'}-->selected<!--{/if}-->>$subsortitem['classname']<option value="$subsortitem['classid']" <!--{if $subsortitem['select']=='yes'}-->selected<!--{/if}-->>$subsortitem['classname']</option>
+<!--{/loop}-->
+</select>
+</div>
+<!--{/loop}-->
+</div>
+</div>
+<p class="o pns">
+<button type="submit" name="modsubmit" id="modsubmit" class="pn pnc" value="{lang xj_sort:sure}"><span>{lang xj_sort:sure}</span></button>
+</p>
+</form>
+</div>
+<script type="text/javascript" reload="1">
+function succeedhandle_sort(locationhref) {
+hideWindow('sortmods');
+location.href = locationhref;
+}
+</script>
+<!--{else}-->
+<script type="text/javascript" reload="1">if(typeof succeedhandle_sort=='function') {succeedhandle_sort('{$_POST['redirect']}', '{lang xj_sort:glczcg}', {});}</script>
+<!--{/if}-->
+<!--{template common/footer}-->

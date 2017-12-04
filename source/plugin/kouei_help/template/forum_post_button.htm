@@ -1,0 +1,7 @@
+<!--{block return}-->
+<!--{if $op == 0 && $stamp == -1}-->
+<a class="kouei_a" href="$url&kouei_op=1"><i><img src="static/image/common/check_error.gif" alt="{lang kouei_help:help_unfinishied}">{lang kouei_help:help_unfinished}</i></a>
+<!--{elseif $op == 1 || $stamp == $stamp_id || $icon == $icon_id}-->
+<a class="kouei_a" href="javascript:;"><i><img src="static/image/common/check_right.gif" alt="{lang kouei_help:help_finish}">{lang kouei_help:help_finish}</i></a>
+<!--{/if}-->
+<!--{/block}-->

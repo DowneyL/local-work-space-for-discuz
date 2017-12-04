@@ -1,0 +1,137 @@
+<!--{if $_GET['mycenter'] && !$_G['uid']}-->
+	<!--{eval dheader('Location:member.php?mod=logging&action=login');exit;}-->
+<!--{/if}-->
+<!--{template common/header}-->
+<div class="container container-extra">
+
+<!--{if !$_GET['mycenter']}-->
+<!-- header start -->
+<header class="header">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"  href="javascript:;" onclick="history.go(-1);"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<span class="navbar-title"><!--{if $_G['uid'] == $space['uid']}-->{lang mycenter}<!--{else}-->$space[username]{lang otherprofile}<!--{/if}--></span>
+			</div>
+		</div>
+	</nav>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+<div class="userinfo">
+	<div class="user_avatar">
+		<div class="avatar_m"><span><img src="<!--{avatar($space[uid], middle, true)}-->" /></span></div>
+		<h2 class="name">$space[username]</h2>
+	</div>
+
+	<div class="user_box myinfo_list">
+		<ul>
+			<li>
+				<i class="fa fa-inbox" aria-hidden="true"></i>
+				{lang credits}
+				<span class="credit_num">$space[credits]</span>
+			</li>
+			<!--{loop $_G[setting][extcredits] $key $value}-->
+			<!--{if $value[title]}-->
+			<li>
+				<!--{if $key == 6}-->
+					<i class="fa fa-bold" aria-hidden="true"></i>
+				<!--{elseif $key ==1}-->
+					<i class="fa fa-tint" aria-hidden="true"></i>
+				<!--{elseif $key == 3}-->
+					<i class="fa fa-cny" aria-hidden="true"></i>
+				<!--{elseif $key == 8}-->
+					<i class="fa fa-pagelines" aria-hidden="true"></i>
+				<!--{else}-->
+					222
+				<!--{/if}-->
+				$value[title]
+				<span class="credit_num">{$space["extcredits$key"]}</span>
+			</li>
+			<!--{/if}-->
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="profile_btn">
+		<!--{if $space['uid'] == $_G['uid']}-->
+		<a class="btn btn-info btn-lg btn-block" href="javascript:;" title="{lang recharge}">{lang recharge}</a>
+		<!--{/if}-->
+	</div>
+</div>
+<!-- userinfo end -->
+
+<!--{else}-->
+
+<!-- header start -->
+<header class="header">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"  href="javascript:;" onclick="history.go(-1);"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<span class="navbar-title"><!--{if $_G['uid'] == $space['uid']}-->{lang mycenter}<!--{else}-->$space[username]{lang otherprofile}<!--{/if}--></span>
+			</div>
+		</div>
+	</nav>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+	<div class="user_avatar">
+		<div class="avatar_m"><img class="img-circle" src="<!--{avatar($_G[uid], middle, true)}-->"/></div>
+		<h2 class="name">$_G[username]</h2>
+	</div>
+	<div class="user_credit">
+		<ul>
+			<!--{loop $_G[setting][extcredits] $key $value}-->
+			<!--{if $value[title] && ($key == 3 || $key == 6 || $key == 8)}-->
+			<li>{$space["extcredits$key"]}<span class="credit_title">$value[title]</span></li>
+			<!--{/if}-->
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="myinfo_list">
+		<ul>
+			<li>
+				<a href="home.php?mod=space&uid={$_G[uid]}&do=favorite&view=me&type=thread">
+					<i class="fa fa-star fa-kouei-pos" aria-hidden="true"></i>
+					{lang myfavorite}
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a href="home.php?mod=space&uid={$_G[uid]}&do=thread&view=me">
+					<i class="fa fa-bars fa-kouei-pos" aria-hidden="true"></i>
+					{lang mythread}
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li class="tit_msg">
+				<a href="home.php?mod=space&do=pm">
+					<i class="fa fa-commenting fa-kouei-pos" aria-hidden="true"></i>
+					{lang mypm}
+					<!--{if $_G[member][newpm]}-->
+					<img src="{STATICURL}image/mobile/images/icon_msg.png" />
+					<!--{/if}-->
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a href="home.php?mod=space&uid={$_G[uid]}">
+					<i class="fa fa-file-text fa-kouei-pos" aria-hidden="true"></i>
+					{lang mycredit}
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="profile_btn">
+		<!--{if $space['uid'] == $_G['uid']}-->
+		<a class="btn btn-danger btn-lg btn-block dialog" href="javascript:;" title="{lang logout}"  data-toggle="modal" data-target="#myModal">{lang logout_mobile}</a>
+		<!--{/if}-->
+	</div>
+</div>
+
+<!-- userinfo end -->
+
+<!--{/if}-->
+<!--{eval $nobottombar = true;$nofooter = true;$alertlogout = true;}-->
+<!--{template common/footer}-->

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+	<item id="Time"><![CDATA[2016-01-31 15:47]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://192.168.180.109:8800/discuz/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[手机登录]]></item>
+			<item id="identifier"><![CDATA[login_mobile]]></item>
+			<item id="description"><![CDATA[支持PC端和移动端用户使用手机进行注册，登录，找回密码。并支持老用户绑定手机号。]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[login_mobile/]]></item>
+			<item id="copyright"><![CDATA[mawentao]]></item>
+			<item id="version"><![CDATA[2.4.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[hook_mobile]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[hook_pc]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[home_binding]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[手机绑定]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[7]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[z_setting]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[设置]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="4">
+					<item id="name"><![CDATA[z_index]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[移动页面]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="5">
+					<item id="name"><![CDATA[z_smsset]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[短信平台设置]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="6">
+					<item id="name"><![CDATA[z_smssend]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[短信群发]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[4]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="7">
+					<item id="name"><![CDATA[z_smslist]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[短信发送记录]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[5]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="8">
+					<item id="name"><![CDATA[z_userlist]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[手机用户管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[6]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="tips_title"><![CDATA[插件使用提示]]></item>
+				<item id="browser_tips"><![CDATA[请在chrome或firefox浏览器中使用本插件]]></item>
+				<item id="browser_tips_title"><![CDATA[浏览器兼容提示]]></item>
+				<item id="too_many_errors"><![CDATA[错误次数过多，请稍后再试]]></item>
+				<item id="login_failed"><![CDATA[登录失败]]></item>
+				<item id="regist_failed"><![CDATA[注册失败]]></item>
+				<item id="login_succeed"><![CDATA[登录成功]]></item>
+				<item id="logout_succ"><![CDATA[退出成功]]></item>
+				<item id="regist_succ"><![CDATA[注册成功]]></item>
+				<item id="error_seccode"><![CDATA[验证码错误]]></item>
+				<item id="error_smscode"><![CDATA[短信验证码错误]]></item>
+				<item id="error_password"><![CDATA[用户名或密码错误]]></item>
+				<item id="not_login"><![CDATA[请先登录]]></item>
+				<item id="used_username"><![CDATA[用户名已被注册]]></item>
+				<item id="phone_used"><![CDATA[该手机号已被注册]]></item>
+				<item id="phone_error"><![CDATA[请输入11位手机号]]></item>
+				<item id="phone_not_regist"><![CDATA[该手机号未注册过]]></item>
+				<item id="invalid_email"><![CDATA[非法的邮件地址]]></item>
+				<item id="used_email"><![CDATA[该手机号已被注册]]></item>
+				<item id="username_len_invalid"><![CDATA[用户名必须是3~15个字符]]></item>
+				<item id="password_len_invalid"><![CDATA[密码必须6~20个字符]]></item>
+				<item id="sms_notset"><![CDATA[服务器未设置短信平台]]></item>
+				<item id="sms_wait"><![CDATA[请60秒后重新发送短信]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

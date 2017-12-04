@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G[charset]}" />
+<title></title>
+<!-- <link rel="stylesheet" href="static/image/admincp/admincp.css" type="text/css" media="all" /> -->
+<script type="text/JavaScript">
+var admincpfilename = 'admin.php', IMGDIR = 'static/image/common', STYLEID = '1', VERHASH = '5nb', IN_ADMINCP = true, ISFRAME = 1;
+</script>
+<script src="static/js/common.js" type="text/javascript"></script>
+<script src="static/js/admincp.js" type="text/javascript"></script>
+<style type="text/css">
+body{ font:12px/1.5 Tahoma; }
+h1{ font-size:20px;color:#0099cc;margin-left:24px; }
+h1 a{ color:#0099cc;text-decoration:none; }
+h1 a:hover{ text-decoration:underline; }
+#admin_getback{ padding:0 10px 10px 10px;display:block;float:right;margin-right:15px;font-size:13px;color:#09c; }
+#kouei_admin_table{width:1700px;margin:0 auto;border-collapse:collapse; }
+#kouei_admin_table td{ border:1px solid #ccc;padding:5px;text-align:center;color:#444; }
+#kouei_admin_table_title td{ color:#0099cc;font-weight:bold; }
+#kouei_admin_table a{ color:#444;text-decoration:none; }
+#kouei_admin_table a:hover{ color:#09c;text-decoration:underline; }
+.apply_text{ width:200px; }
+.apply_num{ width:120px; }
+/*分页样式*/
+	#page_change{ width:600px; margin:10px 250px; text-align:center; padding:10px;margin:20px auto; }
+	#page_change a{ text-decoration:none; display:block; float:left; width:28px; height:22px; border:1px solid #ccc; margin-left:5px; line-height:22px; letter-spacing:1px; color:#111; }
+	#page_change a:hover{ color:#66ccff !important; border:1px solid #66ccff !important; }
+	#page_change span{ line-height:22px;}
+	#page_change input{ margin:0px 3px;padding:0px; text-align:center; }
+	#prevpage,#nextpage,#firstpage{ width:54px !important; }
+	#all_count{ font-weight:bold; }
+	.select_page_style{ color:#66ccff !important; background:#fff; border-color:#66ccff !important; }
+
+#kouei_trash{ background:#09c;width:20px;height:20px;padding:5px;float:right;margin-right:40px;cursor:pointer; }
+#kouei_trash_img{ width:20px;height:20px; }
+
+
+/*弹出层*/
+#kouei_overlay{position:absolute;top:0px;left:0px;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);display:none;}
+#kouei_win{position:absolute;top:50%;left:50%;width:300px;height:250px;background:#fff;border:4px solid #2d7ecf;margin-left:-154px;display:none;margin-top:-129px;border-radius:5px}
+#kouei_win h2{font-size:12px;text-align:right;background:#87ceff;border-bottom:3px solid #2d7ecf;padding:5px;margin:0px}
+#kouei_win h2 span{color:#2d7ecf;cursor:pointer;background:#fff;border:1px solid #2d7ecf;padding:1px 4px 1px 4px;margin-right:5px; }
+#kouei_win p{ font-size:16px; font-weight:bold; text-align:center;color:#444;margin:10px 0px; }
+#kouei_win textarea{ width:200px;height:100px;padding:8px;border:1px solid #ccc;resize:none;margin:10px auto;display:block; }
+#kouei_win input[type=submit] {display:block;margin:25px auto;}
+</style>
+<script>
+window.onload = function()
+{
+	var oWin = document.getElementById("kouei_win");
+	var oLay = document.getElementById("kouei_overlay");    
+	var oAClick = document.getElementsByClassName('action');
+	var oClose = document.getElementById("kouei_close");
+	var oInputAction = document.getElementById('input_action');
+	var oInputApplyId = document.getElementById('input_applyid')
+	for(var i = 0; i < oAClick.length; i++){
+		oAClick[i].onclick = function ()
+		{
+			oInputAction.value = this.className.split(' ')[1];
+			oInputApplyId.value = this.getAttribute('id').split('_')[1];
+		    oLay.style.display = "block";
+		    oWin.style.display = "block";   
+		};
+	}
+
+	oClose.onclick = function ()
+	{
+	    oLay.style.display = "none";
+	    oWin.style.display = "none";
+	}
+
+	var uurl = window.location;
+	 	uurl = uurl.toString();
+	function GetNoPageUrl(url)
+	{
+	     var reg = new RegExp("(^|&)"+ "page" +"=([^&]*)(&|$)");
+         var r = url.substr(1).match(reg);
+         if(r!=null)return url.replace(r[0],''); return url; 
+	}
+	var myURL = GetNoPageUrl(uurl);
+
+	function GetQueryString(name)
+	{
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	var page = GetQueryString('page')?GetQueryString('page'):1;
+		page = parseInt(page);
+
+	var oPageA = document.getElementById('page_change').getElementsByTagName('a');
+	var oFirstPage = document.getElementById('firstpage');
+	var oPrevPage = document.getElementById('prevpage');
+	var oNextPage = document.getElementById('nextpage');
+	var oInputPage = document.getElementById('input_page');
+
+	oInputPage.onblur = function(){
+		if(this.value){
+			page = parseInt(this.value);
+			window.location.href = myURL+'&page='+page;
+		}else{
+			return;
+		}
+	}
+
+	oFirstPage.onclick = function(){
+		page = 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	oPrevPage.onclick = function(){
+		if(page == 1){
+			return;
+		}
+		page = page - 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	oNextPage.onclick = function(){
+		page = page + 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	for(var i = 2; i < oPageA.length-1; i++)
+	{	
+		var page_inner = oPageA[i].innerHTML;
+		if(page != null)
+		{
+			if(page_inner == page){
+				for(var p in oPageA) oPageA[p].className = '';
+				oPageA[i].className = 'select_page_style';
+			}
+		}
+		oPageA[i].onclick = function()
+		{
+			for(var p in oPageA) oPageA[p].className = '';
+			this.className = "select_page_style";
+			page = parseInt(this.innerHTML);
+			// alert(myURL+'&page='+page);
+			window.location.href = myURL+'&page='+page ;
+		}
+		oPageA[2].innerHTML = parseInt(page);
+		oPageA[3].innerHTML = parseInt(page)+1;
+		oPageA[4].innerHTML = parseInt(page)+2;
+	}
+
+	var oTrashImg = document.getElementById('kouei_trash');
+	oTrashImg.onclick = function()
+	{
+		location.href = 'http://localhost/admin.php?action=koueiapply\&koueimod=apprefuse';
+	}
+
+	var reText = /[<|>|'|"|\(|\)]+/;	
+	var oTextArea = document.getElementById('kouei_win').getElementsByTagName('textarea')[0];
+	applyKeyUp(oTextArea, reText);
+	function applyKeyUp(elem, renum)     
+	{
+	    elem.onkeyup = function()
+	    {
+	        this.value = this.value.replace(renum,"");
+	    }
+	}
+}
+</script>
+</head>
+<body>
+<h1>{lang kouei_admin_apply}<a href="http://localhost/admin.php?action=koueiapply&koueimod=validate">{lang kouei_admin_apply_validate}</a><div id="kouei_trash"><img  id="kouei_trash_img" src="http://localhost/static/image/common/lajitong.png"></div></h1>
+<!--{if $_GET['koueimod'] && $_GET['koueimod'] == 'validate' || $_GET['koueimod'] == 'apprefuse' }-->
+<a href="http://localhost/admin.php?action=koueiapply" id="admin_getback">{lang kouei_admin_apply_getback}</a>
+<!--{/if}-->
+<table id="kouei_admin_table">
+<tr id="kouei_admin_table_title">
+	<td>{lang kouei_admin_apply_id}</td>
+	<td>{lang kouei_admin_apply_name}</td>
+	<td>{lang kouei_admin_apply_sex}</td>
+	<td>{lang kouei_admin_apply_age}</td>
+	<td>{lang kouei_admin_apply_job}</td>
+	<td>{lang kouei_admin_apply_modname}</td>
+	<td class="apply_num">{lang kouei_admin_apply_phonenum}</td>
+	<td class="apply_num">{lang kouei_admin_apply_QQ}</td>
+	<td class="apply_text">{lang kouei_admin_apply_special}</td>
+	<td class="apply_text">{lang kouei_admin_apply_reason}</td>
+	<td class="apply_text">{lang kouei_admin_apply_measure}</td>
+	<!--{if $_GET['koueimod'] && $_GET['koueimod'] == 'validate'}-->
+	<td>{lang kouei_admin_apply_passtime}</td>
+	<!--{/if}-->
+	<!--{if $_GET['koueimod'] && $_GET['koueimod'] == 'apprefuse'}-->
+	<td>{lang kouei_admin_apply_refusetime}</td>
+	<!--{/if}-->
+	<!--{if  !$_GET['koueimod']}-->
+	<td>{lang kouei_admin_apply_applytime}</td>
+	<!--{/if}-->
+	<td>{lang kouei_admin_apply_verify}</td>
+</tr>
+
+<!--{loop $statvars $key $val}-->
+<tr>
+	<td>$statvars[$key][applyid]</td>
+	<td>$statvars[$key][app_username]</td>
+	<!--{if $statvars[$key][app_sex] == 1}-->
+	<td>{lang kouei_admin_apply_man}</td>
+	<!--{elseif $statvars[$key][app_sex] ==0 }-->
+	<td>{lang kouei_admin_apply_woman}</td>
+	<!--{/if}-->
+	<td>$statvars[$key][app_age]</td>
+	<td>$statvars[$key][app_job]</td>
+	<td>$statvars[$key][app_mouldname]</td>
+	<td>$statvars[$key][app_phonenum]</td>
+	<td>$statvars[$key][app_myqq]</td>
+	<td>$statvars[$key][app_special]</td>
+	<td>$statvars[$key][app_reason]</td>
+	<td>$statvars[$key][app_measure]</td>
+	<!--http://localhost/admin.php?action=koueiapply&applyid=$statvars[$key][applyid]&applyaction=recover-->
+	<!--http://localhost/admin.php?action=koueiapply&applyid=$statvars[$key][applyid]&applyaction=pass-->
+	<!--http://localhost/admin.php?action=koueiapply&applyid=$statvars[$key][applyid]&applyaction=refuse-->
+	<!--{if $_GET['koueimod'] && $_GET['koueimod'] == 'validate' && $statvars[$key][app_validate] == 1}-->
+	<td>$statvars[$key][verifytime]</td>
+	<td>{lang kouei_admin_apply_successed}/<a href="javascript:;" class="action recover" id="recover_$statvars[$key][applyid]">{lang kouei_admin_apply_recover}</a></td>
+	<!--{/if}-->
+	<!--{if $_GET['koueimod'] && $_GET['koueimod'] == 'apprefuse' && $statvars[$key][app_validate] == 3}-->
+	<td>$statvars[$key][verifytime]</td>
+	<td>{lang kouei_admin_apply_refuse}/<a href="javascript:;" class="action recover" id="recover_$statvars[$key][applyid]">{lang kouei_admin_apply_recover}</a></td>
+	<!--{/if}-->
+	<!--{if $statvars[$key][app_validate] == 0}-->
+	<td>$statvars[$key][applytime]</td>
+	<td><a href="javascript:;" class="action pass" id="pass_$statvars[$key][applyid]">{lang kouei_admin_apply_success}</a> / <a href="javascript:;" class="action refuse" id="refuse_$statvars[$key][applyid]">{lang kouei_admin_apply_failed}</a></td>
+	<!--{/if}-->
+</tr>
+<!--{/loop}-->
+</table>
+<div id="page_change">
+	<a id="firstpage" href="javascript:;" class="pagechangers">{lang hcredit_mainpage}</a>
+	<a id="prevpage" href="javascript:;">{lang hcredit_prevpage}</a>
+	<a href="javascript:;" class="select_page_style">1</a>
+	<a href="javascript:;">2</a>
+	<a href="javascript:;">3</a>
+	<a id="nextpage" href="javascript:;">{lang hcredit_nextpage}</a>
+	<span>{lang location_to}</span>
+	<input type="text" name="page" size="1" maxlength="3" id="input_page">
+	<span>{lang the_page}</span>
+	<span id="all_count">{lang hcredit_countpage}$rowp[page_all] {lang the_page}</span>
+</div>
+
+<div id="kouei_overlay" style="display:none;"></div>
+<div id="kouei_win" style="display:none;">
+	<h2><span id="kouei_close">{lang kouei_apply_close}</span></h2>
+	<p>{lang kouei_admin_apply_action_reason}</p>
+	<form method="post" action="forum.php?mod=koueiapplydata">
+		<textarea name="reason"></textarea>
+		<input type="submit" value="{lang kouei_apply_submit}">
+		<input type="hidden" name="acname" value="$_G['username']">
+		<input type="hidden" name="applyid" id="input_applyid">
+		<input type="hidden" name="action" id="input_action">
+	</form>
+</div>
+</body>
+</html>

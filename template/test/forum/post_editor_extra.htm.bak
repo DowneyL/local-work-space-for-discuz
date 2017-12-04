@@ -1,0 +1,48 @@
+
+<div class="pbt cl">
+
+	<!--{if $_G['forum']['fid'] == 40}-->
+		<!--{template forum/post_editor_extra_1}-->
+	<!--{else}-->
+		<!--{template forum/post_editor_extra_2}-->
+	<!--{/if}-->
+
+<!--{if !$isfirstpost && $thread[special] == 5 && empty($firststand) && $_GET[action] != 'edit'}-->
+	<div class="pbt cl">
+		<div class="ftid">
+			<select name="stand" id="stand">
+				<option value="">{lang debate_viewpoint}</option>
+				<option value="0">{lang debate_neutral}</option>
+				<option value="1"{if $stand == 1} selected="selected"{/if}>{lang debate_square}</option>
+				<option value="2"{if $stand == 2} selected="selected"{/if}>{lang debate_opponent}</option>
+			</select>
+		</div>
+	</div>
+<!--{/if}-->
+
+<div id="attachnotice_attach" class="tbms mbm xl" style="display:none">
+	{lang you_have} <span id="unusednum_attach"></span> {lang attach_unused} &nbsp; <a href="javascript:;" class="xi2" onclick="attachoption('attach', 2);" />{lang attach_view}</a><span class="pipe">|</span><a href="javascript:;" class="xi2" onclick="attachoption('attach', 1)">{lang attach_use}</a><span class="pipe">|</span><a href="javascript:;" class="xi2" onclick="attachoption('attach', 0)">{lang attach_delete}</a>
+	<div id="unusedlist_attach" style="display:none"></div>
+</div>
+<div id="attachnotice_img" class="tbms mbm xl" style="display:none">
+	{lang you_have} <span id="unusednum_img"></span> {lang img_unused} &nbsp; <a href="javascript:;" class="xi2" onclick="attachoption('img', 2);" />{lang attach_view}</a><span class="pipe">|</span><a href="javascript:;" class="xi2" onclick="attachoption('img', 1)">{lang attach_use}</a><span class="pipe">|</span><a href="javascript:;" class="xi2" onclick="attachoption('img', 0)">{lang attach_delete}</a>
+	<div id="unusedlist_img" style="display:none"></div>
+</div>
+
+<!--{if $showthreadsorts}-->
+	<div class="exfm cl">
+		<!--{template forum/post_sortoption}-->
+	</div>
+<!--{elseif $adveditor}-->
+	<!--{if $special == 1}--><!--{template forum/post_poll}-->
+	<!--{elseif $special == 2 && ($_GET[action] != 'edit' || ($_GET[action] == 'edit' && ($thread['authorid'] == $_G['uid'] && $_G['group']['allowposttrade'] || $_G['group']['allowedittrade'])))}--><p class="xg1">{lang post_message1}</p><!--{template forum/post_trade}-->
+	<!--{elseif $special == 3}--><!--{template forum/post_reward}-->
+	<!--{elseif $special == 4}--><!--{template forum/post_activity}-->
+	<!--{elseif $special == 5}--><!--{template forum/post_debate}-->
+	<!--{elseif $specialextra}--><div class="specialpost s_clear">$threadplughtml</div>
+	<!--{/if}-->
+<!--{/if}-->
+
+<!--{if $_GET[action] == 'reply' && $quotemessage}-->
+	<div class="pbt cl">$quotemessage</div>
+<!--{/if}-->

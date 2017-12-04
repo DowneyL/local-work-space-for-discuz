@@ -1,0 +1,135 @@
+<!--{eval $creditid=$config['cextcredit'];}-->
+<!--{if $_G['setting']['extcredits'][$creditid]}-->
+<!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
+<!--{/if}--><!DOCTYPE html>
+<html>
+<head><title>
+    {lang codepay:btn}
+</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="{$_G['site_url']}source/plugin/codepay/template/css/userPay.css">
+
+    <style>
+        a:link { text-decoration: none;}
+        　　 a:active { text-decoration:blink}
+        　　 a:hover { text-decoration:underline;}
+        　　 a:visited { text-decoration: none;}
+        *, :after, :before {
+            /* -webkit-box-sizing: border-box; */
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        button, html input[type=button], input[type=reset], input[type=submit] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+        #money{
+            color: red;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="{$_G['site_url']}source/plugin/codepay/template/js/html5shiv.min.js"></script>
+    <script src="{$_G['site_url']}source/plugin/codepay/template/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body >
+<div  id="loadingPicBlock" style="max-width: 720px;margin:0 auto;" class="pay">
+    <header class="g-header">
+
+        <div class="head-r">
+            <a href="/" class="z-HReturn" data-dismiss="modal" aria-hidden="true"><s></s><b>home</b></a>
+        </div>
+    </header>
+
+    <div class="g-Total gray9">{lang codepay:pay_price}{lang codepay:pay_select}</div>
+    <section class="clearfix g-member">
+        <div class="g-Recharge">
+            <ul id="ulOption">
+
+                <!--{loop $rules_data $key=>$val}-->
+
+                <li money="{$val}" need="$key"><a href="javascript:;">{$key}{$credit[title]}/{$val}{lang codepay:pay_currency_unit}<s></s></a></li>
+                    <!--{/loop}-->
+
+
+            </ul>
+        </div>
+        <form   action="/plugin.php?id=codepay:pay&amp;opp=credit" target="_blank" method="post">
+            <input type="hidden" name="formhash" value="{FORMHASH}" />
+            <input type="hidden" name="addfundssubmit" value="divue" />
+            <input type="hidden" name="handlekey" value="buycredit" />
+            <article class="clearfix mt10 m-round g-pay-ment g-bank-ct" style="<!--{if count($rules_data)<1}-->display: none<!--{/if}-->">
+                <ul id="ulBankList">
+                    <li class="gray6" style="width: 100%;padding: 0px 0px 0px 10px;<!--{if $config['money_on']!='1'&&count($rules_data)>0}-->display: none<!--{/if}-->">
+                        {lang codepay:btn}：<label class="input" style="border: 1px solid #EAEAEA;height: 15px;font-size:24px;">
+                        <input type="text" name="addfundamount" id="addfundamount" placeholder="" value="0" style="width: 72px;color: red;font-size:14px;" onkeyup="addcalcredit()">
+                    </label> {$credit[title]}  {lang codepay:credits_need}&nbsp;{lang codepay:pay_currency} <span id="money">0</span> {lang codepay:pay_currency_unit}
+
+                    </li>
+                    <!--{loop $pay_banks $key=>$val}-->
+                    <li payType="{$val}" class="gray9"  style="width: 33%">
+                        <a href="javascript:;"><img src="{$_G['site_url']}source/plugin/codepay/template/image/{$key}.png"><s></s></a>
+                    </li>
+                    <!--{/loop}-->
+                </ul>
+            </article>
+
+            <input type="hidden" value="1" name="type" id="pay_type">
+            <div class="mt10 f-Recharge-btn">
+                <button id="btnSubmit" type="submit" href="javascript:;" class="orgBtn">{lang codepay:btn}</button>
+            </div>
+        </form>
+    </section>
+
+    <input id="hidIsHttps" type="hidden" value="0"/>
+    <script src="{$_G['site_url']}source/plugin/codepay/template/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+
+        $(function () {
+            var c ;
+            var g = false;
+            var a = null;
+            var e = function () {
+                $("#ulOption > li").each(function () {
+                    var n = $(this);
+                    n.click(function () {
+                        g = false;
+                        c = n.attr("money");
+                        n.children("a").addClass("z-sel");
+                        n.siblings().children().removeClass("z-sel").removeClass("z-initsel");
+                        var needMoney=parseFloat(n.attr("money")).toFixed(2);
+                        var need=parseInt(n.attr("need"));
+                        if(needMoney<=0)needMoney=0.01;
+                        $("#addfundamount").val(need);
+                        $("#money").text(needMoney);
+                    })
+                });
+                $("#ulBankList > li").each(function (m) {
+                    var n = $(this);
+                    n.click(function () {
+                        if(m<1)return;
+                        $("#pay_type").val(n.attr("payType"));
+                        n.children("a").addClass("z-initsel");
+                        n.siblings().children().removeClass("z-initsel");
+                    })
+                });
+
+
+            };
+            e()
+        });
+        function addcalcredit() {
+            var addfundamount = $('#addfundamount').val().replace(/^0/, '');
+            var addfundamount = parseInt(addfundamount);
+            $("#money").text(!isNaN(addfundamount) ? Math.ceil(((addfundamount / {$ec_ratio}) * 100)) / 100 : 0);
+        }
+    </script>
+
+
+</div>
+</body>
+</html>

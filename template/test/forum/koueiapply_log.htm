@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$_G[charset]}" />
+<title></title>
+<!-- <link rel="stylesheet" href="static/image/admincp/admincp.css" type="text/css" media="all" /> -->
+<script type="text/JavaScript">
+var admincpfilename = 'admin.php', IMGDIR = 'static/image/common', STYLEID = '1', VERHASH = '5nb', IN_ADMINCP = true, ISFRAME = 1;
+</script>
+<script src="static/js/common.js" type="text/javascript"></script>
+<script src="static/js/admincp.js" type="text/javascript"></script>
+<style type="text/css">
+body{ font:12px/1.5 Tahoma; }
+h1{ font-size:20px;color:#0099cc;margin-left:24px; }
+h1 a{ color:#0099cc;text-decoration:none; }
+h1 a:hover{ text-decoration:underline; }
+#admin_getback{ padding:0 10px 10px 10px;display:block;float:right;margin-right:15px;font-size:13px;color:#09c; }
+#kouei_admin_table{width:1700px;margin:0 auto;border-collapse:collapse; }
+#kouei_admin_table td{ border:1px solid #ccc;padding:5px;text-align:center;color:#444; }
+#kouei_admin_table_title td{ color:#0099cc;font-weight:bold; }
+#kouei_admin_table a{ color:#444;text-decoration:none; }
+#kouei_admin_table a:hover{ color:#09c;text-decoration:underline; }
+.apply_text{ width:200px; }
+.apply_num{ width:120px; }
+/*分页样式*/
+	#page_change{ width:600px; margin:10px 250px; text-align:center; padding:10px;margin:20px auto; }
+	#page_change a{ text-decoration:none; display:block; float:left; width:28px; height:22px; border:1px solid #ccc; margin-left:5px; line-height:22px; letter-spacing:1px; color:#111; }
+	#page_change a:hover{ color:#66ccff !important; border:1px solid #66ccff !important; }
+	#page_change span{ line-height:22px;}
+	#page_change input{ margin:0px 3px;padding:0px; text-align:center; }
+	#prevpage,#nextpage,#firstpage{ width:54px !important; }
+	#all_count{ font-weight:bold; }
+	.select_page_style{ color:#66ccff !important; background:#fff; border-color:#66ccff !important; }
+</style>
+<script>
+window.onload = function ()
+{
+
+	var uurl = window.location;
+	 	uurl = uurl.toString();
+	function GetNoPageUrl(url)
+	{
+	     var reg = new RegExp("(^|&)"+ "page" +"=([^&]*)(&|$)");
+         var r = url.substr(1).match(reg);
+         if(r!=null)return url.replace(r[0],''); return url; 
+	}
+	var myURL = GetNoPageUrl(uurl);
+
+	function GetQueryString(name)
+	{
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	var page = GetQueryString('page')?GetQueryString('page'):1;
+		page = parseInt(page);
+
+	var oPageA = document.getElementById('page_change').getElementsByTagName('a');
+	var oFirstPage = document.getElementById('firstpage');
+	var oPrevPage = document.getElementById('prevpage');
+	var oNextPage = document.getElementById('nextpage');
+	var oInputPage = document.getElementById('input_page');
+
+	oInputPage.onblur = function(){
+		page = parseInt(this.value);
+		window.location.href = myURL+'&page='+page;
+	}
+
+	oFirstPage.onclick = function(){
+		page = 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	oPrevPage.onclick = function(){
+		if(page == 1){
+			return;
+		}
+		page = page - 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	oNextPage.onclick = function(){
+		page = page + 1;
+		window.location.href = myURL+'&page='+page;
+	}
+
+	for(var i = 2; i < oPageA.length-1; i++)
+	{	
+		var page_inner = oPageA[i].innerHTML;
+		if(page != null)
+		{
+			if(page_inner == page){
+				for(var p in oPageA) oPageA[p].className = '';
+				oPageA[i].className = 'select_page_style';
+			}
+		}
+		oPageA[i].onclick = function()
+		{
+			for(var p in oPageA) oPageA[p].className = '';
+			this.className = "select_page_style";
+			page = parseInt(this.innerHTML);
+			// alert(myURL+'&page='+page);
+			window.location.href = myURL+'&page='+page ;
+		}
+		oPageA[2].innerHTML = parseInt(page);
+		oPageA[3].innerHTML = parseInt(page)+1;
+		oPageA[4].innerHTML = parseInt(page)+2;
+	}
+}
+</script>
+</head>
+<body>
+<h1>{lang kouei_admin_apply_log}</h1>
+<table id="kouei_admin_table">
+<tr id="kouei_admin_table_title">
+	<td>{lang kouei_admin_apply_logid}</td>
+	<td>{lang kouei_admin_apply_id}</td>
+	<td>{lang kouei_admin_apply_log_acname}</td>
+	<td>{lang kouei_admin_apply_log_action}</td>
+	<td>{lang kouei_admin_apply_log_reason}</td>
+	<td>{lang kouei_admin_apply_log_time}</td>
+</tr>
+
+<!--{loop $statvars $key $val}-->
+<tr>
+	<td>$statvars[$key][lid]</td>
+	<td>$statvars[$key][aid]</td>
+	<td>$statvars[$key][acname]</td>
+	<!--{if $statvars[$key][action] == pass}-->
+	<td>{lang kouei_admin_apply_success}</td>
+	<!--{/if}-->
+	<!--{if $statvars[$key][action] == refuse}-->
+	<td>{lang kouei_admin_apply_failed}</td>
+	<!--{/if}-->
+	<!--{if $statvars[$key][action] == recover}-->
+	<td>{lang kouei_admin_apply_recover}</td>
+	<!--{/if}-->
+	<td>$statvars[$key][reason]</td>
+	<td>$statvars[$key][datetime]</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div id="page_change">
+	<a id="firstpage" href="javascript:;" class="pagechangers">{lang hcredit_mainpage}</a>
+	<a id="prevpage" href="javascript:;">{lang hcredit_prevpage}</a>
+	<a href="javascript:;" class="select_page_style">1</a>
+	<a href="javascript:;">2</a>
+	<a href="javascript:;">3</a>
+	<a id="nextpage" href="javascript:;">{lang hcredit_nextpage}</a>
+	<span>{lang location_to}</span>
+	<input type="text" name="page" size="1" maxlength="3" id="input_page">
+	<span>{lang the_page}</span>
+	<span id="all_count">{lang hcredit_countpage}$rowp[page_all] {lang the_page}</span>
+</div>
+
+<div id="kouei_overlay" style="display:none;"></div>
+<div id="kouei_win" style="display:none;">
+	<h2><span id="kouei_close">{lang kouei_apply_close}</span></h2>
+	<p>{lang kouei_admin_apply_action_reason}</p>
+	<form method="post" action="forum.php?mod=koueiapplydata">
+		<textarea name="reason"></textarea>
+		<input type="submit" value="{lang kouei_apply_submit}">
+		<input type="hidden" name="acname" value="$_G['username']">
+		<input type="hidden" name="applyid" id="input_applyid">
+		<input type="hidden" name="action" id="input_action">
+	</form>
+</div>
+</body>
+</html>

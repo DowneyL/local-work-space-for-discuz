@@ -1,0 +1,136 @@
+<!--{if $_G['setting']['mobile']['mobilehotthread'] && $_GET['forumlist'] != 1}-->
+	<!--{eval dheader('Location:forum.php?mod=guide&view=hot');exit;}-->
+<!--{/if}-->
+<!--{template common/header}-->
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#example-navbar-collapse">
+				<span class="sr-only">Change</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="forum.php">$_G['setting']['bbname']</a>
+		</div>
+		<div class="collapse navbar-collapse" id="example-navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="#">{lang share}</a></li>
+				<li><a href="#">{lang about}</a></li>
+				<li><a href="#">{lang woa}</a></li>
+				<!--<li><a href="#">&lt;!&ndash;{hook/global_header_mobile}&ndash;&gt;</a></li>-->
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<!--{if !$_G[uid] && !$_G['connectguest']}-->
+				<li><a href="member.php?mod=logging&action=login" title="{lang login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp; {lang login}</a></li>
+				<li><a href="<!--{if $_G['setting']['regstatus']}-->member.php?mod={$_G[setting][regname]}<!--{else}-->javascript:;" style="color:#D7D7D7;<!--{/if}-->" title="{$_G['setting']['reglinkname']}"><span class="glyphicon glyphicon-user"></span>&nbsp; {lang register}</a></li>
+				<!--{else}-->
+				<li><a href="home.php?mod=space&uid={$_G[uid]}&do=profile&mycenter=1"><span class="glyphicon glyphicon-user"></span>&nbsp;   {$_G['member']['username']}</a></li>
+				<li><a href="javascript:;" title="{lang logout}" class="dialog" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-out"></span>&nbsp; {lang logout}</a></li>
+				<!--{/if}-->
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container">
+
+<!--<script type="text/javascript">-->
+	<!--function getvisitclienthref() {-->
+		<!--var visitclienthref = '';-->
+		<!--if(ios) {-->
+			<!--visitclienthref = 'https://itunes.apple.com/cn/app/zhang-shang-lun-tan/id489399408?mt=8';-->
+		<!--} else if(andriod) {-->
+			<!--visitclienthref = 'http://www.discuz.net/mobile.php?platform=android';-->
+		<!--}-->
+		<!--return visitclienthref;-->
+	<!--}-->
+<!--</script>-->
+
+<!--{if $_GET['visitclient']}-->
+
+<header class="header">
+    <div class="nav">
+		<span>{lang warmtip}</span>
+    </div>
+</header>
+<div class="cl">
+	<div class="clew_con">
+		<h2 class="tit">{lang zsltmobileclient}</h2>
+		<p>{lang visitbbsanytime}<input class="redirect button" id="visitclientid" type="button" value="{lang clicktodownload}" href="" /></p>
+		<h2 class="tit">{lang iphoneandriodmobile}</h2>
+		<p>{lang visitwapmobile}<input class="redirect button" type="button" value="{lang clicktovisitwapmobile}" href="$_GET[visitclient]" /></p>
+	</div>
+</div>
+<script type="text/javascript">
+	var visitclienthref = getvisitclienthref();
+	if(visitclienthref) {
+		$('#visitclientid').attr('href', visitclienthref);
+	} else {
+		window.location.href = '$_GET[visitclient]';
+	}
+</script>
+
+<!--{else}-->
+
+<!-- header start -->
+<!--{if $showvisitclient}-->
+
+<div class="visitclienttip vm" style="display:block;">
+	<a href="javascript:;" id="visitclientid" class="btn_download">{lang downloadnow}</a>
+	<p>
+		{lang downloadzslttoshareview}
+	</p>
+</div>
+<script type="text/javascript">
+	var visitclienthref = getvisitclienthref();
+	if(visitclienthref) {
+		$('#visitclientid').attr('href', visitclienthref);
+		$('.visitclienttip').css('display', 'block');
+	}
+</script>
+
+<!--{/if}-->
+
+<header class="header">
+	<form id="searchform" class="searchform bs-example bs-example-form" method="post" autocomplete="off" action="search.php?mod=forum&mobile=2" role="form">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="input-group">
+					<!--{if !empty($srchtype)}--><input type="hidden" name="srchtype" value="$srchtype" /><!--{/if}-->
+					<input value="$keyword" autocomplete="off" class="input form-control" name="srchtxt" id="scform_srchtxt" value="" placeholder="{lang searchthread}">
+					<input type="hidden" name="searchsubmit" value="yes">
+			<span  class="input-group-btn">
+			<input type="submit" value="{lang search}" class="button2 btn btn-primary" id="scform_submit">
+			</span>
+				</div>
+			</div>
+		</div>
+	</form>
+</header>
+<!-- header end -->
+<!--{hook/index_top_mobile}-->
+<!-- main forumlist start -->
+<article class="htmleaf-container">
+	<!--{loop $catlist $key $cat}-->
+	<ul class="cd-accordion-menu animated">
+		<li class="has-children">
+			<input type="checkbox" name ="k_sub_forum_$cat[fid]" id="k_sub_forum_$cat[fid]">
+			<label for="k_sub_forum_$cat[fid]">$cat[name]</label>
+			<ul>
+				<!--{loop $cat[forums] $forumid}-->
+				<!--{eval $forum=$forumlist[$forumid];}-->
+				<li><a href="forum.php?mod=forumdisplay&fid={$forum['fid']}"><!--{if $forum[todayposts] > 0}--><span class="num badge pull-right">$forum[todayposts]</span><!--{/if}-->{$forum[name]}</a></li>
+				<!--{/loop}-->
+			</ul>
+		</li>
+	</ul> <!-- cd-accordion-menu -->
+	<!--{/loop}-->
+</article>
+<!-- main forumlist end -->
+<!--{hook/index_middle_mobile}-->
+<!--{/if}-->
+<!--{eval $nobottombar = true;$nofooter = true;$alertlogout = true;}-->
+<!--{template common/footer}-->

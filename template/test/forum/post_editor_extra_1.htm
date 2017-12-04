@@ -1,0 +1,68 @@
+	<!--{if $sortid}-->
+		<input type="hidden" name="sortid" value="$sortid" />
+	<!--{/if}-->
+	<!--{if $isfirstpost && !empty($_G['forum'][threadtypes][types])}-->
+		<div class="ftid_1">
+			<!--{if $_G['forum']['ismoderator'] || empty($_G['forum']['threadtypes']['moderators'][$thread[typeid]])}-->
+			<select name="typeid" id="typeid" width="80">
+			<option value="0">{lang select_thread_catgory}</option>
+			<!--{loop $_G['forum'][threadtypes][types] $typeid $name}-->
+				<!--{if empty($_G['forum']['threadtypes']['moderators'][$typeid]) || $_G['forum']['ismoderator']}-->
+				<option value="$typeid"{if $thread['typeid'] == $typeid || $_GET['typeid'] == $typeid} selected="selected"{/if}><!--{echo strip_tags($name);}--></option>
+				<!--{/if}-->
+			<!--{/loop}-->
+			</select>
+			<!--{else}-->
+			[<!--{echo strip_tags($_G['forum']['threadtypes']['types'][$thread[typeid]]);}-->]
+			<!--{/if}-->
+		</div>
+	<!--{/if}-->
+	<div class="z">
+		<div class="kouei-helpselect" >
+			<div class="pbt-eh mould-class">
+				<span>{lang mould_class}</span>
+				<select name="kouei_mould_class" id="kouei_mould_class" width="80">
+					<option value="mould_class_metals">{lang mould_class_metals}</option>
+					<option value="mould_class_plastic">{lang mould_class_plastic}</option>
+					<option value="mould_class_preca">{lang mould_class_preca}</option>
+					<option value="mould_class_other">{lang mould_class_other}</option>
+				</select>
+			</div>
+			<div class="pbt-ee question_class">
+				<span>{lang question_class}</span>
+				<select name="kouei_question_class" id="kouei_question_class" width="80">
+					<option value="question_class_production">{lang question_class_production}</option>
+					<option value="question_class_make">{lang question_class_make}</option>
+					<option value="question_class_design">{lang question_class_design}</option>
+					<option value="question_class_craft">{lang question_class_craft}</option>
+					<option value="question_class_software">{lang question_class_software}</option>
+					<option value="question_class_other">{lang question_class_other}</option>
+				</select>
+			</div>
+		</div>
+
+		<!--{if $_GET[action] == 'reply' && !empty($_GET['addtrade']) || $_GET[action] == 'edit' && $thread['special'] == 2 && !$postinfo['first']}-->
+			<input name="subject" type="hidden" value="" />
+		<!--{else}-->
+			<!--{if $_GET[action] != 'reply'}-->
+
+
+			<div class="pbt-ee help-title">
+				<span>{lang help_title}</span>
+				<span><input type="text" name="subject" id="subject" class="px" value="$postinfo[subject]" {if $_GET[action] == 'newthread'}onblur="if($('tags')){relatekw('-1','-1'{if $_G['group']['allowposttag']},function(){extraCheck(4)}{/if});doane();}"{/if} onkeyup="strLenCalc(this, 'checklen', 80);" style="width: 25em" tabindex="1" placeholder='{lang help_title_content}' /></span>
+			<!--{else}-->
+				<span id="subjecthide" class="z">RE: $thread[subject] [<a href="javascript:;" onclick="display('subjecthide');display('subjectbox');$('subject').value='RE: {echo dhtmlspecialchars(str_replace('\'', '\\\'', $thread[subject]))}';display('subjectchk');strLenCalc($('subject'), 'checklen', 80);return false;">{lang modify}</a>]</span>
+				<span id="subjectbox" style="display:none"><input type="text" name="subject" id="subject" class="px" value="" onkeyup="strLenCalc(this, 'checklen', 80);" style="width: 25em" /></span>
+			<!--{/if}-->			
+			<span id="subjectchk"{if $_GET[action] == 'reply'} style="display:none"{/if}>{lang comment_message1} <strong id="checklen">40</strong> {lang comment_message2}</span>
+			</div>
+			<script type="text/javascript">strLenCalc($('subject'), 'checklen', 40)</script>
+		<!--{/if}-->
+		<!--{if $_GET[action] == 'newthread' && $modnewthreads}--> <span class="xg1 xw0">({lang approve})</span><!--{/if}-->
+		<!--{if $_GET[action] == 'reply' && $modnewreplies}--> <span class="xg1 xw0">({lang approve})</span><!--{/if}-->
+		<!--{if $_GET[action] == 'edit' && $isfirstpost && $thread['displayorder'] == -4}--> <span class="xg1 xw0">({lang draft})</span><!--{/if}-->
+	</div>
+</div>
+<div class="pbt-ef">
+	<p>{lang help_description}</p>
+</div>

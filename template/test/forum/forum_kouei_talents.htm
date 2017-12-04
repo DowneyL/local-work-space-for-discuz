@@ -1,0 +1,18 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z"><a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> $navigation$actionsubject <em>&rsaquo;</em> $actiontitle</div>
+</div>
+<div class="talents_main_box">
+	<div class="talents_title">$lang[kouei_talents_select]</div>
+    <div class="talents_content">
+      <ul>
+      	<li id="img1"><a href="javascript:;"onclick="location.href='forum.php?mod=post&action=recruit&fid=$_G[fid]';return false;"><img src="{IMGDIR}/recruit_01.png" /><span></span></a></li>
+        <li id="img2"><a href="javascript:;" onclick="location.href='forum.php?mod=post&action=jobhunt&fid=$_G[fid]';return false;"><img src="{IMGDIR}/jobhunt_02.png" /><span></span></a></li>
+      </ul>
+      <div><input type="button" value="$lang[kouei_talents_cancel]" class="talents_cancel" onclick="location.href='forum.php?mod=post&mod=forumdisplay&fid=$_G[fid]';return false;" /></div>
+    </div>
+    <span class="talents_have"><a href="forum.php?mod=post&action=newthread&fid=68">$lang[kouei_talents_have]</a></span>
+</div>
+<!--{template common/footer}-->
+
+

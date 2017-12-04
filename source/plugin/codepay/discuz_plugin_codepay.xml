@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+    <item id="Title"><![CDATA[Discuz! Plugin]]></item>
+    <item id="Version"><![CDATA[X2,X2.5,X3,X3.1,X3.2,X3.3]]></item>
+    <item id="Time"><![CDATA[2017-02-04 06:42]]></item>
+    <item id="From"><![CDATA[Discuz! Board (http://localhost/forplugin/)]]></item>
+    <item id="Data">
+        <item id="plugin">
+            <item id="available"><![CDATA[1]]></item>
+            <item id="adminid"><![CDATA[1]]></item>
+            <item id="name"><![CDATA[ÃâÇ©Ô¼ÃâÊÖÐø·Ñ¼´Ê±µ½ÕÊ]]></item>
+            <item id="identifier"><![CDATA[codepay]]></item>
+            <item id="description">
+                <![CDATA[Ö§³ÖÖ§¸¶±¦ Î¢ÐÅ QQÇ®°ü ÃâÇ©Ô¼£¬ÃâÊÖÐø·Ñ£¬¼´Ê±µ½ÕÊ½Ó¿Ú¡£<br>Èç¹ûÄúÔÚÊ¹ÓÃ±¾½Ó¿Ú¹ý³ÌÖÐÓöµ½ÈÎºÎÎÊÌâ£¬ÇëÓë¿Í·þQQ£º826105318ÁªÏµ<br>¹Ù·½ÍøÕ¾£ºhttp://codepay.fateqq.com]]></item>
+            <item id="datatables"><![CDATA[]]></item>
+            <item id="directory"><![CDATA[codepay/]]></item>
+            <item id="copyright"><![CDATA[ÂëÖ§¸¶ http://codepay.fateqq.com]]></item>
+            <item id="version"><![CDATA[v1.0]]></item>
+            <item id="__modules">
+                <item id="0">
+                    <item id="name"><![CDATA[payment]]></item>
+                    <item id="menu"><![CDATA[ÔÚÏß³äÖµ]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[11]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+                <item id="1">
+                    <item id="name"><![CDATA[order]]></item>
+                    <item id="menu"><![CDATA[ÔÚÏß³äÖµ]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[7]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+                <item id="2">
+                    <item id="name"><![CDATA[order]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[ÔÚÏß³äÖµ]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[19]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+                <item id="3">
+                    <item id="name"><![CDATA[help]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[Ê¹ÓÃ°ïÖú]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+            </item>
+        </item>
+        <item id="version"><![CDATA[X2,X2.5,X3,X3.1,X3.2,X3.3]]></item>
+        <item id="var">
+            <item id="2">
+                <item id="displayorder"><![CDATA[2]]></item>
+                <item id="title"><![CDATA[ÂëÖ§¸¶ID]]></item>
+                <item id="description"><![CDATA[ÇëÏÈµ½codepay.fateqq.com×¢²á]]></item>
+                <item id="variable"><![CDATA[codepay_id]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="3">
+                <item id="displayorder"><![CDATA[3]]></item>
+                <item id="title"><![CDATA[Í¨ÐÅÃÜÔ¿]]></item>
+                <item id="description"><![CDATA[ÇëÏÈµ½codepay.fateqq.com×¢²á]]></item>
+                <item id="variable"><![CDATA[codepay_key]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="4">
+                <item id="displayorder"><![CDATA[4]]></item>
+                <item id="title"><![CDATA[¼´Ê±µ½ÕË]]></item>
+                <item id="description"><![CDATA[Ãâ·Ñ»òÈí¼þ°æÇëÑ¡ÔñÊÇ ÈÏÖ¤°æÑ¡Ôñ·ñ]]></item>
+                <item id="variable"><![CDATA[act]]></item>
+                <item id="type"><![CDATA[radio]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="5">
+                <item id="displayorder"><![CDATA[5]]></item>
+                <item id="title"><![CDATA[Ö§¸¶¿ª¹Ø]]></item>
+                <item id="description"><![CDATA[CTRL¼üÑ¡Ôñ¶à¸ö Ä¬ÈÏÎªÖ§¸¶±¦ Î¢ÐÅÖ§¸¶ QQÇ®°üÈ«¿ªÆô]]></item>
+                <item id="variable"><![CDATA[type]]></item>
+                <item id="type"><![CDATA[selects]]></item>
+                <item id="extra"><![CDATA[alipay=Ö§¸¶±¦
+wechat=Î¢ÐÅÖ§¸¶
+qqpay=QQÇ®°ü]]></item>
+                <item id="__value">
+                    <item id="0"><![CDATA[alipay]]></item>
+                    <item id="1"><![CDATA[wechat]]></item>
+                    <item id="2"><![CDATA[qqpay]]></item>
+                </item>
+            </item>
+            <item id="31">
+                <item id="displayorder"><![CDATA[31]]></item>
+                <item id="title"><![CDATA[½»Ò×»ý·Ö]]></item>
+                <item id="description"><![CDATA['ÓÃÓÚ³äÖµºóËùÔö¼ÓµÄ»ý·Ö']]></item>
+                <item id="variable"><![CDATA[cextcredit]]></item>
+                <item id="type"><![CDATA[extcredit]]></item>
+                <item id="value"><![CDATA[2]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="36">
+                <item id="displayorder"><![CDATA[36]]></item>
+                <item id="title"><![CDATA[¹Ì¶¨½ð¶î]]></item>
+                <item id="description">
+                    <![CDATA[¿ÉÊµÏÖÄ³Ð©³äÖµÔ½¶àÓÐÓÅ»ÝÒµÎñ ¸ñÊ½£ºÈËÃñ±Ò|»ý·Ö  Èç£º10|100 ±íÊ¾10Ôª³äÖµ100»ý·Ö,20|300 ±íÊ¾20Ôª³äÖµ300»ý·Ö ¶à¸öÊ¹ÓÃ»»ÐÐ·û]]></item>
+                <item id="variable"><![CDATA[rule]]></item>
+                <item id="type"><![CDATA[textarea]]></item>
+                <item id="value"><![CDATA[]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="37">
+                <item id="displayorder"><![CDATA[37]]></item>
+                <item id="title"><![CDATA[ÔÊÐíÊäÈë½ð¶î]]></item>
+                <item id="description"><![CDATA[¹Ø±ÕÔòÓÃ»§²»ÄÜ×Ô¼ºÊäÈë½ð¶î µ«±ØÐëÉèÖÃ¹Ì¶¨½ð¶î ·ñÔò²»ÉúÐ§]]></item>
+                <item id="variable"><![CDATA[money_on]]></item>
+                <item id="type"><![CDATA[radio]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="93">
+                <item id="displayorder"><![CDATA[93]]></item>
+                <item id="title"><![CDATA[ÏÖ½ð/»ý·ÖÄ¬ÈÏ¶Ò»»±ÈÂÊ]]></item>
+                <item id="description">
+                    <![CDATA[ÉèÖÃÕæÊµ»õ±ÒÏÖ½ð(ÒÔÈËÃñ±ÒÔªÎªµ¥Î»)ÓëÕ¾µã½»Ò×»ý·Ö¼äµÄ¶Ò»»±ÈÂÊ£¬ÀýÈçÉèÖÃÎª 10£¬Ôò 1 ÔªÈËÃñ±Ò¿ÉÒÔ¶Ò»» 10 ¸öµ¥Î»µÄ½»Ò×»ý·Ö¡£Èç¹û½ûÖ¹Ê¹ÓÃÏÖ½ðÓë½»Ò×»ý·ÖµÄ¶Ò»»¹¦ÄÜ£¬ÇëÉèÖÃÎª 0]]></item>
+                <item id="variable"><![CDATA[codepay_ratio]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[10]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="94">
+                <item id="displayorder"><![CDATA[94]]></item>
+                <item id="title"><![CDATA[µ¥´Î¹ºÂò×îÐ¡»ý·ÖÊý¶î]]></item>
+                <item id="description"><![CDATA[ÉèÖÃÓÃ»§Ò»´ÎÖ§¸¶Ëù¹ºÂòµÄ½»Ò×»ý·ÖµÄ×îÐ¡Êý¶î£¬µ¥Î»Îª½»Ò×»ý·ÖµÄµ¥Î»£¬0 Îª²»ÏÞÖÆ]]></item>
+                <item id="variable"><![CDATA[codepay_mincredits]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[0]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="95">
+                <item id="displayorder"><![CDATA[95]]></item>
+                <item id="title"><![CDATA[µ¥´Î¹ºÂò×î´ó»ý·ÖÊý¶î]]></item>
+                <item id="description"><![CDATA[ÉèÖÃÓÃ»§Ò»´ÎÖ§¸¶Ëù¹ºÂòµÄ½»Ò×»ý·ÖµÄ×î´óÊý¶î£¬µ¥Î»Îª½»Ò×»ý·ÖµÄµ¥Î»£¬0 Îª²»ÏÞÖÆ]]></item>
+                <item id="variable"><![CDATA[codepay_maxcredits]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[0]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="11">
+                <item id="displayorder"><![CDATA[11]]></item>
+                <item id="title"><![CDATA[Á´½ÓÎÄ×Ö]]></item>
+                <item id="description"><![CDATA[³öÏÖÔÚÓÒÉÏ½ÇµÄÁ´½ÓÎÄ×Ö£¬Èç¹û²»ÐèÒªÇëÁô¿Õ]]></item>
+                <item id="variable"><![CDATA[linktitle]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[³äÖµ]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="12">
+                <item id="displayorder"><![CDATA[12]]></item>
+                <item id="title"><![CDATA[ÎÄ×ÖÑÕÉ«]]></item>
+                <item id="description"><![CDATA[ÓÒÉÏ½ÇÁ´½ÓÎÄ×ÖÑÕÉ«]]></item>
+                <item id="variable"><![CDATA[linkcolor]]></item>
+                <item id="type"><![CDATA[color]]></item>
+                <item id="value"><![CDATA[#FF6633]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+        </item>
+        <item id="language">
+            <item id="scriptlang">
+                <item id="codepay_title"><![CDATA[Á¢¼´³äÖµ]]></item>
+                <item id="amount_invalid">
+                    <![CDATA[Äúµ¥´Î¹ºÂòµÄ»ý·ÖÊýÁ¿³¬³ö×î´óÖµ {codepay_maxcredits} »ò×îÐ¡Öµ {codepay_mincredits} µÄÏÞÖÆ¡£]]></item>
+                <item id="CARDOPEN"><![CDATA[¿ªÆô]]></item>
+                <item id="CARDCLOSE"><![CDATA[¹Ø±Õ]]></item>
+                <item id="channelname"><![CDATA[Ö§¸¶·½Ê½]]></item>
+                <item id="channelrate"><![CDATA[·ÑÂÊ%]]></item>
+                <item id="channelstatus"><![CDATA[×´Ì¬]]></item>
+                <item id="order_err"><![CDATA[¶©µ¥´´½¨Ê§°Ü ÇëÁªÏµ¹ÜÀíÔ±]]></item>
+                <item id="order_handle_error"><![CDATA[¶©µ¥´¦ÀíÊ§°Ü ÇëÁªÏµ¹ÜÀíÔ±]]></item>
+                <item id="not_money_error"><![CDATA[ÇëÑ¡ÔñÐèÒª³äÖµµÄ½ð¶î]]></item>
+                <item id="not_on"><![CDATA[Î´ÆôÓÃ ÇëÁªÏµ¹ÜÀíÔ±]]></item>
+                <item id="no_set"><![CDATA[»ý·ÖÎ´ÉèÖÃÇëÁªÏµ¹ÜÀíÔ±]]></item>
+                <item id="no_id"><![CDATA[Ã»ÓÐÉèÖÃ ÇëÏÈÉèÖÃºÃ¸Ã²å¼þ]]></item>
+            </item>
+            <item id="templatelang">
+                <item id="btn"><![CDATA[³äÖµ]]></item>
+                <item id="credits_need"><![CDATA[ËùÐè]]></item>
+                <item id="credits_get"><![CDATA[»ñµÃ]]></item>
+                <item id="pay_currency"><![CDATA[ÈËÃñ±Ò]]></item>
+                <item id="pay_channelname"><![CDATA[Ö§¸¶·½Ê½]]></item>
+                <item id="pay_price"><![CDATA[½ð¶î]]></item>
+                <item id="pay_select"><![CDATA[Ñ¡Ôñ]]></item>
+                <item id="pay_money"><![CDATA[ÏÖ½ð]]></item>
+                <item id="unlimited"><![CDATA[²»ÏÞ]]></item>
+                <item id="pay_currency_unit"><![CDATA[Ôª]]></item>
+                <item id="credits_addfunds"><![CDATA[³äÖµ]]></item>
+                <item id="codepay_tips"><![CDATA[ÌáÊ¾]]></item>
+                <item id="codepay_tips1"><![CDATA[µ¥´Î×îµÍ³äÖµ]]></item>
+                <item id="codepay_tips2"><![CDATA[µ¥´Î×î¸ß³äÖµ]]></item>
+            </item>
+        </item>
+        <item id="installfile"><![CDATA[install.php]]></item>
+        <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+    </item>
+</root>

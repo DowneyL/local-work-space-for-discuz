@@ -1,0 +1,58 @@
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			&times;
+		</button>
+		<!--{if $keyword}-->{lang search_result_keyword_mobile}
+		<!--{if $modfid}-->
+		<a href="forum.php?mod=modcp&action=thread&fid=$modfid&keywords=$modkeyword&submit=true&do=search&page=$page" target="_blank">{lang goto_memcp}</a>
+		<!--{/if}-->
+		<!--{else}-->
+		{lang search_result}
+		<!--{/if}-->
+	</div>
+
+	<!--{if empty($threadlist)}-->
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			&times;
+		</button>
+		{lang search_nomatch}
+	</div>
+	<!--{else}-->
+	<div class="row">
+		<div class="blog-list">
+			<!--{loop $threadlist $thread}-->
+			<div class="col-md-6 col-sm-6">
+				<div class="blog-list-item">
+					<div class="item-des">
+						<a href="forum.php?mod=viewthread&tid=$thread[realtid]&highlight=$index[keywords]" class="item-title">$thread[subject]</a>
+						<div class="item-time">
+							<span><i class="fa fa-clock-o" aria-hidden="true"></i><a>$thread[dateline]</a></span>
+						</div>
+						<div class="item-time">
+							<span><i class="fa fa-home" aria-hidden="true"></i><a href="forum.php?mod=forumdisplay&fid=$thread[fid]&mobile=2">$thread[forumname]</a></span>
+						</div>
+						<div class="summary">
+							<!--{if !$thread['price'] && !$thread['readperm']}-->$thread[message]<!--{else}-->{lang thread_list_message1}<!--{/if}-->
+						</div>
+					</div>
+					<div class="item-more">
+						<span><i class="fa fa-user" aria-hidden="true"></i><a>$thread[author]</a></span>
+						<span><i class="fa fa-eye" aria-hidden="true"></i><a>$thread[views]</a></span>
+						<span><i class="fa fa-comment" aria-hidden="true"></i><a>$thread[replies]</a></span>
+						<!--<span><i class="fa fa-heart" aria-hidden="true"></i><a>2</a></span>-->
+						<!--{if $thread[highlight]}-->
+						<span><i class="fa fa-flag" aria-hidden="true"></i></span>
+						<!--{/if}-->
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!--{/loop}-->
+		</div>
+	</div>
+
+	<!--{/if}-->
+	$multipage

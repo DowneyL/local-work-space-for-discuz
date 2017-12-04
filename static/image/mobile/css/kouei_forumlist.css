@@ -1,0 +1,216 @@
+body{ background-color:#f1f1f1; }
+.header{ margin-top:64px; }
+/**********************************
+ Edit: Ara
+ Date: 2017.8.31
+ Describe: 修改部分Bootstrap自带样式
+**********************************/
+.navbar{ margin-bottom:14px; }
+.navbar .nav li a{ padding-left:20px;padding-right:20px; }
+.htmleaf-container .label{padding: .3em .8em .3em}
+.htmleaf-container .badge{ padding: 4px 13px;}
+
+
+/***********************************
+ Edit: Ara
+ Date: 2017.9.1
+ Describe: 添加原本的样式
+************************************/
+.footer{ font-size:14px; }
+.footer a{ color:#4d5158 }
+.sizecontrol img{width:50px; height:50px;}
+
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+.htmleaf-container, .htmleaf-container::after, .htmleaf-container::before {
+  box-sizing: border-box;
+}
+
+
+.htmleaf-container {
+  margin:1em auto 4em auto;
+  font-size: 1.4rem;
+  /*width:100%;*/
+  /*display:block;*/
+  color: #ffffff;
+  /*background-color: #a0f6aa;*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------------------------------- 
+
+Main Components 
+
+-------------------------------- */
+.htmleaf-container label,.htmleaf-container ul,.htmleaf-container ol{
+  margin:0;
+  padding:0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.htmleaf-container ul,.htmleaf-container ol{
+
+  list-style-type: none;
+}
+
+.cd-accordion-menu {
+  width: 100%;
+  /*max-width: 600px;*/
+  background: #4d5158;
+  margin: 1em auto;
+  box-shadow: 3px 6px 20px #aaa;
+}
+.cd-accordion-menu ul {
+  /* by default hide all sub menus */
+  display: none;
+}
+.cd-accordion-menu li {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.cd-accordion-menu input[type=checkbox] {
+  /* hide native checkbox */
+  position: absolute;
+  opacity: 0;
+}
+.cd-accordion-menu label, .cd-accordion-menu a {
+  position: relative;
+  display: block;
+  padding: 14px 10px 14px 34px;
+  /*background: #4d5158;*/
+  background: #5ea7d7;
+  /*box-shadow: inset 0 -1px #555960;*/
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+.no-touch .cd-accordion-menu label:hover, .no-touch .cd-accordion-menu a:hover {
+  background: #52565d;
+}
+.cd-accordion-menu label::before{
+  /* icons */
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.cd-accordion-menu label {
+  cursor: pointer;
+}
+.cd-accordion-menu label::before{
+  background: url(../img/cd-icons.svg) no-repeat 0 0;
+  /*background-repeat: no-repeat;*/
+}
+.cd-accordion-menu label::before {
+  /* arrow icon */
+  left: 12px;
+  background-position: 0 0;
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.cd-accordion-menu input[type=checkbox]:checked + label::before {
+  /* rotate arrow */
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.cd-accordion-menu input[type=checkbox]:checked + label + ul,
+.cd-accordion-menu input[type=checkbox]:checked + label:nth-of-type(n) + ul {
+  /* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
+  /* show children when item is checked */
+  display: block;
+}
+.cd-accordion-menu ul label,
+.cd-accordion-menu ul a {
+  /*background: #35383d;*/
+  background: #4490c2;
+  box-shadow: inset 0 -1px #3d86b6;
+  padding-left: 40px;
+}
+.no-touch .cd-accordion-menu ul label:hover, .no-touch
+.cd-accordion-menu ul a:hover {
+  background: #3c3f45;
+}
+.cd-accordion-menu > li:last-of-type > label,
+.cd-accordion-menu > li:last-of-type > a,
+.cd-accordion-menu > li > ul > li:last-of-type label,
+.cd-accordion-menu > li > ul > li:last-of-type a {
+  box-shadow: none;
+}
+.cd-accordion-menu ul label::before {
+  left: 36px;
+}
+.cd-accordion-menu ul ul label,
+.cd-accordion-menu ul ul a {
+  padding-left: 100px;
+}
+.cd-accordion-menu ul ul label::before {
+  left: 54px;
+}
+.cd-accordion-menu ul ul ul label,
+.cd-accordion-menu ul ul ul a {
+  padding-left: 118px;
+}
+.cd-accordion-menu ul ul ul label::before {
+  left: 72px;
+}
+@media only screen and (min-width: 600px) {
+  .cd-accordion-menu label, .cd-accordion-menu a {
+    padding: 18px 24px 18px 48px;
+    font-size: 14px;
+  }
+  .cd-accordion-menu label::before {
+    left: 24px;
+  }
+
+  .cd-accordion-menu ul label,
+  .cd-accordion-menu ul a {
+    padding-left: 60px;
+  }
+  .cd-accordion-menu ul label::before {
+    left: 48px;
+  }
+  .cd-accordion-menu ul ul label,
+  .cd-accordion-menu ul ul a {
+    padding-left: 130px;
+  }
+  .cd-accordion-menu ul ul label::before {
+    left: 72px;
+  }
+  .cd-accordion-menu ul ul ul label,
+  .cd-accordion-menu ul ul ul a {
+    padding-left: 154px;
+  }
+  .cd-accordion-menu ul ul ul label::before {
+    left: 96px;
+  }
+}
+.cd-accordion-menu.animated label::before {
+  /* this class is used if you're using jquery to animate the accordion */
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}

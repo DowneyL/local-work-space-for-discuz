@@ -1,0 +1,97 @@
+<style>
+.pns{overflow: hidden;}
+.mtn{
+	widdiv:100%;
+	background-color: #F5F5F5;
+	padding: 10px 15px;
+}
+.paybox,.payfsns{font-family: "Microsoft YaHei" ! important;font-size: 16px;padding: 10px 0px;border-bottom: 1px solid #A0A0A0;overflow: hidden;}
+.chongzhi{float:left;margin-right: 15px;}
+.chongzsr{
+    height: 30px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+	}
+.chongzsr input{height:20px;}
+.banklist li{float:left;margin-right: 20px;}
+.zhiffsxz{float: left;margin-right: 20px;line-height: 50px;}
+</style>
+			<form id="addfundsform" name="addfundsform" method="post" target='_blank' action="home.php?mod=spacecp&ac=plugin&op=credit&id=mingyie_alipay:admin">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="addfundssubmit" value="divue" />
+				<input type="hidden" name="handlekey" value="buycredit" />
+					<table cellspacing="0" cellpadding="0" class="mtn">
+
+			<div class="paybox" >
+						<div class="chongzhi">{lang mingyie_alipay:chongz}</div>
+						<div class="pns">
+                             <div class="chongzsr">
+							 <input type="text" size="5" class="px" style="widdiv: auto;" id="addfundamount" name="addfundamount" onkeyup="addcalcredit()" />
+							 </div>
+								<div style="line-height:30px; height:30px; float:left"> 
+								{lang mingyie_alipay:rmb}
+								 {lang mingyie_alipay:duihuan}&nbsp;
+								<span id="desamount">0</span>
+								{$_G[setting][extcredits][$my_conf['credit_type']][title]}
+							</div>
+						</div>
+						
+							
+					</div>
+                    <div class="payfsns">
+                        <div class="zhiffsxz">{lang mingyie_alipay:payfs}</div>
+                        <div>
+                            <ul class="banklist" style="height: auto;">
+                                <!--{loop $pay_banks $val}-->
+                                <li>
+								<input type="radio" name="paytype" value="{$val[id]}" > 
+                                    <img src="{$_G['site_url']}source/plugin/mingyie_alipay/template/{$val[id]}.png">
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+
+
+					<div>
+						<div>&nbsp;</div>
+						<div colspan="2">
+						<input type="submit" value="{lang mingyie_alipay:lijichongz}">
+							
+						</div>
+					</div>
+
+				</table>
+			</form>
+<span style="display: none" id="return_addfundsform"></span>
+
+
+        <script src="{$_G['site_url']}source/plugin/mingyie_alipay/template/jquery.js" ></script>
+			<script type="text/javascript">
+                var jq = jQuery.noConflict();
+				function addcalcredit() {
+					var addfundamount = jq('#addfundamount').val().replace(/^0/, '');
+					var addfundamount = parseInt(addfundamount);
+					var amt= !isNaN(addfundamount) ? Math.ceil((addfundamount * $ec_ratio)) : 0;
+					jq('#desamount').html( amt);
+				}
+                jq(function(){
+                    jq('#bank_pay_channel li').click(function(){
+                        jq(this).addClass('hover').siblings().removeClass('hover');
+                        var tag = jq(this).attr('tag');
+                        if(tag=='card'){
+                            jq('#addfundsform').hide();
+                            jq('#card_form').show();
+                        }else{
+                            jq('#addfundsform').show();
+                            jq('#card_form').hide();
+                        }
+                    });
+                });
+
+			</script>
+
+		<!--{hook/spacecp_credit_bottom}-->
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{lang codepay:btn}</title>
+    <script src="{$_G['site_url']}source/plugin/codepay/template/js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<div id="showPage" class="showPage">loading...</div>
+<script>
+    $(document).ready(function () {
+        htmlobj = $.ajax({url: "{$codepay_frame_url}", async: false});
+        $("#showPage").html(htmlobj.responseText);
+    });
+
+</script>
+</body>
+</html>

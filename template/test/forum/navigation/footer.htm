@@ -1,0 +1,28 @@
+    </div>
+    <button class="material-scrolltop" type="button"></button>
+
+    <!--{if $_G[uid] == 0}-->
+    <script>
+        $('body').html('');
+        swal({
+            'title' : "{$lang[notice][sorry]}",
+            'text' : "{$lang[notice][unlogin]}",
+            'type' : 'error',
+            'confirmButtonText' : "{$lang[notice][ok]}",
+            'confirmButtonColor' : '#DD6B55',
+            'closeOnConfirm' : false
+        },
+        function (isConfirm){
+            location.href = 'forum.php';
+        });
+    </script>
+    <!--{/if}-->
+
+    <script src="{$_G[setting][jspath]}extend_common/material-scrolltop/material-scrolltop.js?{VERHASH}"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').materialScrollTop();
+        });
+    </script>
+    </body>
+</html>

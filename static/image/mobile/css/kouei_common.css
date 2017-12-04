@@ -1,0 +1,357 @@
+body{ background-color:#f1f1f1; }
+ul,li{ padding:0;margin:0; }
+li{ list-style-type:none;    }
+.header{ margin-top:64px; }
+
+/*bootstrap导航条部分样式重置 */
+.header .navbar-title { float:left;height: 50px;padding: 16px 0 14px 4px;font-size: 17px;line-height: 20px; color:#777;margin-right:20%;}
+.header .navbar-forum .dropdown-menu{ left:40px;top:50px; }
+@media (min-width: 768px){
+    .header .navbar-header {
+        float: none;
+    }
+}
+
+/*bootstrap搜索框样式重置*/
+.input-group{ margin-bottom:18px; }
+
+/*bootstrap提示框样式重置*/
+.alert {  padding: 6px 15px;margin-bottom:18px; }
+.alert-dismissable .close, .alert-dismissible .close { top: -1px;right: -4px;}
+
+
+/***************************************
+
+帖子列表样式（包含搜索页面和帖子版块页面）
+
+***************************************/
+.blog-list {
+    color: #929292;
+}
+.blog-list strong{ font-weight:normal; }
+.blog-list font{ color:#FF6347; }
+.blog-list .blog-list-item {
+    background:#fff url("../img/bg01.jpg") top left no-repeat;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.blog-list .blog-list-item:nth-child(4n) {
+    /*margin-right: 0;*/
+}
+.blog-list-item .item-Img {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.blog-list-item .item-des {
+    padding: 33px 20px 10px;
+}
+/*
+为帖子增加标签
+*/
+.blog-list-item .item-des .item-tag {
+    float:right;
+}
+
+.blog-list-item .item-des .item-title {
+    color: #4d5158;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.blog-list-item .item-des .item-time {
+    font-size: 13px;
+    height: 18px;
+    line-height: 20px;
+    margin-top: 8px;
+}
+.blog-list-item .item-des .summary {
+    color: #999999;
+    font-size: 13px;
+    /*height: 100px;*/
+    line-height: 24px;
+    margin-top: 10px;
+    overflow: hidden;
+    padding:10px 0;
+}
+.blog-list-item .item-more {
+    padding: 0 20px;
+    width: auto;
+}
+.blog-list-item .item-more span {
+    display: inline-block;
+    margin-right: 15px;
+    height: 30px;
+    line-height: 30px;
+}
+/*
+为底部内容添加颜色
+*/
+/*.blog-list-item .item-more span i{*/
+    /*color:#5CACEE;*/
+/*}*/
+
+.blog-list-item .item-more span a {
+    color: #929292;
+    margin-left: 7px;
+}
+.blog-list-item .item-time a,.blog-detail .item-time a {
+    color: #929292;
+    margin-left: 3px;
+}
+.blog-list-item .item-more i {
+    color: #d1d1d1;
+    display: block;
+    float: left;
+    font-size: 15px;
+    margin-top: 6px;
+    width: 13px;
+}
+@media (min-width: 768px) {
+    .blog-list-item .item-des .summary{
+        height: 100px;
+    }
+}
+
+
+/***********
+
+底部固定导航
+
+***********/
+.main-nav{
+    /*background-color:#e74c3c;*/
+    text-align:center;
+    position: fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    transition: bottom .5s;
+}
+
+.main-nav .main-top{
+    padding:4px 0;
+    background-color:rgba(255,255,255,0.7);
+}
+
+.main-nav .main-top a{
+    display:block;
+    color:#337ab7;
+    font-size:13px;
+}
+.main-nav .main-top a i{
+    width:14px;
+    height:14px;
+}
+@media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+    .main-nav .main-top{
+        background-color:#000000;
+        filter:Alpha(opacity=20);
+        position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+        *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+    }
+    .main-nav .main-top a{
+        display:block;
+        position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+    }
+}
+
+.main-nav .main-body{
+    padding:0;
+    margin:0;
+    width:100%;
+}
+
+.main-body{
+    height:48px;
+    border-top:1px solid #e1e1e1;
+}
+
+.main-nav .main-body li{
+    margin:0;
+    list-style-type:none;
+    float:left;
+    width:33.33%;
+}
+
+/*底部导航边线*/
+/*
+.main-nav .main-body li:not(:last-child){
+    border-right:1px solid #fff;
+}
+*/
+
+.main-nav .main-body a{
+    padding:6px 0;
+    background-color:#5ea7d7;
+    /*background-color:#fcfcfc;*/
+    color:#fcfcfc;
+    /*color:#5ea7d7;*/
+    display:block;
+    font-size:12px;
+}
+
+.main-nav .main-body a.active{
+    background-color:#fff;
+    color:#5ea7d7;
+}
+
+.main-nav .main-body a span{
+    display: block;
+}
+.main-nav .main-body a span i{
+    font-size:16px;
+}
+
+.main-nav-hide {
+    bottom: -48px;
+}
+.main-nav-show {
+    bottom:0;
+    z-index: 9999;
+}
+
+
+/*CFeditor编辑器*/
+.cfeditor {
+    padding: 10px;
+    overflow: auto;
+    width: 100%;
+    height: 350px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: 0
+}
+
+div.cf-toolbar a.wysihtml5-command-active {
+    background-image: none;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    background-color: #E6E6E6;
+    background-color: #D9D9D9;
+    outline: 0
+}
+
+.change-label .label {
+    font-size: 100%
+}
+
+.cf-toolbar .tb-bg ul li a,.cf-toolbar .tb-alert ul li a {
+    padding: 0 0;
+}
+
+.cf-toolbar .tb-bg ul {
+    padding: 0;
+}
+
+.cf-toolbar .tb-bg ul li span {
+    display: block;
+    padding: 8px 10px;
+    width: 100%
+}
+
+.cf-toolbar .tb-alert ul li p {
+    margin: 6px
+}
+
+.cf-toolbar .showit {
+    width: 66px
+}
+
+.cf-toolbar .result-wrap.showit {
+    width: 39px
+}
+
+.cf-toolbar .hideit {
+    width: 0
+}
+
+.cf-toolbar .extra-part {
+    overflow-x: hidden;
+    display: block
+}
+
+.cf-toolbar .toggle-extra-part {
+    padding: 6px;
+    background-color: transparent
+}
+
+.cf-toolbar .extra-part.open {
+    overflow-x: visible
+}
+.bg-primary,.bg-success,.bg-info,.bg-warning,.bg-danger {
+    padding: 8px 10px
+}
+
+/*文件上传按钮*/
+#filedata{
+    opacity:0;
+}
+
+
+/*帖子列表暂无更多加载*/
+#nodata{ position:relative;bottom:26px;height:60px;text-align:center;line-height:60px;z-index:-1; }
+
+
+/*帖子或文章发表*/
+.form-horizontal{ margin-bottom:30px; }
+.seccode-img{ display:block;margin-top:5px; }
+
+
+/***********
+
+个人中心样式
+
+***********/
+.container-extra{ padding-left:0;padding-right:0; }
+.user_avatar{ height:158px;background:url("../img/bg14.jpg") center center no-repeat;margin-top:-20px;text-align:center; }
+.avatar_m{ width:80px;height:80px;display:inline-block;margin-top:22px;}
+.user_avatar img{ border-radius: 45px;box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4); width:80px;height:80px; }
+.user_avatar h2{margin-top:15px;color:#fff;font-weight:normal;font-size:20px;}
+
+.user_credit{ height:65px; }
+.user_credit ul li{ float:left;width:33.3%;height:60px;background-color:#fff;border-right:1px solid #f1f1f1;line-height:44px;text-align:center;position:relative;font-size:17px;font-weight:bold; }
+.user_credit .credit_title{ float:left;display:block;position:absolute;top:24px;left:50%;margin-left:-29px;height:30px;width:60px;line-height:30px;padding:4px 6px;font-size:12px;font-weight: normal;color:#888; }
+.myinfo_list{margin:15px 0;}
+.myinfo_list ul li{height:52px;line-height:52px;background-color:#fff;border-bottom:1px solid #f1f1f1; }
+.myinfo_list ul li a{display:block;color:#333;padding:0 20px;font-size:14px;}
+
+.myinfo_list .fa-star{ color:#f39a29; }
+.myinfo_list .fa-bars{ color:#f26253; }
+.myinfo_list .fa-commenting{ color:#108ee9; }
+.myinfo_list .fa-file-text{ color:#26aa90; }
+.myinfo_list .fa-kouei-pos{ width:16px;height:16px;text-align:center;line-height:16px;margin-right:5px; }
+.myinfo_list .fa-angle-right{float:right;line-height:52px;font-size:20px;color:#777;}
+
+.profile_btn{ padding-left:15px; padding-right:15px;margin-bottom:60px;}
+.profile_btn .btn-lg{font-size:16px;}
+
+/*我的资料*/
+.container-extra .userinfo{ position:relative; }
+.user_box .credit_num{ float:right;display:block;font-weight:bold;font-size:15px; }
+.user_box li{ padding:0 25px;font-size:14px; }
+.user_box li i{ width:16px;height:16px;text-align:center;line-height:16px;margin-right:5px; }
+.user_box .fa-inbox{ color:#f39a29; }
+.user_box .fa-bold{ color:#f26253; }
+.user_box .fa-tint{ color:#26aa90; }
+.user_box .fa-cny{ color:#f39a29; }
+.user_box .fa-pagelines{ color:#26aa90; }
+
+
+/*我的主题样式*/
+.page .pager{ margin-top:0; }
+.page .grey{ color:#ccc; }
+
+
+/*尾文件样式*/
+.footer{ font-size:14px;margin-bottom:30px; }
+.footer a{ color:#4d5158 }
+.sizecontrol img{width:50px; height:50px;}

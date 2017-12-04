@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2,F1.0]]></item>
+	<item id="Time"><![CDATA[2016-08-24 11:28]]></item>
+	<item id="From"><![CDATA[人工智能實驗室 (http://www.ailab.cn/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[最近訪問]]></item>
+			<item id="identifier"><![CDATA[viewlog]]></item>
+			<item id="description"><![CDATA[最近訪問 For Discuz! 作者 土著人寧巴 人工智能實驗室 出品（Made By Nimba, Team From AiLab.cn ） 功能介紹：本插件是一款主題瀏覽增強類工具，可以提供一個記錄主題的瀏覽者，並將最近的瀏覽者顯示在主題下方的拓展工具！]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[viewlog/]]></item>
+			<item id="copyright"><![CDATA[人工智能實驗室]]></item>
+			<item id="version"><![CDATA[v1.6.1]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[hook]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[data]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[數據統計]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[addon]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[應用推薦]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[99]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2,F1.0]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[顯示名稱]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[title]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[最近訪問]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[默認顯示數量]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[num]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[26]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[重複瀏覽處理]]></item>
+				<item id="description"><![CDATA[1=更新為最新一次瀏覽
+2=只記錄第一次瀏覽]]></item>
+				<item id="variable"><![CDATA[review]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=更新為最新一次瀏覽
+2=只記錄第一次瀏覽]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[是否定時清空記錄]]></item>
+				<item id="description"><![CDATA[[*]試用版設置無效，試用版僅保留3日瀏覽記錄！]]></item>
+				<item id="variable"><![CDATA[delog]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[瀏覽記錄保留時長]]></item>
+				<item id="description"><![CDATA[單位：天，超過此天數的瀏覽記錄將自動被刪除！為0或留空表示不刪除！
+[*]試用版設置無效，試用版僅保留3日瀏覽記錄！]]></item>
+				<item id="variable"><![CDATA[detime]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[是否屏蔽樓主]]></item>
+				<item id="description"><![CDATA[開啟後，樓主訪問自己帖子的記錄將不會在前台顯示！]]></item>
+				<item id="variable"><![CDATA[banauthor]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="appname"><![CDATA[最近訪問]]></item>
+				<item id="title"><![CDATA[訪客瀏覽記錄]]></item>
+				<item id="title_tips"><![CDATA[(<font color="red">您當前使用的是試用版，僅保留3日瀏覽記錄</font>)]]></item>
+				<item id="subject"><![CDATA[帖子標題]]></item>
+				<item id="username"><![CDATA[用戶名]]></item>
+				<item id="dateline"><![CDATA[訪問時間]]></item>
+				<item id="ipdata"><![CDATA[訪問地址]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="appname"><![CDATA[最近訪問]]></item>
+				<item id="prestr"><![CDATA[本帖最近有 ]]></item>
+				<item id="nextstr"><![CDATA[ 人訪問]]></item>
+				<item id="imagelist"><![CDATA[頭像模式]]></item>
+				<item id="namelist"><![CDATA[列表模式]]></item>
+				<item id="at"><![CDATA[於]]></item>
+				<item id="view"><![CDATA[訪問]]></item>
+			</item>
+			<item id="installlang">
+				<item id="info"><![CDATA[安裝、升級、卸載腳本用的語言包]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

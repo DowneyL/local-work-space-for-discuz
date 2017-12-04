@@ -1,0 +1,24 @@
+<!--{block return}-->
+<script language="javascript" type="text/javascript">
+function tmodthreads_sort(optgroup, operation) {
+	var checked = 0;
+	var operation = !operation ? '' : operation;
+	for(var i = 0; i < $('moderate').elements.length; i++) {
+		if($('moderate').elements[i].name.match('moderate') && $('moderate').elements[i].checked) {
+			checked = 1;
+			break;
+		}
+	}
+	if(!checked) {
+		alert('{lang xj_sort:qxzxyczdtz}');
+	} else {
+		$('moderate').optgroup.value = optgroup;
+		$('moderate').operation.value = operation;
+		$('moderate').action = 'plugin.php?id=xj_sort:batch_sort_form&fid={$fid}&sid={$sid}';
+		hideWindow('sortmods');
+		showWindow('sortmods', 'moderate', 'post', 0);
+	}
+}
+</script>
+ | <strong><a onclick="tmodthreads_sort(2, 'type');return false;" href="javascript:;">{lang xj_sort:dcfl}</a></strong> 
+<!--{/block}-->

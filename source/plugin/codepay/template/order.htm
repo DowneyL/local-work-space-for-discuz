@@ -1,0 +1,109 @@
+<style>
+    .codepay li{
+        line-height: 30px;
+        display: inline-block;
+        background: #fff;
+        border-radius: 3px;
+        text-align: center;
+        border: 1px solid #EAEAEA;
+        box-shadow: 1px 1px 1px #EDEDED;
+        position: relative;
+        margin-right: 3px;
+    }
+</style>
+<!--{eval $creditid=$config['cextcredit'];}-->
+<!--{if $_G['setting']['extcredits'][$creditid]}-->
+<!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
+<!--{/if}-->
+<form id="addfundsform" name="addfundsform" method="post" autocomplete="off"
+      action="plugin.php?id=codepay:pay&amp;opp=credit" target="_blank">
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <input type="hidden" name="addfundssubmit" value="divue" />
+    <input type="hidden" name="handlekey" value="buycredit" />
+    <table cellspacing="0" cellpadding="0" class="tfm mtn">
+        <tr style="<!--{if count($rules_data)<1}-->display: none<!--{/if}-->">
+            <th>{lang codepay:pay_price}{lang codepay:pay_select}</th>
+            <td colspan="6">
+                <div class="mbw codepay">
+                    <ul>
+
+                        <!--{loop $rules_data $key=>$val}-->
+                        <li class="z">
+                            <input name="money" type="radio" value="{$val}" class="vm" id="money_{$key}"
+                                   onclick="setMoney('{$key}','{$val}')"/><label class="vm"
+                                                      style="margin-right:18px;width:135px;height:32px;"
+                                                      onclick="" for="money_{$key}">{$key}{$credit[title]}/{$val}{lang codepay:pay_currency_unit}</label>
+                        </li>
+                        <!--{/loop}-->
+
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr id="paybox" style="<!--{if $config['money_on']!='1'&&count($rules_data)>0}-->display: none<!--{/if}-->">
+            <th>{lang codepay:btn}</th>
+            <td class="pns">
+                <input type="text" size="5" class="px" style="width: auto;" id="addfundamount" name="addfundamount"
+                       value="0" onkeyup="addcalcredit()"/>
+                &nbsp; {$credit[title]}&nbsp;
+                {lang codepay:credits_need}&nbsp;{lang codepay:pay_currency} <span id="desamount">0</span> {lang codepay:pay_currency_unit}
+            </td>
+            <td width="300" class="d">
+                {lang codepay:pay_currency}{lang codepay:pay_money} <strong>1</strong> {lang codepay:pay_currency_unit}
+                = <strong>{$config['codepay_ratio']}</strong> {$credit[title]}<br/>{lang codepay:codepay_tips1}
+                <strong>  <!--{if $config['codepay_mincredits']}-->
+                    $config['codepay_mincredits']
+                    <!--{else}-->
+                    {lang codepay:unlimited}
+                    <!--{/if}-->
+                </strong>
+                {$credit[title]}<br/>{lang codepay:codepay_tips2}
+                <strong><!--{if $config['codepay_mincredits']}-->
+                $config['codepay_maxcredits']
+                <!--{else}-->
+                {lang codepay:unlimited}
+                <!--{/if}--> </strong> {$credit[title]}
+
+            </td>
+        </tr>
+        <tr>
+            <th>{lang codepay:pay_channelname}</th>
+            <td colspan="2">
+                <div class="long-logo mbw">
+                    <ul>
+                        <!--{loop $pay_banks $key=>$val}-->
+                        <li class="z">
+                            <input name="type" type="radio" value="{$val}" class="vm" id="apitype_{$key}"
+                                   onclick=""/><label class="vm"
+                                                      style="margin-right:18px;width:135px;height:40px;background:#FFF url({$_G['site_url']}source/plugin/codepay/template/image/{$key}.png) no-repeat;border:1px solid #DDD;display:inline-block;"
+                                                      onclick="" for="apitype_{$key}"></label>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>&nbsp;</th>
+            <td colspan="2">
+                <button type="submit" name="addfundssubmit_btn" class="pn" id="addfundssubmit_btn" value="true">
+                    <em>{lang codepay:btn}</em></button>
+            </td>
+        </tr>
+
+    </table>
+</form>
+<span style="display: none" id="return_addfundsform"></span>
+<script type="text/javascript">
+    function addcalcredit() {
+        var addfundamount = $('addfundamount').value.replace(/^0/, '');
+        var addfundamount = parseInt(addfundamount);
+        $('desamount').innerHTML = !isNaN(addfundamount) ? Math.ceil(((addfundamount / {$ec_ratio}) * 100)) / 100 : 0;
+    }
+    function setMoney(credit,money) {
+        $('desamount').innerHTML=money;
+        $('addfundamount').value=credit;
+    }
+
+</script>

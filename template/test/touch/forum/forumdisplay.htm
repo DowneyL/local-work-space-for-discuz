@@ -1,0 +1,117 @@
+<!--{template common/header}-->
+<!-- header start -->
+<div class="container">
+<header class="header">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="forum.php?forumlist=1"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<!--{if $subexists && $_G['page'] == 1}-->
+				<div class="dropdown navbar-forum">
+					<a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" class="navbar-title btn dropdown-toggle" id="childForum" data-toggle="dropdown" >
+						<!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}-->&nbsp;
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="childForum">
+						<!--{loop $sublist $sub}-->
+						<li role="presentation">
+							<a  role="menuitem" tabindex="-1"	 href="forum.php?mod=forumdisplay&fid={$sub[fid]}">{$sub['name']}</a>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<!--{else}-->
+				<span class="navbar-title">
+					<!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}-->
+				</span>
+				<!--{/if}-->
+			</div>
+		</div>
+	</nav>
+</header>
+<div id="extra" style="display:none">$extra</div>
+<!-- header end -->
+<!--{hook/forumdisplay_top_mobile}-->
+<!-- main threadlist start -->
+<!--{if !$subforumonly}-->
+	<!--{if $_G['forum_threadcount']}-->
+	<div class="row threadlist">
+		<div class="blog-list">
+		<!--{loop $_G['forum_threadlist'] $key $thread}-->
+		<!--{if !$_G['setting']['mobile']['mobiledisplayorder3'] && $thread['displayorder'] > 0}-->
+		{eval continue;}
+		<!--{/if}-->
+		<!--{if $thread['displayorder'] > 0 && !$displayorder_thread}-->
+		{eval $displayorder_thread = 1;}
+		<!--{/if}-->
+		<!--{if $thread['moved']}-->
+		<!--{eval $thread[tid]=$thread[closed];}-->
+		<!--{/if}-->
+		<div class="col-md-6 col-sm-6">
+			<div class="blog-list-item">
+				<div class="item-des">
+					<a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" class="item-title" >$thread[subject]</a>
+					<div class="item-tag">
+						<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+						<span class="item-top label label-danger">{lang top}</span>
+						<script>
+							var blogListItem = $(".blog-list-item");
+							blogListItem.attr('style','background:#fff url("{STATICURL}image/mobile/img/bg04.jpg") top left no-repeat;');
+						</script>
+						<!--{elseif $thread['digest'] > 0}-->
+						<span class="label label-primary">{lang digest}</span>
+						<!--{elseif $thread['attachment'] == 2 && $_G['setting']['mobile']['mobilesimpletype'] == 0}-->
+						<span class="label label-info">{lang photo}</span>
+						<!--{/if}-->
+					</div>
+					<div class="item-time">
+						<span><i class="fa fa-clock-o" aria-hidden="true"></i><a>$thread[dateline]</a></span>
+					</div>
+					<div class="summary">
+						<!--{if !$thread['price'] && !$thread['readperm']}-->
+						$thread[message]
+						<!--{else}-->
+						{lang thread_list_message1}
+						<!--{/if}-->
+					</div>
+				</div>
+				<div class="item-more">
+					<span><i class="fa fa-user" aria-hidden="true"></i><a>$thread[author]</a></span>
+					<span><i class="fa fa-eye" aria-hidden="true"></i><a>$thread[views]</a></span>
+					<span><i class="fa fa-comment" aria-hidden="true"></i><a>$thread[replies]</a></span>
+					<!--<span><i class="fa fa-heart" aria-hidden="true"></i><a>2</a></span>-->
+					<!--{if $thread['highlight']}-->
+					<span><i class="fa fa-flag" aria-hidden="true" style="color:#888"></i><a></a></span>
+					<!--{/if}-->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!--{/loop}-->
+	</div>
+</div>
+	<!--{else}-->
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			&times;
+		</button>
+		{lang forum_nothreads}
+	</div>
+	<!--{/if}-->
+
+	<!--{if $kouei}-->
+		$multipage
+	<!--{/if}-->
+<!--{/if}-->
+<!-- main threadlist end -->
+<!--{hook/forumdisplay_bottom_mobile}-->
+	<div id="nodata" style="display:none">
+		<img src='http://localhost/static/image/mobile/img/loading1.gif'/>
+	</div>
+</div>
+
+<div class="pullrefresh" style="display:none;"></div>
+<!--{eval $nofooter = true;}-->
+<!--{eval $nobottombar = true;}-->
+<!--{template common/footer}-->

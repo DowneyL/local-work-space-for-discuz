@@ -1,0 +1,38 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="misc.php?mod=stat">{lang stats}</a><em>&rsaquo;</em>
+		{lang kouei_salary}
+	</div>
+</div>
+<div id="ct" class="ct2_a wp cl">
+	<div class="mn">
+		<div class="bm bw0">
+			<div id="hcredit_header">
+				<h2>{lang hcredit_title}</h2>	
+			</div>
+			<table id="hcredit_table" border="1" width="100%">
+				<tr>
+					<th><b>{lang get_hcredit_member}</b></th>
+					<th><b>{lang give_hcredit_member}</b></th>
+					<th><b>{lang change_hcredit_time}</b></th>
+					<th><b>{lang hcredit_lh}</b></th>
+				</tr>
+				<!--{loop $statvars $statvar}-->
+				<tr>
+					<td><a id="hcredit_a" href="misc.php?mod=stat&op=salary&getuid=$statvar[getuid]">$statvar[getusername]</a></td>
+					<td>$statvar[username]</td>
+					<td>$statvar[dateline]</td>
+					<td>$statvar[score]</td>
+				</tr>
+				<!--{/loop}-->
+			</table>
+		</div>
+		<!--{if !$getuid}-->
+			$multi
+		<!--{/if}-->
+	</div>
+	<!--{subtemplate common/stat}-->
+</div>
+<!--{template common/footer}-->

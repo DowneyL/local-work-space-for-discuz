@@ -1,0 +1,95 @@
+
+
+<!--{if $hot_threads}-->
+<div class="panel panel-default">
+    <div class="panel-body sidebar-recommend">
+        <div class="sidebar-header">
+            <h4>$lang[recommend]</h4>
+        </div>
+        <ul>
+            <!--{loop $hot_threads $hot_thread}-->
+            <li>
+                <a href="/forum.php?mod=viewthread&tid={$hot_thread[tid]}&extra=" target="_blank">{$hot_thread[subject]}</a>
+                <a class="re-author" href="/home.php?mod=space&uid={$hot_thread[authorid]}" target="_blank">
+                    <!--{avatar($hot_thread[authorid],small)}-->
+                    {$hot_thread[author]}
+                </a>
+            </li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+</div>
+<!--{/if}-->
+
+<div class="panel panel-default">
+    <div class="panel-body sidebar-hot-tag">
+        <div class="sidebar-header">
+            <h4>$lang[hot_tag]</h4>
+            <a href="/forum.php?mod=navigation&action=tag">$lang[more] ></a>
+        </div>
+        <ul>
+            <!--{loop $hot_blocks $hot_block}-->
+            <li>
+                <a href="forum.php?mod=navigation&blockid={$hot_block[block_id]}&sort=history">{$hot_block[block_name]}</a>
+            </li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar-footer">
+    <div class="link-item">
+        <a href="https://www.mould.net.cn/" target="_blank">{$lang[zhongguomujuwang]}</a>
+        <span class="footer-dot"></span>
+        <a href="#" target="_blank">{$lang[about_us]}</a>
+        <span class="footer-dot"></span>
+        <a href="#" target="_blank">{$lang[join_us]}</a>
+    </div>
+    <div class="record-number">
+        <a href="http://www.miitbeian.gov.cn/">{$_G[setting][icp]}</a> &copy; Designed by Ara
+    </div>
+</div>
+<script src="{$_G[setting][jspath]}extend_common/jquery.sticky.js?{VERHASH}"></script>
+<script>
+    $(function () {
+        $('.sidebar').sticky({topSpacing: 72});
+    })
+</script>
+<script>
+    $(function(){
+        /* advertisement */
+        var sideAdv = $('.sidebar-adv');
+        var times = $('.sidebar-adv i');
+        var sideAdvLink = $('.sidebar-adv .push-adv');
+        sideAdv.hover(function () {
+            times.show();
+        }, function () {
+            times.hide();
+        });
+        times.on('click', function () {
+            sideAdvLink.hide();
+            sideAdv.slideUp(600);
+        });
+        sideAdvLink.hover(function (){
+            $(this).text("{$lang[push_adv]}").attr('href', "{$_G[setting][kouei_push_adv_link]}");
+        }, function () {
+            $(this).text("{$lang[adv]}").attr('href', '#');
+        });
+
+        /* search form */
+        var searchInput = $('.navigation-search .form-control');
+        searchInput.on({
+            focus : function(){
+                $(this).animate({
+                    width : '75%'
+                },300);
+            },
+            blur : function(){
+                $(this).animate({
+                    width : '60%'
+                },300);
+            }
+        });
+    })
+</script>
+

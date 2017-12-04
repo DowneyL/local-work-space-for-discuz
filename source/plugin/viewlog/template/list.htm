@@ -1,0 +1,65 @@
+<!--{block return}-->
+<style>
+<!--
+.pattimg {
+float: left;
+margin: 0 10px 10px 0;
+width: {$len}px;
+height: {$len}px;
+overflow: hidden;
+}
+.pattimg_zoom{
+width: {$len}px;
+height: {$len}px;
+}
+.xl4 li {
+float: left;
+margin: 2px 0;
+padding: 0;
+width: 25%;
+height: 1.5em;
+overflow: hidden;
+}
+#viewlog_num_haorui{
+	color: red;
+}
+-->
+</style>
+<div class="pattl">
+<script type="text/javascript">
+function viewlog(op) {
+	if(op==1) {
+		$('namelist').style.display = 'none';
+		$('imagelist').style.display = '';
+	} else {
+		$('imagelist').style.display = 'none';
+		$('namelist').style.display = '';
+	}
+	doane();
+}
+</script>
+	<div class="bbda cl mtw mbm pbm">
+		<strong>{lang viewlog:prestr}</strong>
+		<strong id="viewlog_num_haorui">{$count}</strong>
+		<strong>{lang viewlog:nextstr}</strong>
+		<a href="javascript:;" onclick="viewlog(1)" class="xi2 attl_m">{lang viewlog:imagelist}</a>
+		<a href="javascript:;" onclick="viewlog(2)" class="xi2 attl_g">{lang viewlog:namelist}</a>
+	</div>
+	<div id="imagelist" class="pattl_c cl">
+		<!--{loop $userList $k $user}-->
+		<!--{if $vars['banauthor']==0||$user['uid']!=$_G[thread]['authorid']}-->
+		<div class="pattimg"><a class="pattimg_zoom" href="home.php?mod=space&uid={$user['uid']}" title="{$users[$user['uid']]}{lang viewlog:at}{$user['dateline']}{lang viewlog:view}" target="_blank">{$users[$user['uid']]}{lang viewlog:at}{$user['dateline']}{lang viewlog:view}</a><img src="{$user['avatar']}" width="{$len}" height="{$len}"></div>
+		<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+	<div id="namelist" class="cl" style="display:none;">
+		<ul class="mbw xl xl4 cl">
+		<!--{loop $userList $k $user}-->
+		<!--{if $vars['banauthor']==0||$user['uid']!=$_G[thread]['authorid']}-->
+		<li><a href="home.php?mod=space&uid={$user['uid']}" title="{$users[$user['uid']]}{lang viewlog:at}{$user['dateline']}{lang viewlog:view}" target="_blank" class="xi2 xw1">{$users[$user['uid']]}</a></li>
+		<!--{/if}-->
+		<!--{/loop}-->
+		</ul>
+	</div>
+</div>
+<!--{/block}-->

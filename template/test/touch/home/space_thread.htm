@@ -1,0 +1,62 @@
+<!--{template common/header}-->
+<div class="container">
+
+<!-- header start -->
+<header class="header">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"  href="home.php?mod=space&uid=1&do=profile&mycenter=1" onclick="history.go(-1);"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<span class="navbar-title">{lang mythread}</span>
+			</div>
+		</div>
+	</nav>
+</header>
+<!-- header end -->
+<!-- main threadlist start -->
+
+<!--{if $list}-->
+<div class="row threadlist">
+	<div class="blog-list">
+	<!--{loop $list $thread}-->
+		<div class="col-md-6 col-sm-6">
+			<div class="blog-list-item">
+				<div class="item-des">
+					<!--{if $viewtype == 'reply' || $viewtype == 'postcomment'}-->
+					<a href="forum.php?mod=redirect&goto=findpost&ptid=$thread[tid]&pid=$thread[pid]" class="item-title">$thread[subject]</a>
+					<!--{else}-->
+					<a href="forum.php?mod=viewthread&tid=$thread[tid]" {if $thread['displayorder'] == -1}class="grey item-title"{/if}>$thread[subject]</a>
+					<!--{/if}-->
+					<div class="item-time">
+						<span><i class="fa fa-clock-o" aria-hidden="true"></i><a>$thread[dateline]</a></span>
+					</div>
+				</div>
+				<div class="item-more">
+					<span><i class="fa fa-home" aria-hidden="true"></i><a href="forum.php?mod=forumdisplay&fid=$thread[fid]&mobile=2">$thread[forumname]</a></span>
+					<span><i class="fa fa-eye" aria-hidden="true"></i><a>$thread[views]</a></span>
+					<span><i class="fa fa-comment" aria-hidden="true"></i><a>$thread[replies]</a></span>
+					<!--<span><i class="fa fa-heart" aria-hidden="true"></i><a>2</a></span>-->
+					<!--{if $thread[highlight]}-->
+					<span><i class="fa fa-flag" aria-hidden="true"></i></span>
+					<!--{/if}-->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!--{/loop}-->
+	</div>
+</div>
+<!--{else}-->
+		<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">
+				&times;
+			</button>
+			{lang no_related_posts}
+		</div>
+		<!--{/if}-->
+	$multi
+<!-- main threadlist end -->
+<!--{eval $nobottombar = true;}-->
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

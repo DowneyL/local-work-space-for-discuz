@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3,X2.5]]></item>
+	<item id="Time"><![CDATA[2012-08-27 10:26]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://amu.slighthost.com:8080/bbs/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[【DSU】打卡簽到]]></item>
+			<item id="identifier"><![CDATA[dsu_amupper]]></item>
+			<item id="description"><![CDATA[簡潔的簽到軟件，副作用：防AD]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[dsu_amupper/]]></item>
+			<item id="copyright"><![CDATA[阿牧 @ DSU Team]]></item>
+			<item id="version"><![CDATA[X30.0003.0835]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[pperm]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[pper]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="menu"><![CDATA[特殊獎勵設置]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[list]]></item>
+					<item id="menu"><![CDATA[簽到數據]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="4">
+					<item id="name"><![CDATA[upgrade]]></item>
+					<item id="menu"><![CDATA[安裝情況檢查]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="5">
+					<item id="name"><![CDATA[trans]]></item>
+					<item id="menu"><![CDATA[數據轉換]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[4]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3,X2.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[工作模式]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[ms]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[1=關閉
+2=無特殊獎勵
+3=有特殊獎勵（不循環）
+4=有特殊獎勵（循環）]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[提示模式]]></item>
+				<item id="description"><![CDATA[彈窗對手機模式無效，手機為鏈接模式。]]></item>
+				<item id="variable"><![CDATA[tsms]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=鏈接模式（默認模式）
+2=強制彈窗（不簽到就不停彈）]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[彈窗標題]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[tcbt]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[簽到提示]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[彈窗正文]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[tczw]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[簽到吧！可以獲得一定的積分獎勵哦！]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[是否強制簽到]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[qz]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[1=關閉
+2=發帖前強制簽到]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[允許簽到的用戶組]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[gids]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[10]]></item>
+					<item id="1"><![CDATA[11]]></item>
+					<item id="2"><![CDATA[12]]></item>
+					<item id="3"><![CDATA[13]]></item>
+					<item id="4"><![CDATA[14]]></item>
+					<item id="5"><![CDATA[15]]></item>
+					<item id="6"><![CDATA[20]]></item>
+					<item id="7"><![CDATA[16]]></item>
+					<item id="8"><![CDATA[17]]></item>
+					<item id="9"><![CDATA[18]]></item>
+					<item id="10"><![CDATA[19]]></item>
+					<item id="11"><![CDATA[1]]></item>
+					<item id="12"><![CDATA[2]]></item>
+					<item id="13"><![CDATA[3]]></item>
+				</item>
+			</item>
+			<item id="6">
+				<item id="displayorder"><![CDATA[7]]></item>
+				<item id="title"><![CDATA[普通獎勵使用的積分類型]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[ptjf]]></item>
+				<item id="type"><![CDATA[extcredit]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="7">
+				<item id="displayorder"><![CDATA[8]]></item>
+				<item id="title"><![CDATA[普通獎勵計算公式]]></item>
+				<item id="description"><![CDATA[支持變量：
+lianxu=連續簽到次數
+leiji=累計簽到次數]]></item>
+				<item id="variable"><![CDATA[ptgs]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[(lianxu * leiji) +2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[8]]></item>
+				<item id="title"><![CDATA[普通獎勵最大值]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[ptmax]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[10]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="9">
+				<item id="displayorder"><![CDATA[9]]></item>
+				<item id="title"><![CDATA[發帖版塊]]></item>
+				<item id="description"><![CDATA[空表示不發帖]]></item>
+				<item id="variable"><![CDATA[ft]]></item>
+				<item id="type"><![CDATA[forum]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="10">
+				<item id="displayorder"><![CDATA[10]]></item>
+				<item id="title"><![CDATA[設置發帖標題]]></item>
+				<item id="description"><![CDATA[變量：
+time=時間]]></item>
+				<item id="variable"><![CDATA[bt]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[DSU簽到帖（time）]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="11">
+				<item id="displayorder"><![CDATA[11]]></item>
+				<item id="title"><![CDATA[主題分類ID]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[ztfn]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="12">
+				<item id="displayorder"><![CDATA[12]]></item>
+				<item id="title"><![CDATA[默認連續簽到]]></item>
+				<item id="description"><![CDATA[不管是否是連續簽到，開啟則表示默認為連續簽到。]]></item>
+				<item id="variable"><![CDATA[sz]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="13">
+				<item id="displayorder"><![CDATA[13]]></item>
+				<item id="title"><![CDATA[自動簽到用戶組]]></item>
+				<item id="description"><![CDATA[對手機模式無效]]></item>
+				<item id="variable"><![CDATA[zdqd]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[]]></item>
+				</item>
+			</item>
+			<item id="14">
+				<item id="displayorder"><![CDATA[14]]></item>
+				<item id="title"><![CDATA[前台管理員]]></item>
+				<item id="description"><![CDATA[填寫前台管理員UID，負責修正簽到數據]]></item>
+				<item id="variable"><![CDATA[adminid]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="15">
+				<item id="displayorder"><![CDATA[15]]></item>
+				<item id="title"><![CDATA[前台公告]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[notice]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[測試啊！]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="16">
+				<item id="displayorder"><![CDATA[16]]></item>
+				<item id="title"><![CDATA[簽到後是否跳轉]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[autogo]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="17">
+				<item id="displayorder"><![CDATA[17]]></item>
+				<item id="title"><![CDATA[運氣卡價格]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[luck]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[100]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="18">
+				<item id="displayorder"><![CDATA[18]]></item>
+				<item id="title"><![CDATA[運氣卡成功率]]></item>
+				<item id="description"><![CDATA[0~100的整數]]></item>
+				<item id="variable"><![CDATA[luckok]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="19">
+				<item id="displayorder"><![CDATA[19]]></item>
+				<item id="title"><![CDATA[最高獲得的連續簽到次數]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[luckmax]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="20">
+				<item id="displayorder"><![CDATA[20]]></item>
+				<item id="title"><![CDATA[關閉簽到列表]]></item>
+				<item id="description"><![CDATA[關閉前台的簽到列表，減輕服務器負擔。]]></item>
+				<item id="variable"><![CDATA[listradio]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="sb"><![CDATA[馬上簽到]]></item>
+				<item id="wb"><![CDATA[簽到完畢]]></item>
+				<item id="ed"><![CDATA[您已簽到完畢，今日已無需再次簽到！]]></item>
+				<item id="Hed"><![CDATA[您已簽到完畢，下個整點您可以搶簽（前{max}名才有哦！），獲得額外獎勵！]]></item>
+				<item id="goto"><![CDATA[看看簽到記錄]]></item>
+				<item id="wrong"><![CDATA[非法提交數據！]]></item>
+				<item id="postok"><![CDATA[提交成功！]]></item>
+				<item id="discuz_message"><![CDATA[DSU! 提示]]></item>
+				<item id="message_redirect"><![CDATA[如果你的瀏覽器沒有自動跳轉，請點擊這裡]]></item>
+				<item id="admin2_h1"><![CDATA[連續簽到多次的特殊獎勵設定]]></item>
+				<item id="admin2_t0"><![CDATA[刪除]]></item>
+				<item id="admin2_t1"><![CDATA[連續簽到N天]]></item>
+				<item id="admin2_t2"><![CDATA[獎勵積分類型]]></item>
+				<item id="admin2_t3"><![CDATA[獎勵積分]]></item>
+				<item id="admin2_t4"><![CDATA[有效用戶組]]></item>
+				<item id="admin2_p1"><![CDATA[<li>這裡您可以對連續簽到達到一定次數的會員給予特殊的獎勵，如果您在設置——工作模式選擇了「有特殊獎勵（不循環）」，在不影響普通獎勵的前提下，一旦用戶連續簽到次數等於設置的條件，即可獲得額外的獎勵。</li><li>如果您在設置——工作模式選擇了「有特殊獎勵（循環）」，在不影響普通獎勵的前提下，一旦用戶連續簽到次數為設置的條件的約數，即可獲得額外的獎勵。</li><li>比如，您設置了所有會員7天獎勵10金幣，所有會員30天獎勵20威望，如果會員連續簽到14天同樣也可以獲得10金幣的獎勵；如果會員連續簽到210天，因為210既是7的倍數也是30的倍數，那麼獎勵10金幣和20威望。</li><li>如果同一連續簽到天數，即設置「所以用戶組」又單獨設置「管理員」，那麼實際運行當中也會獎勵兩次。</li>]]></item>
+				<item id="admin2_s1"><![CDATA[添加]]></item>
+				<item id="admin2_s2"><![CDATA[提交]]></item>
+				<item id="admin2_i"><![CDATA[提交完成!]]></item>
+				<item id="admin2_no"><![CDATA[所有用戶組]]></item>
+				<item id="nopper"><![CDATA[請簽到後再發帖！（<a href="{url}" target="pper" onclick="showWindow('dsu_amupper', this.href);$('pper_a').style.display = 'none';$('pper_b').style.display = '';hideMenu('fwin_dialog', 'dialog');return false;">馬上簽到</a>）]]></item>
+				<item id="tsmsg"><![CDATA[由於您符合連續簽到{days}次的條件另獎勵：{title} {reward}]]></item>
+				<item id="Hmsg"><![CDATA[感謝您積極打卡！特獎勵：{ptjfname} {pt}]]></item>
+				<item id="ptmsg"><![CDATA[由於您累計簽到{addup}次，連續簽到{cons}次，特獎勵：{ptjfname} {pt}。明日簽到將獲得{ptjfname} {pt_n}。]]></item>
+				<item id="endmsg"><![CDATA[目前系統已經開啟了連續簽到特殊獎勵，若您連續簽到達到一定次數，即可獲得更多的獎勵！加油哦~~]]></item>
+				<item id="Hendmsg"><![CDATA[(整點搶簽就有機會獲得隨機獎勵哦！)]]></item>
+				<item id="next_msg"><![CDATA[若連續簽到{cons}次（您再連續簽到{next}次），即可獲得 {pt} {ptjfname} 的獎勵。]]></item>
+				<item id="upgrade_h1"><![CDATA[數據升級]]></item>
+				<item id="upgrade_f2"><![CDATA[由於新版在數據庫方面有較大變動，故需要手動升級數據（一次性升級）,選擇「是」將刪除原來的數據表，點擊「提交」，開始升級！]]></item>
+				<item id="admin_i"><![CDATA[升級完畢]]></item>
+				<item id="admin_ing"><![CDATA[正在為您努力升級中... {jindu}]]></item>
+				<item id="admin_ed"><![CDATA[您升級過了！若上次升級失敗，請刪除根目錄/data/upgrade_amupper.lock文件後，再重新升級！]]></item>
+				<item id="admin_c"><![CDATA[未發現錯誤，您可以正常運行本插件！]]></item>
+				<item id="list_h1"><![CDATA[簽到數據列表]]></item>
+				<item id="list_t1"><![CDATA[會員名（UID）]]></item>
+				<item id="list_t2"><![CDATA[累計簽到次數]]></item>
+				<item id="list_t3"><![CDATA[連續簽到次數]]></item>
+				<item id="list_t4"><![CDATA[最後簽到時間]]></item>
+				<item id="trans_h1"><![CDATA[數據轉換]]></item>
+				<item id="trans_f1"><![CDATA[如果您以前使用的【DSU】每日簽到插件，現在改用打卡簽到的話，需要將以前的數據導入到打卡簽到中，就可以使用本程序，選擇「是」點擊OK開始轉化吧（請勿多次執行本程序）]]></item>
+				<item id="luckok"><![CDATA[恭喜啊！您剛才人品爆發，連續簽到增加了{addcons}次！]]></item>
+				<item id="luckno"><![CDATA[人比人氣死人，就差那麼一點點您就成功了！再試一次吧！]]></item>
+				<item id="costno"><![CDATA[您不夠錢買運氣卡，去賺點錢再來吧！]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="addup"><![CDATA[累計簽到]]></item>
+				<item id="cons"><![CDATA[連續簽到]]></item>
+				<item id="tips"><![CDATA[公告]]></item>
+				<item id="info"><![CDATA[個人信息]]></item>
+				<item id="e_"><![CDATA[維護簽到數據]]></item>
+				<item id="e_uname"><![CDATA[會員用戶名：]]></item>
+				<item id="e_uid"><![CDATA[需要修改數據的UID：]]></item>
+				<item id="e_addup"><![CDATA[累計簽到次數：]]></item>
+				<item id="e_cons"><![CDATA[連續簽到次數：]]></item>
+				<item id="times"><![CDATA[次]]></item>
+				<item id="di"><![CDATA[第]]></item>
+				<item id="top"><![CDATA[名]]></item>
+				<item id="last"><![CDATA[上次簽到]]></item>
+				<item id="showlist"><![CDATA[查看簽到排行]]></item>
+				<item id="showpost"><![CDATA[查看簽到回帖]]></item>
+				<item id="myset"><![CDATA[我的名次]]></item>
+				<item id="pname"><![CDATA[打卡簽到排行榜]]></item>
+				<item id="admin"><![CDATA[<B>[維護簽到數據]</B>]]></item>
+				<item id="nouid"><![CDATA[尊敬的管理員，您未填寫UID！]]></item>
+				<item id="nobig"><![CDATA[尊敬的管理員，連續簽到不可以大於累計簽到次數！]]></item>
+				<item id="admin2_s2"><![CDATA[提交]]></item>
+				<item id="buyluck"><![CDATA[點擊購買運氣卡]]></item>
+				<item id="buyluckcost"><![CDATA[運氣卡價格]]></item>
+				<item id="luckinfo1"><![CDATA[購買運氣，您將使您的連續簽到次數最大增加]]></item>
+				<item id="luckinfo2"><![CDATA[次，但是最終也不會超過累計簽到的次數哦！]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

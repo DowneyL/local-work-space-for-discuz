@@ -1,0 +1,97 @@
+<!--{template forum/navigation/header_common}-->
+<meta name="application-name" content="$_G['setting']['bbname']"/>
+<meta name="msapplication-tooltip" content="$_G['setting']['bbname']"/>
+<!--{if $_G['setting']['portalstatus']}-->
+<meta name="msapplication-task"
+      content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico"/><!--{/if}-->
+<meta name="msapplication-task"
+      content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico"/>
+<!--{if $_G['setting']['groupstatus']}-->
+<meta name="msapplication-task"
+      content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico"/><!--{/if}-->
+<!--{if helper_access::check_module('feed')}-->
+<meta name="msapplication-task"
+      content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico"/><!--{/if}-->
+<link rel="stylesheet" href="{$_G[setting][jspath]}extend_common/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="{$_G[setting][jspath]}extend_common/navigation_css/sweetalert.css">
+<link rel="stylesheet" href="{$_G[setting][jspath]}extend_common/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="{$_G[setting][jspath]}extend_common/material-scrolltop/material-scrolltop.css">
+<link rel="stylesheet" href="{$_G[setting][jspath]}extend_common/navigation_css/common.css">
+
+<script src="{$_G[setting][jspath]}extend_common/jquery-3.2.1.min.js?{VERHASH}"></script>
+
+<script src="{$_G[setting][jspath]}extend_common/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script src="{$_G[setting][jspath]}extend_common/sweetalert.min.js?{VERHASH}"></script>
+<script src="{$_G[setting][jspath]}extend_common/common.js?{VERHASH}"></script>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
+        <div class="container">
+            <!--<div class="row">-->
+                <!--<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">-->
+                    <div class="navbar-header">
+
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- Branding Image -->
+                        <a class="navbar-brand" href="/forum.php">
+                            {$_G['setting']['bbname']}
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            <li><a href="/forum.php?mod=navigation">{$lang[home]}</a></li>
+                            <li><a href="/forum.php?mod=navigation&action=tag">{$lang[tag]}</a></li>
+                            <!--{if $_G[setting][search]}-->
+                            <li>
+                                <form action="search.php?searchsubmit=yes" method="post" autocomplete="off" target="_blank">
+                                    <input type="hidden" name="mod" id="scbar_mod" value="search" />
+                                    <input type="hidden" name="formhash" value="{FORMHASH}" />
+                                    <input type="hidden" name="srchtype" value="title" />
+                                    <input type="hidden" name="srhfid" value="$_G[fid]" />
+                                    <input type="hidden" name="srhlocality" value="$_G['basescript']::{CURMODULE}" />
+                                    <div class="form-group navigation-search">
+                                        <input type="text" class="form-control" placeholder="{$lang[search_explain]}" name="srchtxt" autocomplete="off">
+                                        <button type="submit" class="btn btn-success">{$lang[search]}</button>
+                                    </div>
+                                </form>
+                            </li>
+                            <!--{/if}-->
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle nvga-avatar" data-toggle="dropdown"
+                                   role="button" aria-expanded="false">
+                            <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
+                                <!--{avatar($_G[uid],middle)}-->
+                            </span>
+                                    {$_G[member][username]} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/home.php?mod=space&uid=$_G[uid]">
+                                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                            {$lang[usercenter]}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </nav>

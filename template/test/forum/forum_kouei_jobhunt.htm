@@ -1,0 +1,166 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z"><a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> $navigation$actionsubject <em>&rsaquo;</em> <a href="javascript:;" onclick="location.href='forum.php?mod=post&mod=post&action=talents&fid=$_G[fid]';return false;";>$actiontitle</a><em>&rsaquo;</em>$jobhuntinfo</div>
+</div>
+<div id='apply-info'>
+		<form action="forum.php?mod=post&action=newthread&do=jobhunt&fid=$_G[fid]" method="post">
+				<input type="hidden" name="formhash" value="$formhash">
+				<p class='apply-info-title'>$lang[kouei_jobhunt_title]</p>
+					<!-- 基本信息 -->
+					<div class='apply-content open'>
+						<div class='apply-place'>
+							<i></i>
+							<h3>$lang[kouei_jobhunt_message]</h3>
+						</div>
+						<div class="apply-content-basic">
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_realname]</label>
+								<input type="text" name='username' maxlength="20">
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_DOB]</label>
+								<input type="text" name='barthdate' style='cursor:pointer;' readonly='readonly' value=''>
+			    					<div id="J_Cal_2" style='display:none; position: absolute;margin-left: 170px;margin-top: -17px;'></div>
+							</p>
+							<p class='gender'>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_sex]</label>
+								<input type="radio" name="gender" id="male" value="$lang[kouei_jobhunt_sex_nan]" checked>
+								<label for="male">$lang[kouei_jobhunt_sex_nan]</label> 
+								<input type="radio" name="gender" id="female" value="$lang[kouei_jobhunt_sex_nv]">
+								 <label for="female">$lang[kouei_jobhunt_sex_nv]</label>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_mar]</label>
+								<input type="radio" name="wedding" id="single" value="$lang[kouei_jobhunt_mar_nai]" checked>
+								<label for="single">$lang[kouei_jobhunt_mar_nai]</label>
+								<input type="radio" name="wedding" id="wedding" value="$lang[kouei_jobhunt_mar_mou]">
+								<label for="wedding">$lang[kouei_jobhunt_mar_mou]</label>
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_edu]</label>
+								<select name="school_info" id="" class='small-100'>
+									<option value="$lang[kouei_ot]">$lang[kouei_ot]</option>
+									<option value="$lang[kouei_edu_jc]">$lang[kouei_edu_jc]</option>
+									<option value="$lang[kouei_edu_rcc]">$lang[kouei_edu_rcc]</option>
+									<option value="$lang[kouei_edu_rcc_ot]">$lang[kouei_edu_rcc_ot]</option>
+								</select>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_sch]</label>
+								<input type="text" name="endschool" id="" maxlength='40'>
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_qq]</label>
+								<input type="text" name="qqnum" id="qq" maxlength="20">
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_phone]</label>
+								<input type="text" name="phonenum" id="phone" maxlength="20">
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_email]</label>
+								<input type="text" name="emails" id="ema" maxlength='50'>
+							</p>
+							<p class='workyear'>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_exp]</label>
+								<select name="workexperience" class='small-100' id="">
+									<option value="$lang[kouei_jobhunt_exp_1y]">$lang[kouei_jobhunt_exp_1y]</option>
+									<option value="1$lang[kouei_year_ot]">1$lang[kouei_year_ot]</option>
+									<option value="2$lang[kouei_year_ot]">2$lang[kouei_year_ot]</option>
+									<option value="3$lang[kouei_year_ot]">3$lang[kouei_year_ot]</option>
+									<option value="4$lang[kouei_year_ot]">4$lang[kouei_year_ot]</option>
+									<option value="5$lang[kouei_year_ot]">5$lang[kouei_year_ot]</option>
+									<option value="6$lang[kouei_year_ot]">6$lang[kouei_year_ot]</option>
+									<option value="7$lang[kouei_year_ot]">7$lang[kouei_year_ot]</option>
+									<option value="8$lang[kouei_year_ot]">8$lang[kouei_year_ot]</option>
+									<option value="9$lang[kouei_year_ot]">9$lang[kouei_year_ot]</option>
+									<option value="10$lang[kouei_year_ot]">10$lang[kouei_year_ot]</option>
+								</select>
+							</p>
+							
+						</div>
+					</div>
+					<!-- 求职意向 -->
+					<div class='apply-content close'>
+						<div class='apply-place'>
+							<i></i>
+							<h3>$lang[kouei_jobhunt_want]</h3>
+						</div>
+						<div>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_nature]</label>
+								<select name="workxz" id="" class='small-100'>
+									<option value="$lang[kouei_jobhunt_nature_full]">$lang[kouei_jobhunt_nature_full]</option>
+									<option value="$lang[kouei_jobhunt_nature_half]">$lang[kouei_jobhunt_nature_half]</option>
+								</select>
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_pos]</label>
+								<input type="text" name='qwposition' maxlength="20">&nbsp;$lang[kouei_jobhunt_workpos_other]
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_treatment]</label>
+								<select name="daiyu" id="" class='small-100'>
+									<option value="0 ~ 3000">0 ~ 3000</option>
+									<option value="3000 ~ 6000">3000 ~ 6000</option>
+									<option value="6000 ~ 10000">6000 ~ 10000</option>
+									<option value="$lang[kouei_money_ot]">$lang[kouei_money_ot]</option>
+								</select>
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_workpos]</label>
+								<input type="text" name="workplace" id="" maxlength="20">&nbsp;$lang[kouei_jobhunt_workpos_other]
+							</p>
+							<p>
+								<label class='explain'><span>*</span>$lang[kouei_jobhunt_days]</label>
+								<input type="text" name="dgsj" id="" maxlength="4">&nbsp;$lang[kouei_jobhunt_days_other]
+							</p>
+						</div>
+					</div>
+					<!-- 工作经历 -->
+					<div class='apply-content close'>
+						<div>
+							<div class='apply-place'>
+								<i></i>
+								<h3>$lang[kouei_jobhunt_workexp]<span>$lang[kouei_jobhunt_workexp_ot]</span></h3>
+							</div>
+							<div class='workjl' style='display:none;'>  
+								<table cellspacing='0'>
+									<thead>
+										<tr>
+											<th class='compname'>$lang[kouei_company_ot]</th>
+											<th class='zhiwei'>$lang[kouei_jobhunt_workexp_pos]</th>
+											<th class='workingtime'>$lang[kouei_jobhunt_workexp_pos_time]</th>
+											<th class='salary'>$lang[kouei_jobhunt_workexp_salary]</th>
+										</tr>
+									</thead>
+									<tbody id='tbodys'>
+
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan='4'><b class='addt'>$lang[kouei_jobhunt_addexp]</b></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>       
+						</div>
+						<!-- 自我评价 -->
+						<div class='selfpj' style='text-align:left; position: relative'>
+							<div style='text-align:left;'>
+								<label><span>*</span>$lang[kouei_jobhunt_comment]</label>
+								<textarea name="selfeval" id="textpj"></textarea>
+							</div>
+							<div class='lf' style='margin-left:20%;'>
+								<input class='publish-btn' style='margin-left:30%; position:absolute; margin-top:35px;z-index:999;' type='submit' onclick = 'return checkNull()' value="$lang[kouei_jobhunt_post]">
+							</div>
+							
+						</div>
+					</div>
+		</form>	
+		<div class='prenext'>
+			<button class='prev-btn' style='display:none;'>$lang[kouei_prev_page]</button>
+			<button class='next-btn'>$lang[kouei_next_page]</button>
+		</div>	
+	</div>
+	<script src="{$_G['setting']['jspath']}talentjs/jquery-1.11.3.js?{VERHASH}"></script>
+	<script src="{$_G['setting']['jspath']}talentjs/validate.js?{VERHASH}"></script>
+	<script src="{$_G['setting']['jspath']}talentjs/calendar.js?{VERHASH}"></script>
+	<script src="{$_G['setting']['jspath']}talentjs/apply.js?{VERHASH}"></script>
+<!--{template common/footer}-->

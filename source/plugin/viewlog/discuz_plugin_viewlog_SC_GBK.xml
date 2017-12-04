@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2,F1.0]]></item>
+	<item id="Time"><![CDATA[2016-08-24 11:28]]></item>
+	<item id="From"><![CDATA[ÈË¹¤ÖÇÄÜÊµÑéÊÒ (http://www.ailab.cn/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[×î½ü·ÃÎÊ]]></item>
+			<item id="identifier"><![CDATA[viewlog]]></item>
+			<item id="description"><![CDATA[×î½ü·ÃÎÊ For Discuz! ×÷Õß ÍÁÖøÈËÄþ°Í ÈË¹¤ÖÇÄÜÊµÑéÊÒ ³öÆ·£¨Made By Nimba, Team From AiLab.cn £© ¹¦ÄÜ½éÉÜ£º±¾²å¼þÊÇÒ»¿îÖ÷Ìâä¯ÀÀÔöÇ¿Àà¹¤¾ß£¬¿ÉÒÔÌá¹©Ò»¸ö¼ÇÂ¼Ö÷ÌâµÄä¯ÀÀÕß£¬²¢½«×î½üµÄä¯ÀÀÕßÏÔÊ¾ÔÚÖ÷ÌâÏÂ·½µÄÍØÕ¹¹¤¾ß£¡]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[viewlog/]]></item>
+			<item id="copyright"><![CDATA[ÈË¹¤ÖÇÄÜÊµÑéÊÒ]]></item>
+			<item id="version"><![CDATA[v1.6.1]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[hook]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[data]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[Êý¾ÝÍ³¼Æ]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[addon]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[Ó¦ÓÃÍÆ¼ö]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[99]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2,F1.0]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[ÏÔÊ¾Ãû³Æ]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[title]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[×î½ü·ÃÎÊ]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[Ä¬ÈÏÏÔÊ¾ÊýÁ¿]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[num]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[26]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[ÖØ¸´ä¯ÀÀ´¦Àí]]></item>
+				<item id="description"><![CDATA[1=¸üÐÂÎª×îÐÂÒ»´Îä¯ÀÀ
+2=Ö»¼ÇÂ¼µÚÒ»´Îä¯ÀÀ]]></item>
+				<item id="variable"><![CDATA[review]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=¸üÐÂÎª×îÐÂÒ»´Îä¯ÀÀ
+2=Ö»¼ÇÂ¼µÚÒ»´Îä¯ÀÀ]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[ÊÇ·ñ¶¨Ê±Çå¿Õ¼ÇÂ¼]]></item>
+				<item id="description"><![CDATA[[*]ÊÔÓÃ°æÉèÖÃÎÞÐ§£¬ÊÔÓÃ°æ½ö±£Áô3ÈÕä¯ÀÀ¼ÇÂ¼£¡]]></item>
+				<item id="variable"><![CDATA[delog]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[ä¯ÀÀ¼ÇÂ¼±£ÁôÊ±³¤]]></item>
+				<item id="description"><![CDATA[µ¥Î»£ºÌì£¬³¬¹ý´ËÌìÊýµÄä¯ÀÀ¼ÇÂ¼½«×Ô¶¯±»É¾³ý£¡Îª0»òÁô¿Õ±íÊ¾²»É¾³ý£¡
+[*]ÊÔÓÃ°æÉèÖÃÎÞÐ§£¬ÊÔÓÃ°æ½ö±£Áô3ÈÕä¯ÀÀ¼ÇÂ¼£¡]]></item>
+				<item id="variable"><![CDATA[detime]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[ÊÇ·ñÆÁ±ÎÂ¥Ö÷]]></item>
+				<item id="description"><![CDATA[¿ªÆôºó£¬Â¥Ö÷·ÃÎÊ×Ô¼ºÌû×ÓµÄ¼ÇÂ¼½«²»»áÔÚÇ°Ì¨ÏÔÊ¾£¡]]></item>
+				<item id="variable"><![CDATA[banauthor]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="appname"><![CDATA[×î½ü·ÃÎÊ]]></item>
+				<item id="title"><![CDATA[·Ã¿Íä¯ÀÀ¼ÇÂ¼]]></item>
+				<item id="title_tips"><![CDATA[(<font color="red">Äúµ±Ç°Ê¹ÓÃµÄÊÇÊÔÓÃ°æ£¬½ö±£Áô3ÈÕä¯ÀÀ¼ÇÂ¼</font>)]]></item>
+				<item id="subject"><![CDATA[Ìû×Ó±êÌâ]]></item>
+				<item id="username"><![CDATA[ÓÃ»§Ãû]]></item>
+				<item id="dateline"><![CDATA[·ÃÎÊÊ±¼ä]]></item>
+				<item id="ipdata"><![CDATA[·ÃÎÊµØÖ·]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="appname"><![CDATA[×î½ü·ÃÎÊ]]></item>
+				<item id="prestr"><![CDATA[±¾Ìû×î½üÓÐ ]]></item>
+				<item id="nextstr"><![CDATA[ ÈË·ÃÎÊ]]></item>
+				<item id="imagelist"><![CDATA[Í·ÏñÄ£Ê½]]></item>
+				<item id="namelist"><![CDATA[ÁÐ±íÄ£Ê½]]></item>
+				<item id="at"><![CDATA[ÓÚ]]></item>
+				<item id="view"><![CDATA[·ÃÎÊ]]></item>
+			</item>
+			<item id="installlang">
+				<item id="info"><![CDATA[°²×°¡¢Éý¼¶¡¢Ð¶ÔØ½Å±¾ÓÃµÄÓïÑÔ°ü]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

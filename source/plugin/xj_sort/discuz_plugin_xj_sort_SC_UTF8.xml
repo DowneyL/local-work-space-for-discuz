@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5]]></item>
+	<item id="Time"><![CDATA[2013-01-17 16:47]]></item>
+	<item id="From"><![CDATA[逍遥插件站 (http://bbs.k0556.com/bbs25/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[多种分类]]></item>
+			<item id="identifier"><![CDATA[xj_sort]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[xj_sort/]]></item>
+			<item id="copyright"><![CDATA[逍遥工作室]]></item>
+			<item id="version"><![CDATA[1.52]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[forumcp]]></item>
+					<item id="menu"><![CDATA[版块可用分类]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[classcp]]></item>
+					<item id="menu"><![CDATA[大分类管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[main]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[sortcp]]></item>
+					<item id="menu"><![CDATA[小分类管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[标题前面显示分类]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[title_show]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[可用的大分类]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[sorts]]></item>
+				<item id="type"><![CDATA[forum_text]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="2"><![CDATA[]]></item>
+					<item id="36"><![CDATA[14,12,31,32]]></item>
+					<item id="37"><![CDATA[]]></item>
+					<item id=""><![CDATA[14,12,32]]></item>
+					<item id="43"><![CDATA[]]></item>
+					<item id="40"><![CDATA[]]></item>
+					<item id="46"><![CDATA[]]></item>
+					<item id="47"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="add"><![CDATA[增加]]></item>
+				<item id="flmc"><![CDATA[分类名称：]]></item>
+				<item id="tjdfl"><![CDATA[添加大分类]]></item>
+				<item id="flmc2"><![CDATA[分类名称]]></item>
+				<item id="cz"><![CDATA[操作]]></item>
+				<item id="del"><![CDATA[删除]]></item>
+				<item id="dlxz"><![CDATA[大类选择：]]></item>
+				<item id="tjxfl"><![CDATA[添加小分类]]></item>
+				<item id="xgdjflcg"><![CDATA[修改分类成功！]]></item>
+				<item id="bkxz"><![CDATA[版块选择：]]></item>
+				<item id="xzkydfl"><![CDATA[选择可用大分类]]></item>
+				<item id="save"><![CDATA[保存]]></item>
+				<item id="tzfl"><![CDATA[贴子分类]]></item>
+				<item id="qb"><![CDATA[全部]]></item>
+				<item id="xssx"><![CDATA[显示顺序]]></item>
+				<item id="flxx"><![CDATA[分类选项]]></item>
+				<item id="dx"><![CDATA[单选]]></item>
+				<item id="duox"><![CDATA[多选]]></item>
+				<item id="qxz"><![CDATA[请选择]]></item>
+				<item id="fl"><![CDATA[分类]]></item>
+				<item id="bxx"><![CDATA[必选项]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="gdflxz"><![CDATA[更多分类选择：]]></item>
+				<item id="xz"><![CDATA[选择]]></item>
+				<item id="fl"><![CDATA[分类]]></item>
+				<item id="qxzxyczdtz"><![CDATA[请选择需要操作的帖子]]></item>
+				<item id="dcfl"><![CDATA[多种分类]]></item>
+				<item id="xzl"><![CDATA[选择了]]></item>
+				<item id="ptz"><![CDATA[篇帖子]]></item>
+				<item id="close"><![CDATA[关闭]]></item>
+				<item id="qxxz"><![CDATA[取消选择]]></item>
+				<item id="sure"><![CDATA[确定]]></item>
+				<item id="glczcg"><![CDATA[管理操作成功]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

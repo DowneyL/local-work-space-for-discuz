@@ -1,0 +1,111 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z"><a href="./" class="nvhm" title="{lang homepage}">$_g[setting][bbname]</a> $navigation$actionsubject <em>&rsaquo;</em> <a href="javascript:;" onclick="location.href='forum.php?mod=post&mod=post&action=talents&fid=$_g[fid]';return false;";>$actiontitle</a><em>&rsaquo;</em>$recruitinfo</div>
+</div>
+<div id="apply-info">
+	<p class="apply-info-title">$lang[kouei_recruit_title]</p>
+	<form action="forum.php?mod=post&action=newthread&do=recruit&fid=$_G[fid]" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="formhash" value="$formhash">
+		<div class="apply-content">
+			<div class="apply-place">
+				<i></i>
+				<h3>$lang[kouei_recruit_jobinfo]</h3>
+			</div>
+			<table id="public-job-table">
+				<thead>
+				<tr>
+					<th class="job-name"><span  class="thisred">&nbsp;*&nbsp;</span>$lang[kouei_recruit_pos]</th>
+					<th calss="job-request"><span class="thisred">&nbsp;*&nbsp;</span>$lang[kouei_recruit_request]</th>
+					<th class="job-welfare"><span class="thisred">&nbsp;*&nbsp;</span>$lang[kouei_recruit_salary_no]</th>
+				</tr>
+				</thead>
+				<tbody id="tbod">
+				<tr>
+					<td class="job-name">
+						<i class="line" style="opacity:0"></i>
+						<input type="text" class="input-130" name="infos[1][job]" id="">
+					</td>
+					<td class="text-edit">
+						<textarea class="text-say" name="infos[1][request]"></textarea>
+					</td>
+					<td class="text-edit ">
+						<textarea class="welfare" name="infos[1][welfare]"></textarea>
+					</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				<tr>
+					<td colspan="3">
+						<i class="addBtn">$lang[kouei_recruit_add]</i>
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class='apply-content open'>
+			<div class='apply-place'>
+				<i></i>
+				<h3>$lang[kouei_recruit_cominfo]</h3>
+			</div>
+			<div class='selfpj comp'>
+				<p>
+					<label class='explain'><span>*</span>$lang[kouei_recruit_company]</label>
+					<input type="text" name="compname" id="" maxlength="40">
+				</p>
+				<div>
+					<label class='explain'><span>*</span>$lang[kouei_recruit_describe]</label>
+					<textarea name="describe" id="textpj"></textarea>
+				</div>
+				<p>
+					<label class='explain'><span>*</span>$lang[kouei_recruit_workpla]</label>
+					<input type="text" name="compplace" id="" maxlength="40">
+				</p>
+				<p>
+					<label class='explain'><span>*</span>$lang[kouei_recruit_contact]</label>
+					<input type="text" name="contact" id="contact" maxlength="20">
+					<select name="sel-contact" id="">
+						<option value="male">$lang[kouei_jobhunt_male]</option>
+						<option value="female">$lang[kouei_jobhunt_female]</option>
+					</select>
+				</p>
+				<p>
+					<label class='explain'><span>*</span>$lang[kouei_recruit_conn]</label>
+					<input type="text" name="compphone" id="compphone" maxlength="20">
+				</p>
+				<p class='yyzz'>
+					<label class="explain"><span>*</span>$lang[kouei_recruit_bslicense]</label>
+					<i>$lang[kouei_recruit_photo]</i>
+					<span  class='error' style='color:#999;margin-left:150px;'>($lang[kouei_recruit_photo_ot] <span style="color:red">$lang[kouei_recruit_only_admin]</span>)</span>
+					<input type="file" value="bslicense" name="bslicense" onchange="filefujianChange(this);">
+				</p>
+				<ul id="files">
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<input class='publish-btn' type='submit' onclick='return publicjob()' value="$lang[kouei_recruit_sub]">
+			<input class='reset-btn' type="reset" value="$lang[kouei_recruit_re]">
+		</div>
+	</form>
+	<div id="alert-div">
+		<div id="alert-mask"></div>
+		<div id="alert-box">
+			<div class="alert-info">
+				<h2>
+					$lang[kouei_talents_reset]<span class="rt">&times;</span>
+				</h2>
+				<p>$lang[kouei_talents_question]</p>
+				<p>
+					<button id="imsure">$lang[kouei_talents_ok]</button>
+					<button id="no-cancel">$lang[kouei_talents_cancel]</button>
+				</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script src="{$_G['setting']['jspath']}talentjs/jquery-1.11.3.js?{VERHASH}"></script>
+<script src="{$_G['setting']['jspath']}talentjs/public-job.js?{VERHASH}"></script>
+
+<!--{template common/footer}-->

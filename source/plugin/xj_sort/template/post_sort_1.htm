@@ -1,0 +1,42 @@
+<!--{block return}-->
+<span id="subjectchk" style="float:left; margin-left:1px;">{lang xj_sort:gdflxz}</span><br />
+<!--{loop $sort $key $sortitem}-->
+<!--{if $sortitem['classoption']==0}-->
+<div style="clear:both; line-height:30px; padding-left:1px; margin-top:13px;">
+{$sortitem['classname']}: <select class="ps" name="sortid{$sortitem['classid']}" id="sortid{$sortitem['classid']}" width="80" onchange="getValue('sortid{$sortitem['classid']}','span_sortid{$sortitem['classid']}')">
+<option value="0">{lang xj_sort:xz}{$sortitem['classname']}{lang xj_sort:fl}</option>
+<!--{loop $sortitem['subclass'] $subkey $subsortitem}-->
+<option value="$subsortitem['classid']" <!--{if $subsortitem['select']=='yes'}-->selected<!--{/if}-->>$subsortitem['classname']</option>
+<!--{/loop}-->
+</select>
+<span id="span_sortid{$sortitem['classid']}" class="span_class" style="color:red;padding:0px 0px 0px 10px;">{lang must_be_choose}</span>
+</div>
+<!--{elseif $sortitem['classoption']==1}-->
+    <div style="clear:both; line-height:30px; padding-left:10px;">
+    {$sortitem['classname']}:
+    <!--{loop $sortitem['subclass'] $subkey $subsortitem}-->
+    	<input name="sortid{$sortitem['classid']}[]" type="checkbox" value="$subsortitem['classid']" <!--{if $subsortitem[select] == 'yes'}-->checked<!--{/if}-->/> $subsortitem['classname'] 
+    <!--{/loop}-->
+    </div>
+<!--{/if}-->
+<!--{/loop}-->
+<div style="color:red;padding:10px 0px 3px 0px;"><b>{lang help_description}</b></div>
+<div style="clear:both; margin-bottom:10px;"></div>
+
+<script type="text/javascript">
+	var objid = "sortid{$sortitem['classid']}";
+	var spanid = "span_sortid{$sortitem['classid']}";
+	function getValue(objid,spanid){
+		var objs = document.getElementById(objid);
+		var value = objs.options[objs.selectedIndex].value;
+		var spans = document.getElementById(spanid)
+		var spans_id = spans.id;
+		var spanO = document.getElementById(spans_id);
+		if (value != 0){
+			spanO.style.display = "none";
+		} else {
+			spanO.style.display = "inline";
+		} 
+	}
+</script>
+<!--{/block}-->
