@@ -76,13 +76,10 @@ foreach($_G['cache']['forums'] as $forum) {
 	}
 }
 
-/*
 dd($commonlist); // 常用版块
-
 dd($grouplist); // 分组版块
 dd($forumlist); // 单独版块名
 dd($subforumlist); // 版块下的子版块
-*/
 
 include template('forum/post_forumselect');
 exit;

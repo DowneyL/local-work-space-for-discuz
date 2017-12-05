@@ -164,6 +164,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
              */
             foreach ($threads as $tid => $thread) {
                 $threads[$tid]['author'] = urlencode(str_replace("\"", "'", $thread['author']));
+                $threads[$tid]['dateline'] = urlencode(str_replace("\"", "'", $thread['dateline']));
                 $threads[$tid]['subject'] = urlencode(str_replace("\"", "'", $thread['subject']));
                 $threads[$tid]['message'] = urlencode(str_replace("\"", "'", $thread['message']));
                 $threads[$tid]['forumname'] = urlencode(str_replace("\"", "'", $forum_lists[$thread['fid']]));
