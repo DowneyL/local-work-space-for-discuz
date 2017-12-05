@@ -10,168 +10,170 @@ if (!defined('IN_DISCUZ')) {
 }
 
 global $_G;
-$_G['tpp'] = 20;
-$page = max(1, $_G['page']);
-$start_limit = ($page - 1) * $_G['tpp'];
-$max_count = 500;
-$tag_flag = $_GET['action'];
-
-/* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
-$selfurl = $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
-$selfurl = preg_replace('/[\?&]sort=\w+/','',$selfurl);
-
-/**
- * 侧边栏相关数据获取。
- */
+$action = trim($_GET['action']);
 $blocks = array();
-
-
-
 $blocks = C::t('forum_kouei_block')->fetch_all_id_name();
+
+/* 首先判断是否设置了标签，后台没有设置任何标签的时候，报错，并跳出。 */
 //dd($blocks);
 if (empty($blocks)) {
     echo 'No blocks in the database';
     exit;
 }
 
-/* 获取热门标签的缓存*/
-require_once libfile('function/cache');
-loadcache('sort_block_id');
-$sort_block_ids = $_G['cache']['sort_block_id'];
-$hot_blocks = array();
-$blockss = array();
-foreach ($blocks as $key => $block) {
-    $blockss[$block['block_id']] = $block;
-}
-
-foreach ($sort_block_ids as $sort_block_id) {
-    $hot_blocks[] = $blockss[$sort_block_id];
-}
-
-//dd($hot_blocks);
-$hot_blocks = array_slice($hot_blocks, 0, 10);
-/*
- * 小编推荐
- * 要考虑将热门帖子标签缓存起来
- */
-
-require_once libfile('function/cache');
-loadcache('kouei_recommend_threads');
-$hot_threads = $_G['cache']['kouei_recommend_threads'];
-
-/* 判断用户是否关注了标签 */
+/* 判断用户是否关注了标签，根据结果，执行不同的代码段。 */
 $uid = $_G['uid'];
 $follow_flag = false;
 $follow_ids = C::t('forum_kouei_blockitem')->select($uid);
 $lang = lang('forum/navigation');
+if (!empty($follow_ids) && !($action == 'tag')) {
+    /**
+     * 侧边栏相关数据获取
+     */
+    /* 获取热门标签的缓存 */
+    require_once libfile('function/cache');
+    loadcache('sort_block_id');
+    $sort_block_ids = $_G['cache']['sort_block_id'];
+    $hot_blocks = array();
+    $blockss = array();
+    foreach ($blocks as $key => $block) {
+        $blockss[$block['block_id']] = $block;
+    }
 
-if (!empty($follow_ids) && !$tag_flag) {
-    loadcache('forums');
+    foreach ($sort_block_ids as $sort_block_id) {
+        $hot_blocks[] = $blockss[$sort_block_id];
+    }
+    //dd($hot_blocks);
+    $hot_blocks = array_slice($hot_blocks, 0, 10);
 
-    /* 查看每个单独导航的时候，获取的数据 */
-    if ($_GET['blockid']) {
-        $block_id = intval(dhtmlspecialchars($_GET['blockid']));
-        $follow_ids = array(
-            '0' => array(
-                'block_id' => $block_id
-            )
-        );
-        $block_name = '';
-        foreach ($blocks as $block) {
-            if ($block['block_id'] == $block_id) {
-                $block_name = $block['block_name'];
+    /*
+     * 小编推荐
+     * 要考虑将热门帖子标签缓存起来
+     */
+    require_once libfile('function/cache');
+    loadcache('kouei_recommend_threads');
+    $all_hot_threads = $_G['cache']['kouei_recommend_threads'];
+    $hot_threads = array_slice($all_hot_threads, 0, 4);
+    
+    if ($action != 'recommend') {
+        $recommend_flag = false;
+        /* 设置分页 */
+        $_G['tpp'] = 20;
+        $page = max(1, $_G['page']);
+        $start_limit = ($page - 1) * $_G['tpp'];
+        $max_count = 500;
+
+        /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
+        $selfurl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
+        $selfurl = preg_replace('/[\?&]sort=\w+/', '', $selfurl);
+
+        loadcache('forums');
+        /* 查看每个单独导航的时候，获取的数据 */
+        if ($_GET['blockid']) {
+            $block_id = intval(dhtmlspecialchars($_GET['blockid']));
+            $follow_ids = array(
+                '0' => array(
+                    'block_id' => $block_id
+                )
+            );
+            $block_name = '';
+            foreach ($blocks as $block) {
+                if ($block['block_id'] == $block_id) {
+                    $block_name = $block['block_name'];
+                }
             }
         }
-    }
-    /* 用户获取本周最热，和本月最热的消息 */
-    $sorttime = ''; /* 存储查询的时间点 */
-    if ($_GET['sort']) {
-        $sort = trim($_GET['sort']);
-        $now = TIMESTAMP;
-        switch ($sort) {
-            case 'weekly' :
-                $sorttime = $now - 3600 * 24 * 7;
-                break;
-            case 'monthly' :
-                $sorttime = $now - 3600 * 24 * 30;
-                break;
-            case 'history' :
-                $sorttime = '';
-                break;
-        }
-    }
-
-
-    /* 获取用户关注的帖子数据 */
-    $tidarray = array();
-    foreach ($follow_ids as $key => $follow) {
-        $follow_ids[$key] = $follow['block_id'];
-    }
-    $itemarray = C::t('forum_kouei_block')->fetch_all_by_block_id($follow_ids);
-    $tiditemarray = array_column($itemarray, 'block_item');
-    $itemnames = array_column($itemarray, 'block_name', 'block_id');
-    foreach ($tiditemarray as $tiditem) {
-        $tidsarray[] = explode(',', $tiditem);
-    }
-
-    //dd($tidsarray);
-    foreach ($tidsarray as $values) {
-        foreach ($values as $value) {
-            array_push($tidarray, $value);
-        }
-    }
-
-    //dd($tidarray);
-    $threads = $posttables = array();
-    $thread_count = C::t('forum_thread')->count_by_kouei_fids($tidarray, $sorttime);
-    if (intval($thread_count) > $max_count) {
-        $thread_count = $max_count;
-    }
-
-    $thread_list = C::t('forum_thread')->fetch_by_kouei_fid($tidarray, 'heats', 'DESC', $start_limit, $_G['tpp'], $sorttime);
-    foreach ($thread_list as $key => $thread) {
-        $threads[$thread['tid']] = $thread;
-//        $threads[$thread['tid']]['subject'] = preg_replace('/\s+/','', $thread['subject']);
-        $thread['dateline'] = dgmdate($thread['dateline'], 'u', '9999', getglobal('setting/dateformat'));
-        $threads[$thread['tid']]['dateline'] = $thread['dateline'];
-        $posttables[$thread['posttableid']][] = $thread['tid'];
-    }
-
-//    dd($posttables);
-
-    if ($threads) {
-        require_once libfile('function/post');
-        foreach ($posttables as $tableid => $tids) {
-            foreach (C::t('forum_post')->fetch_all_by_tid($tableid, $tids, true, '', 0, 0, 1) as $post) {
-                $threads[$post['tid']]['message'] = messagecutstr(preg_replace('/\s+/', '', $post['message']), 250);
+        /* 用户获取本周最热，和本月最热的消息 */
+        $sorttime = ''; /* 存储查询的时间点 */
+        if ($_GET['sort']) {
+            $sort = trim($_GET['sort']);
+            $now = TIMESTAMP;
+            switch ($sort) {
+                case 'weekly' :
+                    $sorttime = $now - 3600 * 24 * 7;
+                    break;
+                case 'monthly' :
+                    $sorttime = $now - 3600 * 24 * 30;
+                    break;
+                case 'history' :
+                    $sorttime = '';
+                    break;
             }
         }
-    }
-    /* 获取版块的名称 */
-    $forum_lists = array();
-    foreach ($tidarray as $forum_id) {
-        foreach ($_G['cache']['forums'] as $forum) {
-            if ($forum['fid'] == $forum_id) {
-                $forum_lists[$forum_id] = $forum['name'];
+
+        /* 获取用户关注的帖子数据 */
+        $tidarray = array();
+        foreach ($follow_ids as $key => $follow) {
+            $follow_ids[$key] = $follow['block_id'];
+        }
+        $itemarray = C::t('forum_kouei_block')->fetch_all_by_block_id($follow_ids);
+        $tiditemarray = array_column($itemarray, 'block_item');
+        $itemnames = array_column($itemarray, 'block_name', 'block_id');
+        foreach ($tiditemarray as $tiditem) {
+            $tidsarray[] = explode(',', $tiditem);
+        }
+
+        //dd($tidsarray);
+        foreach ($tidsarray as $values) {
+            foreach ($values as $value) {
+                array_push($tidarray, $value);
             }
         }
-    }
-//exit();
-    if ($_GET['page'] && $_GET['page'] != 1) {
-        /**
-         * 论坛是 GBK 的，各种转码和转字符都会出现问题
-         * 这里之所以用 str_replace 函数，是因为英文双引号 "，会导致 json 的输出，产生问题，
-         * 所以此处我们替换为英文的单引号 '
-         * 然后再将汉字转字符。传递给前台接收。
-         */
-        foreach ($threads as $tid => $thread) {
-            $threads[$tid]['author'] = urlencode(str_replace("\"", "'", $thread['author']));
-            $threads[$tid]['subject'] = urlencode(str_replace("\"", "'", $thread['subject']));
-            $threads[$tid]['message'] = urlencode(str_replace("\"", "'", $thread['message']));
-            $threads[$tid]['forumname'] = urlencode(str_replace("\"", "'", $forum_lists[$thread['fid']]));
+
+        //dd($tidarray);
+        $threads = $posttables = array();
+        $thread_count = C::t('forum_thread')->count_by_kouei_fids($tidarray, $sorttime);
+        if (intval($thread_count) > $max_count) {
+            $thread_count = $max_count;
         }
-        echo urldecode(json_encode($threads));
+
+        $thread_list = C::t('forum_thread')->fetch_by_kouei_fid($tidarray, 'heats', 'DESC', $start_limit, $_G['tpp'], $sorttime);
+        // dd($thread_list);
+        foreach ($thread_list as $key => $thread) {
+            $threads[$thread['tid']] = $thread;
+            // $threads[$thread['tid']]['subject'] = preg_replace('/\s+/','', $thread['subject']);
+            $thread['dateline'] = dgmdate($thread['dateline'], 'u', '9999', getglobal('setting/dateformat'));
+            $threads[$thread['tid']]['dateline'] = $thread['dateline'];
+            $posttables[$thread['posttableid']][] = $thread['tid'];
+        }
+        // dd($posttables);
+
+        if ($threads) {
+            require_once libfile('function/post');
+            foreach ($posttables as $tableid => $tids) {
+                foreach (C::t('forum_post')->fetch_all_by_tid($tableid, $tids, true, '', 0, 0, 1) as $post) {
+                    $threads[$post['tid']]['message'] = messagecutstr(preg_replace('/\s+/', '', $post['message']), 250);
+                }
+            }
+        }
+        /* 获取版块的名称 */
+        $forum_lists = array();
+        foreach ($tidarray as $forum_id) {
+            foreach ($_G['cache']['forums'] as $forum) {
+                if ($forum['fid'] == $forum_id) {
+                    $forum_lists[$forum_id] = $forum['name'];
+                }
+            }
+        }
+        if ($_GET['page'] && $_GET['page'] != 1) {
+            /**
+             * 论坛是 GBK 的，各种转码和转字符都会出现问题
+             * 这里之所以用 str_replace 函数，是因为英文双引号 "，会导致 json 的输出，产生问题，
+             * 所以此处我们替换为英文的单引号 '
+             * 然后再将汉字转字符。传递给前台接收。
+             */
+            foreach ($threads as $tid => $thread) {
+                $threads[$tid]['author'] = urlencode(str_replace("\"", "'", $thread['author']));
+                $threads[$tid]['subject'] = urlencode(str_replace("\"", "'", $thread['subject']));
+                $threads[$tid]['message'] = urlencode(str_replace("\"", "'", $thread['message']));
+                $threads[$tid]['forumname'] = urlencode(str_replace("\"", "'", $forum_lists[$thread['fid']]));
+            }
+            echo urldecode(json_encode($threads));
+        } else {
+            include_once template('forum/navigation/navigation');
+        }
     } else {
+        $recommend_flag = true;
         include_once template('forum/navigation/navigation');
     }
 } else {
@@ -218,7 +220,6 @@ if (!empty($follow_ids) && !$tag_flag) {
             echo json_encode($result);
             exit;
         }
-
     } elseif ($_GET['type'] == 'unfollow') {
         $result = array(
             'flag' => 0,

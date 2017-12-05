@@ -3,23 +3,36 @@
     <div class="row thread-body">
         <!--<div class="col-lg-offset-1 col-md-offset-1 col-lg-7 col-md-7">-->
         <div class="col-lg-9 col-md-9">
-            <!--{if $block_id && $block_name}-->
+            <!--{if ($block_id && $block_name) || $recommend_flag}-->
             <header class="list-header">
+                <!--{if !$recommend_flag}-->
                 <h1>{$block_name}{$lang[more_article]}</h1>
+                <!--{else}-->
+                <h1>{$lang[recommend]}{$lang[more_article]}</h1>
+                <!--{/if}-->
             </header>
             <!--{/if}-->
             <nav class="list-top-bar">
                 <!--{avatar($_G[uid], middle)}-->
                 <div class="post-and-help">
-                    <a href="/forum.php?mod=misc&action=nav" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {$lang[post]}</a>
-                    <a href="/forum.php?mod=post&action=newthread&fid={$_G[setting][kouei_helpfid]}" target="_blank"><i class="fa fa-rocket" aria-hidden="true"></i> {$lang[get_help]}</a>
+                    <a href="/forum.php?mod=misc&action=nav" target="_blank"><i class="fa fa-pencil-square-o"
+                                                                                aria-hidden="true"></i>
+                        {$lang[post]}</a>
+                    <a href="/forum.php?mod=post&action=newthread&fid={$_G[setting][kouei_helpfid]}" target="_blank"><i
+                            class="fa fa-rocket" aria-hidden="true"></i> {$lang[get_help]}</a>
                 </div>
+                <!--{if !$recommend_flag}-->
                 <div class="list-date">
-                    <a href="{$selfurl}&sort=weekly" <!--{if $sort == 'weekly'}--> class="selected"<!--{/if}--> >{$lang[weekly]}</a>
-                    <a href="{$selfurl}&sort=monthly" <!--{if $sort == 'monthly'}--> class="selected"<!--{/if}--> >{$lang[monthly]}</a>
-                    <a href="{$selfurl}&sort=history" <!--{if $sort == 'history' || !$sort}--> class="selected"<!--{/if}--> >{$lang[history]}</a>
+                    <a href="{$selfurl}&sort=weekly" <!--{if $sort == 'weekly'}--> class="selected"<!--{/if}-->
+                    >{$lang[weekly]}</a>
+                    <a href="{$selfurl}&sort=monthly" <!--{if $sort == 'monthly'}--> class="selected"<!--{/if}-->
+                    >{$lang[monthly]}</a>
+                    <a href="{$selfurl}&sort=history" <!--{if $sort == 'history' || !$sort}--> class="selected"
+                    <!--{/if}--> >{$lang[history]}</a>
                 </div>
+                <!--{/if}-->
             </nav>
+            <!--{if !$recommend_flag}-->
             <div class="thread-list">
                 <!--{if !empty($threads)}-->
                 <!--{loop $threads $thread}-->
@@ -62,6 +75,45 @@
             <div class="load-thread" style="height:30px;line-height: 20px;display: none;color:#c7c7c7;">
                 {$lang[loading]}
             </div>
+            <!--{else}-->
+            <div class="thread-list">
+                <!--{if !empty($all_hot_threads)}-->
+                <!--{loop $all_hot_threads $thread}-->
+                <div class="thread-box">
+                    <p class="thread-header">
+                        <!--{avatar($thread[authorid],small)}-->
+                        <a href="/home.php?mod=space&uid={$thread[authorid]}" class="thread-author" target="_blank">{$thread[author]}</a>
+                        <span class="thread-posttime">{$thread[dateline]}</span>
+                    </p>
+                    <a href="/forum.php?mod=viewthread&tid={$thread[tid]}&extra=" target="_blank">
+                        <div class="thread-content">
+                            <!--<div class="list-thread-img">-->
+                            <!--<img src="{IMGDIR}/aragakiyui.jpg" alt="">-->
+                            <!--</div>-->
+                            <h3>{$thread[subject]}</h3>
+                            <!--{if $thread[message]}-->
+                            <div class="list-thread-content">
+                                <!--{if $thread[readperm] || $thread[price]}-->
+                                {$lang[hide_thread]}
+                                <!--{else}-->
+                                {$thread[message]}
+                                <!--{/if}-->
+                            </div>
+                            <!--{/if}-->
+                        </div>
+                    </a>
+                    <p class="thread-footer">
+                        <span><i class="fa fa-comment-o" aria-hidden="true"></i> {$thread[replies]}</span>
+                        <span><i class="fa fa-eye" aria-hidden="true"></i> {$thread[views]}</span>
+                        <!--<span><i class="fa fa-heart-o" aria-hidden="true"></i> 1</span>-->
+                    </p>
+                </div>
+                <!--{/loop}-->
+                <!--{else}-->
+                {$lang[none]}
+                <!--{/if}-->
+            </div>
+            <!--{/if}-->
         </div>
         <div class="col-lg-3 col-md-3">
             <!--{if $_G[setting][kouei_adv]}-->
@@ -69,7 +121,8 @@
                 <div class="panel-body" style="padding: 0">
                     <i class="fa fa-times" aria-hidden="true"></i>
                     <a href="{$_G[setting][kouei_adv_link]}" target="_blank">
-                        <img src="{$_G[staticurl]}/image/adv/{$_G[setting][kouei_adv_img]}" alt="" class="img-responsive">
+                        <img src="{$_G[staticurl]}/image/adv/{$_G[setting][kouei_adv_img]}" alt=""
+                             class="img-responsive">
                     </a>
                     <a class="push-adv" target="_blank">{$lang[adv]}</a>
                 </div>
@@ -81,6 +134,7 @@
         </div>
     </div>
 </div>
+<!--{if !$recommend_flag}-->
 <script>
     i = 2;
     $(function () {
@@ -94,12 +148,12 @@
          */
 
         threadList.on('mouseover', '.thread-content', function () {
-            $(this).children('h3').css('color','#000');
+            $(this).children('h3').css('color', '#000');
             $(this).children('.list-thread-content').css('color', '#616161');
         });
 
         threadList.on('mouseout', '.thread-content', function () {
-            $(this).children('h3').css('color','#5b5d5f');
+            $(this).children('h3').css('color', '#5b5d5f');
             $(this).children('.list-thread-content').css('color', '#919191');
         });
         /*
@@ -179,6 +233,6 @@
     function showEmpty() {
         $('.load-thread').show().html("{$lang[no_more]}");
     }
-
 </script>
+<!--{/if}-->
 <!--{template forum/navigation/footer}-->

@@ -1,10 +1,9 @@
-
-
-<!--{if $hot_threads}-->
+<!--{if $hot_threads && !$recommend_flag}-->
 <div class="panel panel-default">
     <div class="panel-body sidebar-recommend">
         <div class="sidebar-header">
             <h4>$lang[recommend]</h4>
+            <a href="/forum.php?mod=navigation&action=recommend">$lang[more] ></a>
         </div>
         <ul>
             <!--{loop $hot_threads $hot_thread}-->

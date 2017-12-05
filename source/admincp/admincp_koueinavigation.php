@@ -202,9 +202,28 @@ EOT;
                 }
             }
         }
-        $data = C::t('forum_thread')->fetch_all_by_tid($tids_arr);
+        $thread_list = C::t('forum_thread')->fetch_all_by_tid($tids_arr);
+        $threads = array();
+        $posttables = array();
+        foreach ($thread_list as $key => $thread) {
+            $threads[$thread['tid']] = $thread;
+            // $threads[$thread['tid']]['subject'] = preg_replace('/\s+/','', $thread['subject']);
+            $thread['dateline'] = dgmdate($thread['dateline'], 'u', '9999', getglobal('setting/dateformat'));
+            $threads[$thread['tid']]['dateline'] = $thread['dateline'];
+            $posttables[$thread['posttableid']][] = $thread['tid'];
+        }
+        // dd($posttables);
+
+        if ($threads) {
+            require_once libfile('function/post');
+            foreach ($posttables as $tableid => $tids) {
+                foreach (C::t('forum_post')->fetch_all_by_tid($tableid, $tids, true, '', 0, 0, 1) as $post) {
+                    $threads[$post['tid']]['message'] = messagecutstr(preg_replace('/\s+/', '', $post['message']), 250);
+                }
+            }
+        }
         require_once libfile('function/cache');
-        $result = savecache('kouei_recommend_threads', $data);
+        $result = savecache('kouei_recommend_threads', $threads);
     }
 } else if ($operation == 'other') {
     $setting = C::t('common_setting')->fetch_all(null);
