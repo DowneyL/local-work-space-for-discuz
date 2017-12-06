@@ -46,7 +46,7 @@ if ($operation == 'base') {
     showformheader("koueinavigation&operation=clean");
     showtableheader(cplang('kouei_navigation_count', array('block_count' => $block_count)));
     if ($block_count) {
-        showsubtitle(array('', 'kouei_nav_id', 'kouei_nav_name', 'kouei_nav_item', ''));
+        showsubtitle(array('', 'kouei_nav_id', 'kouei_nav_name', 'kouei_nav_item', 'kouei_sort_type', ''));
         echo getBlocks($blocks);
         showsubmit('deletesubmit', cplang('delete'), '', '', $multipage);
     }
@@ -94,13 +94,22 @@ EOT;
     showtableheader();
     showsetting('kouei_navigation_block_name', 'block_name', '', 'text', '', 0, $lang['block_name_comment']);
     showsetting('kouei_navigation_block_item', 'block_item', '', 'textarea', '', 0, $lang['block_item_comment']);
+    $sorts = C::t('forum_kouei_blocksort')->fetch_all_id_name();
+    if (!empty($sorts)) {
+        $sort_list = "<select name=\"sort_id\">\n<option value='0' selected='selected'>$lang[block_sort]</option>";
+        foreach ($sorts as $sort) {
+            $sort_list .= "<option value=\"$sort[sort_id]\">$sort[sort_name]</option>\n";
+        }
+        $sort_list .= '</select>';
+        showsetting('kouei_navigation_sort', '', '', $sort_list, '', 0, $lang['block_sort_commend']);
+    }
     showsubmit('submit');
     showtablefooter();
     showformfooter();
     showtagfooter('div');
 
 } elseif ($operation == 'store') {
-    $block_data = getBlockData($_GET['block_name'], $_GET['block_item']);
+    $block_data = getBlockData($_GET['block_name'], $_GET['block_item'], $_GET['sort_id']);
     // 插入数据库。
     $result = C::t('forum_kouei_block')->insert($block_data);
     $result ? cpmsg('create_block_success', 'action=koueinavigation&operation=base', 'succeed') : cpmsg_error('unknow_error');
@@ -135,6 +144,19 @@ EOT;
         showsetting('kouei_navigation_block_id', 'block_id', $blockid, 'text', 'readonly');
         showsetting('kouei_navigation_block_name', 'block_name', $block[$blockid]['block_name'], 'text', '', 0, $lang['block_name_comment']);
         showsetting('kouei_navigation_block_item', 'block_item', $block[$blockid]['block_item'], 'textarea', '', 0, $lang['block_item_comment']);
+        $sorts = C::t('forum_kouei_blocksort')->fetch_all_id_name();
+        if (!empty($sorts)) {
+            $sort_list = "<select name=\"sort_id\">\n<option value='0'>$lang[block_sort]</option>";
+            foreach ($sorts as $sort) {
+                if($sort['sort_id'] != $block[$blockid]['sort_id']) {
+                    $sort_list .= "<option value=\"$sort[sort_id]\">$sort[sort_name]</option>\n";
+                } else {
+                    $sort_list .= "<option value=\"$sort[sort_id]\" selected='selected'>$sort[sort_name]</option>\n";
+                }
+            }
+            $sort_list .= '</select>';
+            showsetting('kouei_navigation_sort', '', '', $sort_list, '', 0, $lang['block_sort_commend']);
+        }
         showsubmit('submit');
         showtablefooter();
         showformfooter();
@@ -146,7 +168,7 @@ EOT;
     $blockid = intval($_GET['block_id']);
     // dd($blockid);
     if ($blockid) {
-        $block_data = getBlockData($_GET['block_name'], $_GET['block_item']);
+        $block_data = getBlockData($_GET['block_name'], $_GET['block_item'], $_GET['sort_id']);
         $result = C::t('forum_kouei_block')->update($blockid, $block_data);
         $result ? cpmsg('update_block_success', 'action=koueinavigation&operation=base', 'succeed') : cpmsg_error('unknow_error');
     } else {
@@ -257,14 +279,23 @@ function getBlocks($params)
 {
     global $_G, $lang;
     $blocks = '';
+    $sorts = C::t('forum_kouei_blocksort')->fetch_all_id_name();
+    $sorts_list = array_column($sorts, 'sort_name', 'sort_id');
     if (!empty($params)) {
+        $sort_name = '';
         foreach ($params as $param) {
+            if ($param['sort_id'] != 0) {
+                $sort_name = $sorts_list[$param['sort_id']];
+            } else {
+                $sort_name = $lang['no_sort'];
+            }
             $blocks .= showtablerow('', array(), array(
                 "<input type=\"checkbox\" name=\"blockidarray[]\" value=\"$param[block_id]\" class=\"checkbox\">",
                 $param['block_id'],
                 $param['block_name'],
                 $param['block_item'],
-                "<a href='?action=koueinavigation&operation=modify&blockid=" . $param['block_id'] . "'>$lang[modify]</a>"
+                $sort_name,
+                "<a href='?action=koueinavigation&operation=modify&blockid=" . $param['block_id'] . "'>$lang[edit]</a>"
             ), TRUE);
         }
     }
@@ -279,15 +310,17 @@ function getBlocks($params)
  * @return array
  * 返回一个参数处理过后的数组，直接进行插入或者升级。
  */
-function getBlockData($name, $item)
+function getBlockData($name, $item, $sort)
 {
     $block_name = '';
     $block_item = '';
-    if (empty($name) || empty($item)) {
+    $sort_id = '';
+    if (!$name || !$item || intval($sort) == 0) {
         cpmsg_error('kouei_navigation_store_error_empty', 'action=koueinavigation&operation=create');
     } else {
         $block_name = dhtmlspecialchars(trim($name));
         $block_item = dhtmlspecialchars(trim($item));
+        $sort_id = intval($sort);
 
         // 判断提交内容长度，根据你设计的数据库进行改动。
         $block_name_len = strlen($block_name);
@@ -329,6 +362,7 @@ function getBlockData($name, $item)
         return array(
             'block_name' => $block_name,
             'block_item' => $block_item,
+            'sort_id' => $sort_id,
         );
     }
 }

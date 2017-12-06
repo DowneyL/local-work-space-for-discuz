@@ -36,5 +36,14 @@ class table_forum_kouei_block extends discuz_table
 		}
 		return DB::query("DELETE FROM %t WHERE $wheresql", array($this->_table, $blockids));
 	}
+
+	public function update_by_sids($sortids) {
+		if(is_array($sortids)) {
+			$wheresql = DB::field('sort_id', $sortids);
+		} else {
+			return 0;
+		}
+		return DB::query("UPDATE %t SET sort_id = 0 WHERE $wheresql", array($this->_table, $sortids));
+	}
 }
 ?>

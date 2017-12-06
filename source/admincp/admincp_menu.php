@@ -164,6 +164,7 @@ $menu['forum'] = array(
 	array('menu_forums_kouei_extra','koueiextra_base'),
 	// 论坛小导航
 	array('menu_forums_kouei_navigation','koueinavigation_base'),
+	array('menu_forums_kouei_navsort','koueinavsort_base'),
 );
 
 $menu['group'] = array(

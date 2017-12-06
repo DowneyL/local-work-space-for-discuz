@@ -82,6 +82,7 @@ $lang = array
 	'menu_forums_kouei_extra' => '附加功能区域',
 	// 论坛小导航
 	'menu_forums_kouei_navigation' => '论坛小导航',
+	'menu_forums_kouei_navsort' => '论坛小导航分类',
 
 
 

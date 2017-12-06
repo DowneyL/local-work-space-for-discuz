@@ -47,9 +47,11 @@ if(in_array($operation, array('ban', 'edit', 'group', 'credit', 'medal', 'access
 	$tableext = isset($member['_inarchive']) ? '_archive' : '';
 }
 
+/*
 echo "<pre>";
 print_r($search_condition);
 echo "</pre>";
+*/
 
 if($operation == 'search') {
 
@@ -60,6 +62,8 @@ if($operation == 'search') {
 			array('search', 'members&operation=search', 1),
 			array('clean', 'members&operation=clean', 0),
 			array('nav_repeat', 'members&operation=repeat', 0),
+
+
 		));
 		showtips('members_admin_tips');
 		if(!empty($_GET['vid']) && ($_GET['vid'] > 0 && $_GET['vid'] < 8)) {

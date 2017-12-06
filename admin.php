@@ -40,7 +40,7 @@ $admincp_actions_normal = array('index', 'setting', 'members', 'admingroup', 'us
 	'checktools', 'search', 'article', 'block', 'blockstyle', 'blockxml', 'portalcategory', 'blogcategory', 'albumcategory', 'topic', 'credits',
 	'doing', 'group', 'blog', 'feed', 'album', 'pic', 'comment', 'share', 'click', 'specialuser', 'postsplit', 'threadsplit', 'report',
 	'district', 'diytemplate', 'verify', 'nav', 'domain', 'postcomment', 'tag', 'connect', 'card', 'portalpermission', 'collection', 'membersplit', 'makehtml',
-	'koueiapply','koueiapplylog','koueirec','koueijob','koueiextra','koueinavigation');
+	'koueiapply','koueiapplylog','koueirec','koueijob','koueiextra','koueinavigation','koueinavsort');
 
 $action = preg_replace('/[^\[A-Za-z0-9_\]]/', '', getgpc('action'));
 $operation = preg_replace('/[^\[A-Za-z0-9_\]]/', '', getgpc('operation'));
