@@ -31,6 +31,10 @@ if($_GET['action'] == 'paysucceed') {
 	require_once libfile('misc/forumselect', 'include');
 	exit;
 
+} elseif($_GET['action'] == 'nav_json') {
+
+	require_once libfile('misc/forumselect_json', 'include');
+	exit;
 } elseif($_GET['action'] == 'attachcredit') {
 	if($_GET['formhash'] != FORMHASH) {
 		showmessage('undefined_action', NULL);
