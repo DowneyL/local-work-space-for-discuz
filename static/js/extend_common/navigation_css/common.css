@@ -2,6 +2,8 @@ body {
     font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
     /*background-color: #f5f8fa;*/
     background-color: #f3f3f3;
+    overflow:scroll;
+    overflow-x:hidden;
 }
 /* header */
 .navbar-static-top {
@@ -440,7 +442,52 @@ body {
 
 .block-item-list {
     text-align: center;
+    position: relative;
 }
+.block-item-list .item-list-side{
+    position: absolute;
+    top:0;
+    left:-175px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 20px;
+    border-right: 1px solid #dfdfdf;
+    width: 150px;
+}
+
+.block-item-list .item-list-side h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin:0;
+    padding:5px 15px 10px 10px;
+}
+
+.block-item-list .item-list-side ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+.block-item-list .item-list-side ul li{
+    height:32px;
+    line-height: 32px;
+    padding-right: 15px;
+}
+
+.block-item-list .item-list-side ul li a {
+    display: block;
+    color:#666;
+    text-decoration: none;
+}
+
+.block-item-list .item-list-side ul li.item-selected {
+    border-right:4px solid #4caf50;
+}
+
+.block-item-list .item-list-side ul li.item-selected a {
+    color:#4caf50;
+    font-size: 16px;
+}
+
 .block-item-list .block-item {
     width: 100%;
     background-color: #fff;

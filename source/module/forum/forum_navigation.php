@@ -14,6 +14,8 @@ $action = trim($_GET['action']);
 $blocks = array();
 $blocks = C::t('forum_kouei_block')->fetch_all_id_name();
 
+
+
 /* 首先判断是否设置了标签，后台没有设置任何标签的时候，报错，并跳出。 */
 //dd($blocks);
 if (empty($blocks)) {
@@ -181,6 +183,16 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     if (empty($follow_ids)) {
         $follow_flag = true;
     }
+
+    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
+    $block_sort_list = array();
+    foreach ($datas as $key => $data) {
+        $data['order_id'] ? $list_key = $data['order_id'] : $list_key = 0;
+        $data['sort_name'] ? $sort_name = $data['sort_name'] : $sort_name = $lang['no_sort'];
+        $block_sort_list[$list_key]['sort_name'] = $sort_name;
+        $block_sort_list[$list_key]['sort_blocks'][$data['block_id']] = $data;
+    }
+    
 //    dd($follow_ids);
     if ($_GET['type'] == 'follow') {
         $result = array(
@@ -243,6 +255,8 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         echo json_encode($result);
         exit;
     } else {
+
+//        dd($block_sort_list);
         include_once template('forum/navigation/tag');
     }
 }

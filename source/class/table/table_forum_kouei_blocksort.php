@@ -13,11 +13,11 @@ class table_forum_kouei_blocksort extends discuz_table
 	}
 
 	public function fetch_by_pagenum($limit, $num){
-		return DB::fetch_all('SELECT * FROM %t ORDER BY order_id ASC LIMIT %d, %d', array($this->_table, $limit, $num));
+		return DB::fetch_all('SELECT * FROM %t ORDER BY order_id DESC LIMIT %d, %d', array($this->_table, $limit, $num));
 	}
 
 	public function fetch_all_id_name(){
-		return DB::fetch_all('SELECT sort_id, sort_name FROM %t ORDER BY order_id ASC', array($this->_table));
+		return DB::fetch_all('SELECT sort_id, sort_name FROM %t ORDER BY order_id DESC', array($this->_table));
 	}
 
 	public function delete_by_sids($sortids) {

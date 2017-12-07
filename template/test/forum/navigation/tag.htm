@@ -1,4 +1,5 @@
 <!--{template forum/navigation/header}-->
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-md-offset-2 col-lg-offset-2">
@@ -11,9 +12,20 @@
                     <!--{/if}-->
                     <p>{$lang[block_l_title]}</p>
                 </header>
+
                 <section class="block-item-list">
+                    <div class="item-list-side">
+                        <h4>{$lang[item_sort]}</h4>
+                        <ul>
+                            <li class="item-selected"><a href="#">{$lang[all_item]}</a></li>
+                            <!--{loop $block_sort_list $key $blocks}-->
+                            <li><a href="#{$key}">{$blocks[sort_name]}</a></li>
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
                     <div class="row">
-                        <!--{loop $blocks $block}-->
+                        <!--{loop $block_sort_list $blocks}-->
+                        <!--{loop $blocks[sort_blocks] $block}-->
                         <div class="col-lg-3 col-md-4 col-sm-6 ">
                             <div class='block-item'>
                                 <p>$block[block_name]</p>
@@ -28,6 +40,7 @@
                                 <!--{/if}-->
                             </div>
                         </div>
+                        <!--{/loop}-->
                         <!--{/loop}-->
                     </div>
                 </section>
@@ -44,6 +57,14 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $('.item-list-side li').mouseover(function (){
+            $('.item-list-side li').removeClass();
+            $(this).addClass('item-selected');
+        });
+    });
+</script>
 <script>
     $(function () {
         $('.get-next .kouei-back').click(function () {

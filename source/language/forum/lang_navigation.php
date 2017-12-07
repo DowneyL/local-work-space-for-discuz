@@ -66,5 +66,8 @@ $lang = array
 	'zhongguomujuwang' => '中国模具网',
 	'about_us' => '关于我们',
 	'join_us' => '加入我们',
+	'no_sort' => '其他',
+	'item_sort' => '选择分类',
+	'all_item' => '所有导航',
 
 );
