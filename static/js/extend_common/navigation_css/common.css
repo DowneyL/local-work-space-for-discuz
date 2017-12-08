@@ -563,6 +563,7 @@ body {
     width: 206px;
     height: 38px;
     margin-top: 11px;
+    background-color: #007fff;
 
 }
 
@@ -576,7 +577,7 @@ body {
     margin-left: 18px;
     color: #fff;
     /*background-color: #4caf50;*/
-    background-color: #007fff;
+    /*background-color: #007fff;*/
 }
 
 @media (max-width:992px) {

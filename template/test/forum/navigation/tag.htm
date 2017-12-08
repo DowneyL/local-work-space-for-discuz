@@ -49,7 +49,7 @@
                 </footer>
             </div>
             <div class="get-next">
-                <button class="disabled-btn">{$lang[finish]}</button>
+                <button <!--{if $follow_flag}-->class="disabled-btn"<!--{else}-->class="abled-btn"<!--{/if}-->>{$lang[finish]}</button>
                 <!--{if !$follow_flag}-->
                 <button class="kouei-back">{$lang[back]}</button>
                 <!--{/if}-->
@@ -74,8 +74,8 @@
                     var bid = $.parseJSON(results).block_id;
                     if (flag) {
                         var oFollowed = $('.block-item-list button[value=' + bid + ']');
-                        var oDb = $('.disabled-btn');
                         oFollowed.removeClass().addClass('unfollow-tag').text("{$lang[unfollow]}");
+                        var oDb = $('.get-next button:first');
                         if (oDb.length > 0) {
                             oDb.css('background-color', '#007fff');
                             oDb.click(function () {
@@ -108,8 +108,8 @@
                     var bid = $.parseJSON(results).block_id;
                     if (flag) {
                         var oUnfollowed = $('.block-item-list button[value=' + bid + ']');
+                        var oDb = $('.get-next button:first');
                         oUnfollowed.removeClass().addClass('follow-tag').text("{$lang[follow]}");
-                        var oDb = $('.disabled-btn');
                         if (oDb.length > 0) {
                             oDb.css('background-color', '#007fff');
                             oDb.click(function () {
