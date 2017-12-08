@@ -186,15 +186,23 @@ if (!empty($follow_ids) && !($action == 'tag')) {
 
     $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
     $block_sort_list = array();
+    $block_datas = array();
+    $sortid = '';
     foreach ($datas as $key => $data) {
         $data['order_id'] ? $list_key = $data['order_id'] : $list_key = 0;
         $data['sort_name'] ? $sort_name = $data['sort_name'] : $sort_name = $lang['no_sort'];
         $block_sort_list[$list_key]['sort_name'] = $sort_name;
         $block_sort_list[$list_key]['sort_blocks'][$data['block_id']] = $data;
     }
-    
+    if (isset($_GET['sortid']) && intval($_GET['sortid']) !== null) {
+        $sortid = intval($_GET['sortid']);
+        !empty($block_sort_list[$sortid]) ? $block_datas[0] = $block_sort_list[$sortid] : $block_datas = $block_sort_list;
+    } else {
+        $block_datas = $block_sort_list;
+    }
+
 //    dd($follow_ids);
-    if ($_GET['type'] == 'follow') {
+    if ($_GET['type'] && trim($_GET['type']) == 'follow') {
         $result = array(
             'flag' => 0,
             'code' => 0,

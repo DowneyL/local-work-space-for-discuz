@@ -17,14 +17,14 @@
                     <div class="item-list-side">
                         <h4>{$lang[item_sort]}</h4>
                         <ul>
-                            <li class="item-selected"><a href="#">{$lang[all_item]}</a></li>
+                            <li <!--{if $sortid === ''}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag">{$lang[all_item]}</a></li>
                             <!--{loop $block_sort_list $key $blocks}-->
-                            <li><a href="#{$key}">{$blocks[sort_name]}</a></li>
+                            <li <!--{if $key === $sortid}--> class="item-selected"<!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&sortid={$key}">{$blocks[sort_name]}</a></li>
                             <!--{/loop}-->
                         </ul>
                     </div>
                     <div class="row">
-                        <!--{loop $block_sort_list $blocks}-->
+                        <!--{loop $block_datas $blocks}-->
                         <!--{loop $blocks[sort_blocks] $block}-->
                         <div class="col-lg-3 col-md-4 col-sm-6 ">
                             <div class='block-item'>
@@ -57,14 +57,6 @@
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        $('.item-list-side li').mouseover(function (){
-            $('.item-list-side li').removeClass();
-            $(this).addClass('item-selected');
-        });
-    });
-</script>
 <script>
     $(function () {
         $('.get-next .kouei-back').click(function () {
