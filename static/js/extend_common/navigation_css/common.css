@@ -553,7 +553,6 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: #ddd;
     color: #fff;
     border-radius: 2px;
     border: none;
@@ -576,15 +575,10 @@ body {
     width: 70px;
     margin-left: 18px;
     color: #fff;
-    /*background-color: #4caf50;*/
-    /*background-color: #007fff;*/
 }
 
 @media (max-width:992px) {
-    #sticky-wrapper {
-        display: none;
-    }
-    .sidebar, .sidebar-adv {
+    #sticky-wrapper, .sidebar, .sidebar-adv, .item-list-side {
         display: none;
     }
 }
