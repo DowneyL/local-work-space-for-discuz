@@ -12,7 +12,6 @@
                     <!--{/if}-->
                     <p>{$lang[block_l_title]}</p>
                 </header>
-
                 <section class="block-item-list">
                     <div class="item-list-side">
                         <h4>{$lang[item_sort]}</h4>
@@ -28,7 +27,8 @@
                         <!--{loop $blocks[sort_blocks] $block}-->
                         <div class="col-lg-3 col-md-4 col-sm-6 ">
                             <div class='block-item'>
-                                <p>$block[block_name]</p>
+                                <p class="name">$block[block_name]</p>
+                                <!--{if $_G[uid] == 1 || $_G[uid] == 1196183 || $_G[uid] == 1215312}--><p class="other"><span>$block[follow_count]</span><span> $lang[follow_count]</span></p><!--{/if}-->
                                 <!--{if $follow_flag}-->
                                 <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
                                 <!--{else}-->
@@ -75,6 +75,10 @@
                     if (flag) {
                         var oFollowed = $('.block-item-list button[value=' + bid + ']');
                         oFollowed.removeClass().addClass('unfollow-tag').text("{$lang[unfollow]}");
+                        var oFollowCount = oFollowed.parent().find("p.other span:first");
+                        oFollowCount.text(function(index, value){
+                            return parseInt(value) + 1;
+                        });
                         var oDb = $('.get-next button:first');
                         if (oDb.length > 0) {
                             oDb.css('background-color', '#007fff');
@@ -110,6 +114,10 @@
                         var oUnfollowed = $('.block-item-list button[value=' + bid + ']');
                         var oDb = $('.get-next button:first');
                         oUnfollowed.removeClass().addClass('follow-tag').text("{$lang[follow]}");
+                        var oUnfollowCount = oUnfollowed.parent().find("p.other span:first");
+                        oUnfollowCount.text(function (index, value) {
+                            return parseInt(value) - 1;
+                        });
                         if (oDb.length > 0) {
                             oDb.css('background-color', '#007fff');
                             oDb.click(function () {

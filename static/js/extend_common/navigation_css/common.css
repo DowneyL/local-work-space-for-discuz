@@ -498,11 +498,20 @@ body {
     margin-bottom: 20px;
 }
 
-.block-item-list .block-item p {
+.block-item-list .block-item p.name {
     margin-top: 10px;
     color: #333333;
     font-size: 20px;
     font-weight: 400;
+}
+
+.block-item-list .block-item p.other {
+    margin:0;
+}
+
+.block-item-list .block-item p.other span {
+    color: #777;
+    font-size: 12px;
 }
 
 .block-item-list .block-item button.follow-tag {

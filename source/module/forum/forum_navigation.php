@@ -8,6 +8,7 @@
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+
 global $_G;
 $action = trim($_GET['action']);
 $blocks = array();
@@ -174,6 +175,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     if (empty($follow_ids)) {
         $follow_flag = true;
     }
+    // 设置标签的分类
     $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
     $block_sort_list = array();
     $block_datas = array();
@@ -189,6 +191,17 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         !empty($block_sort_list[$sortid]) ? $block_datas[0] = $block_sort_list[$sortid] : $block_datas = $block_sort_list;
     } else {
         $block_datas = $block_sort_list;
+    }
+
+    /* 功能暂时针对 "特殊" 管理员 */
+    // 加入标签的关注数
+    $sort_result = C::t('forum_kouei_blockitem')->sort_by_bid();
+    $blocks_count = array_column($sort_result, 'count', 'block_id');
+    foreach ($block_datas as $k => $blocks) {
+        foreach ($blocks['sort_blocks'] as $key => $value) {
+            $blocks_count[$key] ? $blocks['sort_blocks'][$key]['follow_count'] = $blocks_count[$key] : $blocks['sort_blocks'][$key]['follow_count'] = 0;
+        }
+        $block_datas[$k] = $blocks;
     }
 
 //    dd($follow_ids);
