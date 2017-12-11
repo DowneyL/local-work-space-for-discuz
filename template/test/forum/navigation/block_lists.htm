@@ -1,0 +1,15 @@
+<div class="col-lg-3 col-md-4 col-sm-6 ">
+    <div class='block-item'>
+        <p class="name">$block[block_name]</p>
+        <!--{if $_G[uid] == 1 || $_G[uid] == 1196183 || $_G[uid] == 1215312}--><p class="other"><span>$block[follow_count]</span><span> $lang[follow_count]</span></p><!--{/if}-->
+        <!--{if $follow_flag}-->
+        <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
+        <!--{else}-->
+        <!--{if in_array($block[block_id], array_column($follow_ids,'block_id'))}-->
+        <button class="unfollow-tag" value="{$block[block_id]}">{$lang[unfollow]}</button>
+        <!--{else}-->
+        <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
+        <!--{/if}-->
+        <!--{/if}-->
+    </div>
+</div>

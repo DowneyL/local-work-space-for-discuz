@@ -23,6 +23,7 @@ if (empty($blocks)) {
 /* 判断用户是否关注了标签，根据结果，执行不同的代码段。 */
 $uid = $_G['uid'];
 $follow_flag = false;
+$me_flag = false;
 $follow_ids = C::t('forum_kouei_blockitem')->select($uid);
 $lang = lang('forum/navigation');
 if (!empty($follow_ids) && !($action == 'tag')) {
@@ -53,7 +54,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     loadcache('kouei_recommend_threads');
     $all_hot_threads = $_G['cache']['kouei_recommend_threads'];
     $hot_threads = array_slice($all_hot_threads, 0, 4);
-    
+
     if ($action != 'recommend') {
         $recommend_flag = false;
         /* 设置分页 */
@@ -176,9 +177,10 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         $follow_flag = true;
     }
     // 设置标签的分类
-    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
-    $block_sort_list = array();
     $block_datas = array();
+    $block_sort_list = array();
+    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
+    // 分类导航
     $sortid = '';
     foreach ($datas as $key => $data) {
         $data['order_id'] ? $list_key = $data['order_id'] : $list_key = 0;
@@ -186,22 +188,41 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         $block_sort_list[$list_key]['sort_name'] = $sort_name;
         $block_sort_list[$list_key]['sort_blocks'][$data['block_id']] = $data;
     }
-    if (isset($_GET['sortid']) && intval($_GET['sortid']) !== null) {
-        $sortid = intval($_GET['sortid']);
-        !empty($block_sort_list[$sortid]) ? $block_datas[0] = $block_sort_list[$sortid] : $block_datas = $block_sort_list;
-    } else {
-        $block_datas = $block_sort_list;
-    }
-
-    /* 功能暂时针对 "特殊" 管理员 */
-    // 加入标签的关注数
     $sort_result = C::t('forum_kouei_blockitem')->sort_by_bid();
     $blocks_count = array_column($sort_result, 'count', 'block_id');
-    foreach ($block_datas as $k => $blocks) {
-        foreach ($blocks['sort_blocks'] as $key => $value) {
-            $blocks_count[$key] ? $blocks['sort_blocks'][$key]['follow_count'] = $blocks_count[$key] : $blocks['sort_blocks'][$key]['follow_count'] = 0;
+    if ($_GET['extra'] && trim($_GET['extra'] == 'my_tag')) {
+        // 我的导航
+        $block_list =array();
+        $me_flag = true;
+        foreach ($datas as $data) {
+            $block_list[$data['block_id']] = $data;
         }
-        $block_datas[$k] = $blocks;
+        foreach ($follow_ids as $bids) {
+            $block_datas[$bids['block_id']] = $block_list[$bids['block_id']];
+        }
+        foreach ($block_datas as $key => $block_data) {
+            foreach ($blocks_count as $block_id => $count) {
+                if ($key == $block_id) {
+                    $block_data['follow_count'] = $count;
+                }
+            }
+            $block_datas[$key] = $block_data;
+        }
+    } else {
+        if (isset($_GET['sortid']) && intval($_GET['sortid']) !== null) {
+            $sortid = intval($_GET['sortid']);
+            !empty($block_sort_list[$sortid]) ? $block_datas[0] = $block_sort_list[$sortid] : $block_datas = $block_sort_list;
+        } else {
+            $block_datas = $block_sort_list;
+        }
+        /* 功能暂时针对 "特殊" 管理员 */
+        // 加入标签的关注数
+        foreach ($block_datas as $k => $blocks) {
+            foreach ($blocks['sort_blocks'] as $key => $value) {
+                $blocks_count[$key] ? $blocks['sort_blocks'][$key]['follow_count'] = $blocks_count[$key] : $blocks['sort_blocks'][$key]['follow_count'] = 0;
+            }
+            $block_datas[$k] = $blocks;
+        }
     }
 
 //    dd($follow_ids);
@@ -266,8 +287,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         echo json_encode($result);
         exit;
     } else {
-
-//        dd($block_sort_list);
         include_once template('forum/navigation/tag');
     }
 }

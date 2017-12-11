@@ -1,5 +1,4 @@
 <!--{template forum/navigation/header}-->
-
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-md-offset-2 col-lg-offset-2">
@@ -16,37 +15,38 @@
                     <div class="item-list-side">
                         <h4>{$lang[item_sort]}</h4>
                         <ul>
-                            <li <!--{if $sortid === ''}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag">{$lang[all_item]}</a></li>
+                            <li <!--{if $sortid === '' && !$me_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag">{$lang[all_item]}</a></li>
+                            <li <!--{if $sortid === '' && $me_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&extra=my_tag">{$lang[my_tag]}</a></li>
                             <!--{loop $block_sort_list $key $blocks}-->
-                            <li <!--{if $key === $sortid}--> class="item-selected"<!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&sortid={$key}">{$blocks[sort_name]}</a></li>
+                            <li <!--{if $key === $sortid  && !$me_flag}--> class="item-selected"<!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&sortid={$key}">{$blocks[sort_name]}</a></li>
                             <!--{/loop}-->
                         </ul>
                     </div>
                     <div class="row">
+                    <!--{if !$me_flag}-->
                         <!--{loop $block_datas $blocks}-->
-                        <!--{loop $blocks[sort_blocks] $block}-->
-                        <div class="col-lg-3 col-md-4 col-sm-6 ">
-                            <div class='block-item'>
-                                <p class="name">$block[block_name]</p>
-                                <!--{if $_G[uid] == 1 || $_G[uid] == 1196183 || $_G[uid] == 1215312}--><p class="other"><span>$block[follow_count]</span><span> $lang[follow_count]</span></p><!--{/if}-->
-                                <!--{if $follow_flag}-->
-                                <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
-                                <!--{else}-->
-                                <!--{if in_array($block[block_id], array_column($follow_ids,'block_id'))}-->
-                                <button class="unfollow-tag" value="{$block[block_id]}">{$lang[unfollow]}</button>
-                                <!--{else}-->
-                                <button class="follow-tag" value="{$block[block_id]}">{$lang[follow]}</button>
-                                <!--{/if}-->
-                                <!--{/if}-->
-                            </div>
+                           <!--{loop $blocks[sort_blocks] $block}-->
+                            <!--{template forum/navigation/block_lists}-->
+                            <!--{/loop}-->
+                        <!--{/loop}-->
+                    <!--{else}-->
+                        <!--{if !empty($block_datas)}-->
+                        <!--{loop $block_datas $block}-->
+                            <!--{template forum/navigation/block_lists}-->
+                        <!--{/loop}-->
+                        <!--{else}-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 block-error">
+                            <img src="{$_G[staticurl]}/image/error/laravel.jpg" alt="Not Found" class="img-responsive" />
                         </div>
-                        <!--{/loop}-->
-                        <!--{/loop}-->
+                        <!--{/if}-->
+                    <!--{/if}-->
                     </div>
                 </section>
+                <!--{if !empty($block_datas)}-->
                 <footer>
                     <span>{$lang[more_block]}</span>
                 </footer>
+                <!--{/if}-->
             </div>
             <div class="get-next">
                 <button <!--{if $follow_flag}-->class="disabled-btn"<!--{else}-->class="abled-btn"<!--{/if}-->>{$lang[finish]}</button>

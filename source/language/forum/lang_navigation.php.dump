@@ -69,6 +69,6 @@ $lang = array
 	'no_sort' => '其他',
 	'item_sort' => '选择分类',
 	'all_item' => '所有导航',
+	'my_tag' => '我的关注',
 	'follow_count' => '关注',
-
 );
