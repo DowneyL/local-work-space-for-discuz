@@ -201,7 +201,6 @@ EOT;
     showformfooter();
     if (!empty($_POST) && $_GET['submit']) {
         $tids = dhtmlspecialchars(trim($_POST['recommend_tids']));
-
         // 处理对应版块的提交内容，只允许提交有效内容。
         $tids_arr = array();
         // 数组唯一，并重写索引，因为 array_unique() 不改写键名。
@@ -245,7 +244,13 @@ EOT;
             }
         }
         require_once libfile('function/cache');
-        $result = savecache('kouei_recommend_threads', $threads);
+
+        // 这个地方做循环是为了保持原有的输入排序，便于管理员进行排序，而不是按照查询出的数据的排序进行排序。
+        $threads_change_keys = array();
+        foreach ($tids_arr as $value) {
+            $threads_change_keys[$value] = $threads[$value];
+        }
+        $result = savecache('kouei_recommend_threads', $threads_change_keys);
     }
 } else if ($operation == 'other') {
     $setting = C::t('common_setting')->fetch_all(null);
