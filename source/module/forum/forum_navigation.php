@@ -8,14 +8,10 @@
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
-
 global $_G;
 $action = trim($_GET['action']);
 $blocks = array();
 $blocks = C::t('forum_kouei_block')->fetch_all_id_name();
-
-
-
 /* 首先判断是否设置了标签，后台没有设置任何标签的时候，报错，并跳出。 */
 //dd($blocks);
 if (empty($blocks)) {
@@ -64,7 +60,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         $page = max(1, $_G['page']);
         $start_limit = ($page - 1) * $_G['tpp'];
         $max_count = 500;
-
         /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
         $selfurl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
         $selfurl = preg_replace('/[\?&]sort=\w+/', '', $selfurl);
@@ -102,7 +97,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
                     break;
             }
         }
-
         /* 获取用户关注的帖子数据 */
         $tidarray = array();
         foreach ($follow_ids as $key => $follow) {
@@ -114,14 +108,12 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         foreach ($tiditemarray as $tiditem) {
             $tidsarray[] = explode(',', $tiditem);
         }
-
         //dd($tidsarray);
         foreach ($tidsarray as $values) {
             foreach ($values as $value) {
                 array_push($tidarray, $value);
             }
         }
-
         //dd($tidarray);
         $threads = $posttables = array();
         $thread_count = C::t('forum_thread')->count_by_kouei_fids($tidarray, $sorttime);
@@ -139,7 +131,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
             $posttables[$thread['posttableid']][] = $thread['tid'];
         }
         // dd($posttables);
-
         if ($threads) {
             require_once libfile('function/post');
             foreach ($posttables as $tableid => $tids) {
@@ -183,7 +174,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     if (empty($follow_ids)) {
         $follow_flag = true;
     }
-
     $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
     $block_sort_list = array();
     $block_datas = array();

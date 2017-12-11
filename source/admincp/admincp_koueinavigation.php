@@ -9,9 +9,7 @@ cpheader();
 shownav('forum', 'kouei_navigation_title');
 
 if ($operation == 'base') {
-
     // 展示论坛小导航的导航菜单
-
     /**
      * showsubmenu()
      * 参数一：大菜单的标题
@@ -28,7 +26,7 @@ if ($operation == 'base') {
         array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
         array('other', "koueinavigation&operation=other"),
     ));
-
+    
     // 展示提示语，参数是语言包 lang_admincp 下的对应项
     showtips('kouei_navigation_base_tips');
 
@@ -73,22 +71,6 @@ if ($operation == 'base') {
      * name 为 block_item 的 textarea 文本框。
      */
     $lang = lang('admincp');
-
-    /* 设置成选择标签，便于管理。这个功能之后再开发
-    global $_G;
-    loadcache('forums');
-//    dd($_G['cache']['forums']);
-    $forum_list = '';
-
-    echo $forum_list;
-//    $forum_data = C::t('forum_forum')->
-
-    showtagheader('div', 'forum_list', true);
-    showtagfooter('div');
-    $html = <<<EOT
-    
-EOT;
-   */
     showtagheader('div', 'koueinavigation', true);
     showformheader('koueinavigation&operation=store');
     showtableheader();
@@ -245,7 +227,7 @@ EOT;
         }
         require_once libfile('function/cache');
 
-        // 这个地方做循环是为了保持原有的输入排序，便于管理员进行排序，而不是按照查询出的数据的排序进行排序。
+        // 按输入的顺序，，对小编推荐进行排序。
         $threads_change_keys = array();
         foreach ($tids_arr as $value) {
             $threads_change_keys[$value] = $threads[$value];
