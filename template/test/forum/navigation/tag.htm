@@ -11,6 +11,10 @@
                     <!--{/if}-->
                     <p>{$lang[block_l_title]}</p>
                 </header>
+                <div class="block-show-type">
+                    <a href="{$selfurl}" <!--{if $tag_order == 'count'}-->class="type-selected"<!--{/if}-->>{$lang[hotest]}</a>
+                    <a href="{$selfurl}&sort=newest" <!--{if $tag_order == 'block_id'}-->class="type-selected"<!--{/if}-->>{$lang[newest]}</a>
+                </div>
                 <section class="block-item-list">
                     <div class="item-list-side">
                         <h4>{$lang[item_sort]}</h4>
@@ -23,13 +27,11 @@
                         </ul>
                     </div>
                     <div class="row">
-                    <!--{if !$me_flag}-->
-                        <!--{loop $block_datas $blocks}-->
-                           <!--{loop $blocks[sort_blocks] $block}-->
-                            <!--{template forum/navigation/block_lists}-->
-                            <!--{/loop}-->
+                    <!--{if $sortid === '' && !$me_flag}-->
+                        <!--{loop $datas $block}-->
+                        <!--{template forum/navigation/block_lists}-->
                         <!--{/loop}-->
-                    <!--{else}-->
+                    <!--{elseif $sortid === '' && $me_flag}-->
                         <!--{if !empty($block_datas)}-->
                         <!--{loop $block_datas $block}-->
                             <!--{template forum/navigation/block_lists}-->
@@ -39,6 +41,12 @@
                             <img src="{$_G[staticurl]}/image/error/block_error.jpg" alt="Not Found" class="img-responsive" />
                         </div>
                         <!--{/if}-->
+                    <!--{else}-->
+                        <!--{loop $block_datas $blocks}-->
+                        <!--{loop $blocks[sort_blocks] $block}-->
+                        <!--{template forum/navigation/block_lists}-->
+                        <!--{/loop}-->
+                        <!--{/loop}-->
                     <!--{/if}-->
                     </div>
                 </section>

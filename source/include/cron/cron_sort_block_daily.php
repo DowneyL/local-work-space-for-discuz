@@ -15,5 +15,4 @@ require_once libfile('function/cache');
 $sort_result = C::t('forum_kouei_blockitem')->sort_by_bid();
 $sort_block = array_column($sort_result, 'block_id');
 savecache('sort_block_id', $sort_block);
-
 ?>

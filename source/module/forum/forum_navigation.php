@@ -43,7 +43,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     foreach ($sort_block_ids as $sort_block_id) {
         $hot_blocks[] = $blockss[$sort_block_id];
     }
-    //dd($hot_blocks);
+//    dd($hot_blocks);
     $hot_blocks = array_slice($hot_blocks, 0, 10);
 
     /*
@@ -176,10 +176,15 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     if (empty($follow_ids)) {
         $follow_flag = true;
     }
+    /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
+    $selfurl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
+    $selfurl = preg_replace('/[\?&]sort=\w+/', '', $selfurl);
     // 设置标签的分类
     $block_datas = array();
     $block_sort_list = array();
-    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id();
+    $tag_order = '';
+    trim($_GET['sort']) == 'newest' ? $tag_order = 'block_id' : $tag_order = 'count';
+    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id($tag_order);
     // 分类导航
     $sortid = '';
     foreach ($datas as $key => $data) {
@@ -188,8 +193,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         $block_sort_list[$list_key]['sort_name'] = $sort_name;
         $block_sort_list[$list_key]['sort_blocks'][$data['block_id']] = $data;
     }
-    $sort_result = C::t('forum_kouei_blockitem')->sort_by_bid();
-    $blocks_count = array_column($sort_result, 'count', 'block_id');
+    krsort($block_sort_list);
     if ($_GET['extra'] && trim($_GET['extra'] == 'my_tag')) {
         // 我的导航
         $block_list =array();
@@ -200,13 +204,14 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         foreach ($follow_ids as $bids) {
             $block_datas[$bids['block_id']] = $block_list[$bids['block_id']];
         }
-        foreach ($block_datas as $key => $block_data) {
-            foreach ($blocks_count as $block_id => $count) {
-                if ($key == $block_id) {
-                    $block_data['follow_count'] = $count;
-                }
-            }
-            $block_datas[$key] = $block_data;
+        foreach ($block_datas as $key => $value) {
+            $count[$key] = $value['count'];
+            $block_id[$key] = $value['block_id'];
+        }
+        if ($tag_order == 'block_id') {
+            array_multisort($block_id, SORT_DESC, $block_datas);
+        } else {
+            array_multisort($count, SORT_DESC, $block_datas);
         }
     } else {
         if (isset($_GET['sortid']) && intval($_GET['sortid']) !== null) {
@@ -214,14 +219,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
             !empty($block_sort_list[$sortid]) ? $block_datas[0] = $block_sort_list[$sortid] : $block_datas = $block_sort_list;
         } else {
             $block_datas = $block_sort_list;
-        }
-        /* 功能暂时针对 "特殊" 管理员 */
-        // 加入标签的关注数
-        foreach ($block_datas as $k => $blocks) {
-            foreach ($blocks['sort_blocks'] as $key => $value) {
-                $blocks_count[$key] ? $blocks['sort_blocks'][$key]['follow_count'] = $blocks_count[$key] : $blocks['sort_blocks'][$key]['follow_count'] = 0;
-            }
-            $block_datas[$k] = $blocks;
         }
     }
 

@@ -46,8 +46,17 @@ class table_forum_kouei_block extends discuz_table
 		return DB::query("UPDATE %t SET sort_id = 0 WHERE $wheresql", array($this->_table, $sortids));
 	}
 
-	public function sort_by_bs_order_id() {
-		return DB::fetch_all("SELECT block.block_id, block.block_name, block.block_item, block.sort_id, blocksort.sort_name, blocksort.order_id FROM %t AS block LEFT JOIN ". DB::table('forum_kouei_blocksort') ." AS blocksort ON block.sort_id = blocksort.sort_id ORDER BY order_id DESC", array($this->table));
+	public function sort_by_bs_order_id($order = null) {
+		if ($order) {
+			$ordersql = ' ORDER BY '. $order .' DESC';
+		} else {
+			$ordersql = '';
+		}
+		
+		return DB::fetch_all("SELECT block.*, blocksort.sort_name, blocksort.order_id, t2.count FROM %t AS block 
+LEFT JOIN ".DB::table('forum_kouei_blocksort')." AS blocksort ON block.sort_id = blocksort.sort_id
+LEFT JOIN (select block_id, count(*) as count from ".DB::table('forum_kouei_blockitem')." 
+group by block_id) t2 on block.block_id = t2.block_id".$ordersql, array($this->_table));
 	}
 }
 ?>

@@ -424,7 +424,7 @@ body {
 }
 
 .block-items header {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 .block-items header h1{
     font-size: 32px;
@@ -439,6 +439,27 @@ body {
     color: #717171;
     margin-top: 20px;
     text-align: center;
+}
+
+.block-items .block-show-type{
+    height:50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+
+.block-items .block-show-type a {
+    text-decoration: none;
+    color: #666;
+    padding:6px 15px;
+    margin-right: 2px;
+    border-radius: 2px;
+    font-size: 14px;
+    border: 1px solid #dfdfdf;
+}
+
+.block-items .block-show-type a.type-selected {
+    background-color: #4caf50;
+    color: #f4f8fb;
 }
 
 .block-item-list {

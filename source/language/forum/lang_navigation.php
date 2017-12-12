@@ -71,4 +71,6 @@ $lang = array
 	'all_item' => '所有导航',
 	'my_tag' => '我的关注',
 	'follow_count' => '关注',
+	'newest' => '最新',
+	'hotest' => '最热',
 );
