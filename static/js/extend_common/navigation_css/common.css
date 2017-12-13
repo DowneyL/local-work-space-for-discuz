@@ -1,6 +1,5 @@
 body {
     font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
-    /*background-color: #f5f8fa;*/
     background-color: #f3f3f3;
     overflow:scroll;
     overflow-x:hidden;
@@ -10,8 +9,6 @@ body {
     border-color: #e7e7e7;
     background-color: #fff;
     box-shadow: 0 1px 11px 2px rgba(42, 42, 42, 0.1);
-    /*border-top: 4px solid #00b5ad;*/
-    /*border-top: 4px solid lightsteelblue;*/
     border-top: 4px solid #4caf50;
 }
 
@@ -631,6 +628,9 @@ body {
     }
     .get-next button {
         width: 106px;
+    }
+    .navbar-static-top {
+        border-top: none;
     }
 }
 
