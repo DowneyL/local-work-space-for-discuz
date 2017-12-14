@@ -12,25 +12,38 @@
                     <p>{$lang[block_l_title]}</p>
                 </header>
                 <div class="block-show-type">
+                    <!--{if !$search_flag}-->
                     <a href="{$selfurl}" <!--{if $tag_order == 'count'}-->class="type-selected"<!--{/if}-->>{$lang[hotest]}</a>
                     <a href="{$selfurl}&sort=newest" <!--{if $tag_order == 'block_id'}-->class="type-selected"<!--{/if}-->>{$lang[newest]}</a>
+                    <!--{/if}-->
+                    <form action="/forum.php?mod=navigation&action=tag&do=search&searchsubmit=yes" method="post">
+                        <input type="hidden" name="formhash" value="{FORMHASH}" />
+                        <input type="text" placeholder="{$lang[search_tag]}" name="tagname" maxlength="14" autocomplete="off" <!--{if $search_name}-->value = "{$search_name}"<!--{/if}-->>
+                    </form>
                 </div>
                 <section class="block-item-list">
                     <div class="item-list-side">
                         <h4>{$lang[item_sort]}</h4>
                         <ul>
-                            <li <!--{if $sortid === '' && !$me_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag">{$lang[all_item]}</a></li>
-                            <li <!--{if $sortid === '' && $me_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&extra=my_tag">{$lang[my_tag]}</a></li>
+                            <!--{if $search_flag}--> <li class="item-selected"><a href="javascript:;">{$lang[searched]}</a></li> <!--{/if}-->
+                            <li <!--{if $sortid === '' && !$me_flag && !$search_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag">{$lang[all_item]}</a></li>
+                            <li <!--{if $sortid === '' && $me_flag && !$search_flag}--> class="item-selected" <!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&extra=my_tag">{$lang[my_tag]}</a></li>
+                            <!--{if !$search_flag}-->
                             <!--{loop $block_sort_list $key $blocks}-->
                             <li <!--{if $key === $sortid  && !$me_flag}--> class="item-selected"<!--{/if}-->><a href="/forum.php?mod=navigation&action=tag&sortid={$key}">{$blocks[sort_name]}</a></li>
                             <!--{/loop}-->
+                            <!--{/if}-->
                         </ul>
                     </div>
                     <div class="row">
                     <!--{if $sortid === '' && !$me_flag}-->
+                        <!--{if !empty($datas)}-->
                         <!--{loop $datas $block}-->
                         <!--{template forum/navigation/block_lists}-->
                         <!--{/loop}-->
+                        <!--{else}-->
+                        <div class="block-null">{$lang[searched_null]}</div>
+                        <!--{/if}-->
                     <!--{elseif $sortid === '' && $me_flag}-->
                         <!--{if !empty($block_datas)}-->
                         <!--{loop $block_datas $block}-->

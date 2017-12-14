@@ -73,4 +73,8 @@ $lang = array
 	'follow_count' => '关注',
 	'newest' => '最新',
 	'hotest' => '最热',
+	'search_tag' => '标签搜索...',
+	'search_null' => '搜索内容不能为空',
+	'searched' => '搜索结果',
+	'searched_null' => '结果为空',
 );

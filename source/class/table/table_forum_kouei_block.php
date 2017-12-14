@@ -46,17 +46,19 @@ class table_forum_kouei_block extends discuz_table
 		return DB::query("UPDATE %t SET sort_id = 0 WHERE $wheresql", array($this->_table, $sortids));
 	}
 
-	public function sort_by_bs_order_id($order = null) {
-		if ($order) {
-			$ordersql = ' ORDER BY '. $order .' DESC';
-		} else {
-			$ordersql = '';
+	public function sort_by_bs_order_id($order = '', $block = '') {
+		$order ? $ordersql = ' ORDER BY '. $order .' DESC' : $ordersql = '';
+		$block ? $wheresql = " WHERE block_name LIKE %s" : $wheresql = '';
+		if ($block) {
+			return DB::fetch_all("SELECT block.*, blocksort.sort_name, blocksort.order_id, t2.count FROM %t AS block 
+				   LEFT JOIN ".DB::table('forum_kouei_blocksort')." AS blocksort ON block.sort_id = blocksort.sort_id
+				   LEFT JOIN (select block_id, count(*) as count from ".DB::table('forum_kouei_blockitem')." 
+				   group by block_id) t2 on block.block_id = t2.block_id".$wheresql.$ordersql, array($this->_table, '%'.$block.'%'));
 		}
-		
 		return DB::fetch_all("SELECT block.*, blocksort.sort_name, blocksort.order_id, t2.count FROM %t AS block 
-LEFT JOIN ".DB::table('forum_kouei_blocksort')." AS blocksort ON block.sort_id = blocksort.sort_id
-LEFT JOIN (select block_id, count(*) as count from ".DB::table('forum_kouei_blockitem')." 
-group by block_id) t2 on block.block_id = t2.block_id".$ordersql, array($this->_table));
+			   LEFT JOIN ".DB::table('forum_kouei_blocksort')." AS blocksort ON block.sort_id = blocksort.sort_id
+			   LEFT JOIN (select block_id, count(*) as count from ".DB::table('forum_kouei_blockitem')." 
+			   group by block_id) t2 on block.block_id = t2.block_id".$wheresql.$ordersql, array($this->_table));
 	}
 }
 ?>

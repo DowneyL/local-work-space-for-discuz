@@ -445,6 +445,26 @@ body {
     color: #4caf50;
 }
 
+.block-items .block-show-type form{
+    display: inline-block;
+    float: right;
+}
+
+.block-items .block-show-type input {
+    background-color: inherit;
+    height: 32px;
+    padding: .6rem 1rem;
+    font-size: 1.2rem;
+    border: 1px solid hsla(0,0%,35%,.2);
+    outline:none;
+    margin-top: 12px;
+    border-radius: 2px;
+}
+
+.block-items .block-show-type input:focus {
+    border: 1px solid #4caf50;
+}
+
 .block-item-list {
     text-align: center;
     position: relative;
@@ -542,6 +562,10 @@ body {
 
 .block-item-list .block-error img{
     border-radius: 4px;
+}
+
+.block-item-list .block-null {
+    color: #777;
 }
 
 .block-items footer{

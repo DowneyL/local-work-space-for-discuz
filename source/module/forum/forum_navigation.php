@@ -26,6 +26,7 @@ $follow_flag = false;
 $me_flag = false;
 $follow_ids = C::t('forum_kouei_blockitem')->select($uid);
 $lang = lang('forum/navigation');
+$filters = array('sort');
 if (!empty($follow_ids) && !($action == 'tag')) {
     /**
      * 侧边栏相关数据获取
@@ -48,7 +49,6 @@ if (!empty($follow_ids) && !($action == 'tag')) {
 
     /*
      * 小编推荐
-     * 要考虑将热门帖子标签缓存起来
      */
     require_once libfile('function/cache');
     loadcache('kouei_recommend_threads');
@@ -64,7 +64,7 @@ if (!empty($follow_ids) && !($action == 'tag')) {
         $max_count = 500;
         /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
         $selfurl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
-        $selfurl = preg_replace('/[\?&]sort=\w+/', '', $selfurl);
+        $selfurl = getSelfUrl($filters, $selfurl);
 
         loadcache('forums');
         /* 查看每个单独导航的时候，获取的数据 */
@@ -176,15 +176,28 @@ if (!empty($follow_ids) && !($action == 'tag')) {
     if (empty($follow_ids)) {
         $follow_flag = true;
     }
-    /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 orderby 参数 */
+
+    /* 标签搜素的相关参数 */
+    $search_name = '';
+    $search_flag = false;
+    if (trim($_GET['do']) == 'search' && submitcheck('searchsubmit')) {
+        $tagname = trim($_GET['tagname']);
+        if ($tagname) {
+            $search_name = dhtmlspecialchars($tagname);
+            $search_flag = true;
+        } else {
+            showmessage($lang['search_null'], 'forum.php?mod=navigation&action=tag');
+        }
+    }
+    /* 参数会有很多不同，我们需要获取自己的 url 并且去除原本的 sort 参数 */
     $selfurl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
-    $selfurl = preg_replace('/[\?&]sort=\w+/', '', $selfurl);
+    $selfurl = getSelfUrl($filters, $selfurl);
     // 设置标签的分类
     $block_datas = array();
     $block_sort_list = array();
     $tag_order = '';
     trim($_GET['sort']) == 'newest' ? $tag_order = 'block_id' : $tag_order = 'count';
-    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id($tag_order);
+    $datas = C::t('forum_kouei_block')->sort_by_bs_order_id($tag_order, $search_name);
     // 分类导航
     $sortid = '';
     foreach ($datas as $key => $data) {
@@ -299,4 +312,11 @@ function delByKey($arr, $key)
         }
     }
     return $arr;
+}
+
+function getSelfUrl ($filters, $url) {
+    foreach ($filters as $filter) {
+        $url = preg_replace('/[\?&]' . $filter . '=\w+/', '', $url);
+    }
+    return $url;
 }
