@@ -384,7 +384,8 @@ class table_forum_thread extends discuz_table
 				$wheresql = '';
 			}
 
-			return DB::fetch_all("SELECT tid,fid,posttableid,subject,author,authorid,views,replies,dateline,readperm,price,heats FROM %t WHERE fid IN(%n) $wheresql $ordersql".DB::limit($start, $limit), array($this->get_table_name($tableid), (array)$fids));
+			// return DB::fetch_all("SELECT tid,fid,posttableid,subject,author,authorid,views,replies,dateline,readperm,price,heats FROM %t WHERE fid IN(%n) $wheresql $ordersql".DB::limit($start, $limit), array($this->get_table_name($tableid), (array)$fids));
+			return DB::fetch_all("SELECT * FROM %t WHERE fid IN(%n) $wheresql $ordersql".DB::limit($start, $limit), array($this->get_table_name($tableid), (array)$fids));
 		}
 		return array();
 	}

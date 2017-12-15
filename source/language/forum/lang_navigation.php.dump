@@ -77,4 +77,8 @@ $lang = array
 	'search_null' => '搜索内容不能为空',
 	'searched' => '搜索结果',
 	'searched_null' => '结果为空',
+	'hot_mark' => '热帖',
+	'top_mark' => '置顶',
+	'high_score_mark' => '高分',
+	'digest_mark' => '精华',
 );

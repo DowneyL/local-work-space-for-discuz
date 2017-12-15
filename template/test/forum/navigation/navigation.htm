@@ -58,11 +58,20 @@
                             <!--{/if}-->
                         </div>
                     </a>
-                    <p class="thread-footer">
-                        <span><i class="fa fa-comment-o" aria-hidden="true"></i> {$thread[replies]}</span>
-                        <span><i class="fa fa-eye" aria-hidden="true"></i> {$thread[views]}</span>
-                        <!--<span><i class="fa fa-heart-o" aria-hidden="true"></i> 1</span>-->
-                    </p>
+                    <div class="thread-footer">
+                        <div class="thread-mark">
+                            <!--{if $thread[heats]}--><span class="label label-danger">{$lang[hot_mark]}</span><!--{/if}-->
+                            <!--{if $thread[digest]}--><span class="label label-primary">{$lang[digest_mark]}</span><!--{/if}-->
+                            <!--{if $thread[displayorder]}--><span class="label label-info">{$lang[top_mark]}</span><!--{/if}-->
+                            <!--{if $thread[rate]}--><span class="label label-warning">{$lang[high_score_mark]}</span><!--{/if}-->
+                            <span></span>
+                        </div>
+                        <div class="thread-num">
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {$thread[views]}</span>
+                            <span><i class="fa fa-comment-o" aria-hidden="true"></i> {$thread[replies]}</span>
+                            <!--<span><i class="fa fa-heart-o" aria-hidden="true"></i> 1</span>-->
+                        </div>
+                    </div>
                 </div>
                 <!--{/loop}-->
                 <!--{else}-->

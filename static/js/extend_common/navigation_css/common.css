@@ -232,13 +232,25 @@ body {
     height:40px;
 }
 
-.thread-footer span {
+.thread-footer .thread-mark {
+    height: 100%;
+    line-height: 46px;
+    float: left;
+}
+
+.thread-footer .thread-mark span{
+    margin-right: 5px;
+}
+
+.thread-footer .thread-num {
     float: right;
-    margin-left:12px;
-    margin-right: 15px;
-    height: 40px;
+    height: 100%;
     line-height: 55px;
-    display: inline-block;
+}
+
+.thread-footer .thread-num span {
+    margin-left:12px;
+    margin-right: 10px;
 }
 
 /* sidebar */
