@@ -2,6 +2,10 @@
     <p class="thread-header">
         <!--{avatar($thread[authorid],small)}-->
         <a href="/home.php?mod=space&uid={$thread[authorid]}" class="thread-author" target="_blank">{$thread[author]}</a>
+        <!--{if !$recommend_flag}-->
+        <span> in </span>
+        <a href="/forum.php?mod=forumdisplay&fid={$thread[fid]}" class="thread-forum" target="_blank">{$forum_lists[$thread[fid]]}</a>
+        <!--{/if}-->
         <span class="thread-posttime">{$thread[dateline]}</span>
     </p>
     <a href="/forum.php?mod=viewthread&tid={$thread[tid]}&extra=" target="_blank">
