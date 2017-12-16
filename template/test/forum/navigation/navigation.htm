@@ -60,7 +60,7 @@
                     </a>
                     <div class="thread-footer">
                         <div class="thread-mark">
-                            <!--{if $thread[heats]}--><span class="label label-danger">{$lang[hot_mark]}</span><!--{/if}-->
+                            <!--{if $thread[heats] && $thread[heats] >= $_G['setting']['heatthread']['iconlevels'][0]}--><span class="label label-danger">{$lang[hot_mark]}</span><!--{/if}-->
                             <!--{if $thread[digest]}--><span class="label label-primary">{$lang[digest_mark]}</span><!--{/if}-->
                             <!--{if $thread[displayorder]}--><span class="label label-info">{$lang[top_mark]}</span><!--{/if}-->
                             <!--{if $thread[rate]}--><span class="label label-warning">{$lang[high_score_mark]}</span><!--{/if}-->
