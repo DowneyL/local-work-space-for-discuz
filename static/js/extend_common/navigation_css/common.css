@@ -4,6 +4,15 @@ body {
     overflow:scroll;
     overflow-x:hidden;
 }
+
+#app #particles-js{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
 /* header */
 .navbar-static-top {
     border-color: #e7e7e7;
@@ -134,7 +143,7 @@ body {
     width: 100%;
     background-color: #fff;
     box-shadow: 8px 5px 6px rgba(0,0,0,.05);
-    padding:12px 18px;
+    padding:12px 18px 2px 18px;
     border-radius: 2px;
     margin-bottom: 14px;
 }
@@ -225,27 +234,28 @@ body {
 }
 
 .thread-footer {
-    margin: 0;
+    margin: 14px 0 0;
     padding: 0;
     font-size: 15px;
     color: #c7c7c7;
-    height:40px;
+    height:32px;
+    line-height: 32px;
 }
 
 .thread-footer .thread-mark {
     height: 100%;
-    line-height: 46px;
+    margin-top: -4px;
     float: left;
 }
 
-.thread-footer .thread-mark span{
+.thread-footer .thread-mark span.label{
     margin-right: 5px;
+    line-height: inherit;
 }
 
 .thread-footer .thread-num {
     float: right;
     height: 100%;
-    line-height: 55px;
 }
 
 .thread-footer .thread-num span {
@@ -631,7 +641,7 @@ body {
 }
 
 @media (max-width:992px) {
-    #sticky-wrapper, .sidebar, .sidebar-adv, .item-list-side {
+    #sticky-wrapper, .sidebar, .sidebar-adv, .item-list-side, #app #particles-js {
         display: none;
     }
 }
@@ -667,6 +677,10 @@ body {
     }
     .navbar-static-top {
         border-top: none;
+    }
+    .thread-footer .thread-num span {
+        margin-left: 12px;
+        margin-right: 0;
     }
 }
 

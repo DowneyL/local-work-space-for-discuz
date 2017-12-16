@@ -33,46 +33,7 @@
             <div class="thread-list">
                 <!--{if !empty($threads)}-->
                 <!--{loop $threads $thread}-->
-                <div class="thread-box">
-                    <p class="thread-header">
-                        <!--{avatar($thread[authorid],small)}-->
-                        <a href="/home.php?mod=space&uid={$thread[authorid]}" class="thread-author" target="_blank">{$thread[author]}</a>
-                        <span> in </span>
-                        <a href="/forum.php?mod=forumdisplay&fid={$thread[fid]}" class="thread-forum" target="_blank">{$forum_lists[$thread[fid]]}</a>
-                        <span class="thread-posttime">{$thread[dateline]}</span>
-                    </p>
-                    <a href="/forum.php?mod=viewthread&tid={$thread[tid]}&extra=" target="_blank">
-                        <div class="thread-content">
-                            <!--<div class="list-thread-img">-->
-                            <!--<img src="{IMGDIR}/aragakiyui.jpg" alt="">-->
-                            <!--</div>-->
-                            <h3>{$thread[subject]}</h3>
-                            <!--{if $thread[message]}-->
-                            <div class="list-thread-content">
-                                <!--{if $thread[readperm] || $thread[price]}-->
-                                {$lang[hide_thread]}
-                                <!--{else}-->
-                                {$thread[message]}
-                                <!--{/if}-->
-                            </div>
-                            <!--{/if}-->
-                        </div>
-                    </a>
-                    <div class="thread-footer">
-                        <div class="thread-mark">
-                            <!--{if $thread[heats] && $thread[heats] >= $_G['setting']['heatthread']['iconlevels'][0]}--><span class="label label-danger">{$lang[hot_mark]}</span><!--{/if}-->
-                            <!--{if $thread[digest]}--><span class="label label-primary">{$lang[digest_mark]}</span><!--{/if}-->
-                            <!--{if $thread[displayorder]}--><span class="label label-info">{$lang[top_mark]}</span><!--{/if}-->
-                            <!--{if $thread[rate]}--><span class="label label-warning">{$lang[high_score_mark]}</span><!--{/if}-->
-                            <span></span>
-                        </div>
-                        <div class="thread-num">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {$thread[views]}</span>
-                            <span><i class="fa fa-comment-o" aria-hidden="true"></i> {$thread[replies]}</span>
-                            <!--<span><i class="fa fa-heart-o" aria-hidden="true"></i> 1</span>-->
-                        </div>
-                    </div>
-                </div>
+                    <!--{template forum/navigation/thread_box}-->
                 <!--{/loop}-->
                 <!--{else}-->
                 {$lang[none]}
@@ -85,35 +46,7 @@
             <div class="thread-list">
                 <!--{if !empty($all_hot_threads)}-->
                 <!--{loop $all_hot_threads $thread}-->
-                <div class="thread-box">
-                    <p class="thread-header">
-                        <!--{avatar($thread[authorid],small)}-->
-                        <a href="/home.php?mod=space&uid={$thread[authorid]}" class="thread-author" target="_blank">{$thread[author]}</a>
-                        <span class="thread-posttime">{$thread[dateline]}</span>
-                    </p>
-                    <a href="/forum.php?mod=viewthread&tid={$thread[tid]}&extra=" target="_blank">
-                        <div class="thread-content">
-                            <!--<div class="list-thread-img">-->
-                            <!--<img src="{IMGDIR}/aragakiyui.jpg" alt="">-->
-                            <!--</div>-->
-                            <h3>{$thread[subject]}</h3>
-                            <!--{if $thread[message]}-->
-                            <div class="list-thread-content">
-                                <!--{if $thread[readperm] || $thread[price]}-->
-                                {$lang[hide_thread]}
-                                <!--{else}-->
-                                {$thread[message]}
-                                <!--{/if}-->
-                            </div>
-                            <!--{/if}-->
-                        </div>
-                    </a>
-                    <p class="thread-footer">
-                        <span><i class="fa fa-comment-o" aria-hidden="true"></i> {$thread[replies]}</span>
-                        <span><i class="fa fa-eye" aria-hidden="true"></i> {$thread[views]}</span>
-                        <!--<span><i class="fa fa-heart-o" aria-hidden="true"></i> 1</span>-->
-                    </p>
-                </div>
+                    <!--{template forum/navigation/thread_box}-->
                 <!--{/loop}-->
                 <!--{else}-->
                 {$lang[none]}
@@ -146,31 +79,14 @@
     $(function () {
         var threadList = $('.thread-list');
         var threadContent = $('.thread-list .thread-content');
-
-        /*
-         threadList.delegate(threadContent, 'mouseover', function () {
-         $(this).children().css('color', 'red');
-         });
-         */
-
         threadList.on('mouseover', '.thread-content', function () {
             $(this).children('h3').css('color', '#000');
             $(this).children('.list-thread-content').css('color', '#616161');
         });
-
         threadList.on('mouseout', '.thread-content', function () {
             $(this).children('h3').css('color', '#5b5d5f');
             $(this).children('.list-thread-content').css('color', '#919191');
         });
-        /*
-         threadContent.hover(function (){
-         $(this).children('h3').css('color','#000');
-         $(this).children('.list-thread-content').css('color', '#616161');
-         }, function (){
-         $(this).children('h3').css('color','#5b5d5f');
-         $(this).children('.list-thread-content').css('color', '#919191');
-         });
-         */
 
         var totalpage = Math.ceil({$thread_count} / {$_G[tpp]});
         var winH = $(window).height();
@@ -223,10 +139,26 @@
                         str = str + '</div>';
                     }
 
-                    str = str + '</a><p class="thread-footer">' +
+                    str = str + '</a><div class="thread-footer">' +
+                                '<div class="thread-mark">';
+                    if (parseInt(array['heats']) > 0 && parseInt(array['heats']) >= parseInt("{$_G['setting']['heatthread']['iconlevels'][0]}")) {
+                        str = str + '<span class="label label-danger">' + "{$lang[hot_mark]}" + '</span>';
+                    }
+                    if (parseInt(array['digest']) > 0) {
+                        str = str + '<span class="label label-primary">' + "{$lang[digest_mark]}" + '</span>';
+                    }
+                    if (parseInt(array['displayorder']) > 0) {
+                        str = str + '<span class="label label-info">' + "{$lang[top_mark]}" + '</span>';
+                    }
+                    if (parseInt(array['rate']) > 0) {
+                        str = str + '<span class="label label-warning">' + "{$lang[high_score_mark]}" + '</span>';
+                    }
+                    str = str +
+                            '</div>' +
+                            '<div class="thread-num">' +
                             '<span><i class="fa fa-comment-o" aria-hidden="true"></i> ' + array['replies'] + '</span>' +
                             '<span><i class="fa fa-eye" aria-hidden="true"></i> ' + array['views'] + '</span>' +
-                            '</p></div>';
+                            '</div></div>';
                     $('.thread-list').append(str);
                 });
                 $('.load-thread').hide();
