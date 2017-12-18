@@ -24,9 +24,10 @@ if ($operation == 'base') {
         array('add', 'koueinavigation&operation=create'),
         array('modify', "koueinavigation&operation=modify"),
         array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
+        array('kouei_block_log', "koueinavigation&operation=log"),
         array('other', "koueinavigation&operation=other"),
     ));
-    
+
     // 展示提示语，参数是语言包 lang_admincp 下的对应项
     showtips('kouei_navigation_base_tips');
 
@@ -60,6 +61,7 @@ if ($operation == 'base') {
         array('add', 'koueinavigation&operation=create', '1'),
         array('modify', "koueinavigation&operation=modify"),
         array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
+        array('kouei_block_log', "koueinavigation&operation=log"),
         array('other', "koueinavigation&operation=other"),
     ));
     showtips('kouei_navigation_add_tips');
@@ -113,6 +115,7 @@ if ($operation == 'base') {
             array('add', 'koueinavigation&operation=create'),
             array('modify', "koueinavigation&operation=modify", '1'),
             array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
+            array('kouei_block_log', "koueinavigation&operation=log"),
             array('other', "koueinavigation&operation=other"),
         ));
         showtips('kouei_navigation_modify_tips');
@@ -162,6 +165,7 @@ if ($operation == 'base') {
         array('add', 'koueinavigation&operation=create'),
         array('modify', "koueinavigation&operation=modify"),
         array('kouei_nav_recommend', "koueinavigation&operation=recommend", '1'),
+        array('kouei_block_log', "koueinavigation&operation=log"),
         array('other', "koueinavigation&operation=other"),
     ));
 
@@ -242,6 +246,7 @@ if ($operation == 'base') {
         array('add', 'koueinavigation&operation=create'),
         array('modify', "koueinavigation&operation=modify"),
         array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
+        array('kouei_block_log', "koueinavigation&operation=log"),
         array('other', "koueinavigation&operation=other", '1'),
     ));
     showformheader('setting&edit=yes');
@@ -254,6 +259,26 @@ if ($operation == 'base') {
     showsubmit('settingsubmit');
     showtablefooter();
     showformfooter();
+} else if ($operation == 'log') {
+    showsubmenu('kouei_navigation_title', array(
+        array('view', 'koueinavigation&operation=base'),
+        array('add', 'koueinavigation&operation=create'),
+        array('modify', "koueinavigation&operation=modify"),
+        array('kouei_nav_recommend', "koueinavigation&operation=recommend"),
+        array('kouei_block_log', "koueinavigation&operation=log", '1'),
+        array('other', "koueinavigation&operation=other"),
+    ));
+
+    showtips('kouei_navigation_log_tips');
+
+    $page = max(1, $_G['page']);
+    $start_limit = ($page - 1) * $_G['tpp'];
+
+    $all_block_logs = C::t('forum_kouei_blockitem')->select_log_by_uid();
+    $block_logs = C::t('forum_kouei_blockitem')->select_block_log_by_uid(1);
+    $logs_count = count($all_block_logs);
+    dd($logs_count);
+    dd($block_logs);
 }
 
 /**

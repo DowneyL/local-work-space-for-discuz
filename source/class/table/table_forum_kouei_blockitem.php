@@ -52,6 +52,19 @@ class table_forum_kouei_blockitem extends discuz_table
 		return DB::fetch_all("SELECT block_id,count(*) count FROM %t GROUP BY block_id ORDER BY count DESC", array($this->_table));
 	}
 
+
+	public function select_log_by_uid() {
+		return DB::fetch_all("SELECT t1.user_id, t2.username, t1.block_id FROM %t AS t1
+		LEFT JOIN ".DB::table('common_member')." AS t2 ON t1.user_id = t2.uid
+		GROUP BY user_id", array($this->_table));
+	}
+
+	public function select_block_log_by_uid($userid) {
+		return DB::fetch_all("SELECT t1.block_id, t2.block_name FROM %t AS t1
+		LEFT JOIN ".DB::table('forum_kouei_block')." AS t2 ON t1.block_id = t2.block_id
+		WHERE user_id=%d", array($this->_table, $userid));
+	}
+
 	private function make_where($userid = 0, $blockid = 0, $idtype = '', $blockidglue = '=') {
 		$wheresql = ' 1';
 		$data = array();

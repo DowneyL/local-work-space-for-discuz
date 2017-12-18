@@ -7085,6 +7085,8 @@ $lang = array
     'block_sort' => '设置分类',
     'block_sort_commend' => '设置导航的分类',
     'no_sort' => '暂未分类',
+    'kouei_block_log' => '标签记录',
+    'kouei_navigation_log_tips' => '用于查看你的标签关注记录',
 
     // 论坛小导航分类
     'kouei_navsort_title' => '论坛小导航分类',
