@@ -20,6 +20,8 @@ if (empty($blocks)) {
     exit;
 }
 
+$mobile = checkmobile();
+$mobile ? $mobile_flag = dintval($mobile) : $mobile_flag = -1;
 /* 判断用户是否关注了标签，根据结果，执行不同的代码段。 */
 $uid = $_G['uid'];
 $follow_flag = false;
