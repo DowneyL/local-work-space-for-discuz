@@ -19,6 +19,7 @@
                     <form action="/forum.php?mod=navigation&action=tag&do=search&searchsubmit=yes" method="post">
                         <input type="hidden" name="formhash" value="{FORMHASH}" />
                         <input type="text" placeholder="{$lang[search_tag]}" name="tagname" maxlength="14" autocomplete="off" <!--{if $search_name}-->value = "{$search_name}"<!--{/if}-->>
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
                 <section class="block-item-list">

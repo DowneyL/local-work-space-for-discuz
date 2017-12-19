@@ -472,7 +472,7 @@ body {
     float: right;
 }
 
-.block-items .block-show-type input {
+.block-items .block-show-type input,.block-items .block-show-type button {
     background-color: inherit;
     height: 32px;
     padding: .6rem 1rem;
@@ -483,8 +483,12 @@ body {
     border-radius: 2px;
 }
 
-.block-items .block-show-type input:focus {
+.block-items .block-show-type input:focus,.block-items .block-show-type button:hover {
     border: 1px solid #4caf50;
+}
+
+.block-items .block-show-type button {
+    color: #4caf50;
 }
 
 .block-item-list {
@@ -681,6 +685,9 @@ body {
     .thread-footer .thread-num span {
         margin-left: 12px;
         margin-right: 0;
+    }
+    .block-items .block-show-type input {
+        width: 124px;
     }
 }
 
