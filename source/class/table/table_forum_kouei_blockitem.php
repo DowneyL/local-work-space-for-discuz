@@ -53,16 +53,24 @@ class table_forum_kouei_blockitem extends discuz_table
 	}
 
 
-	public function select_log_by_uid() {
-		return DB::fetch_all("SELECT t1.user_id, t2.username, t1.block_id FROM %t AS t1
+	public function select_log_by_uid($limit = null, $num = null) {
+		$limitsql = '';
+		if ($limit !== null && $num !== null) {
+			$limitsql = ' LIMIT %d, %d';
+		}
+		return DB::fetch_all("SELECT t1.user_id, t2.username FROM %t AS t1
 		LEFT JOIN ".DB::table('common_member')." AS t2 ON t1.user_id = t2.uid
-		GROUP BY user_id", array($this->_table));
+		GROUP BY user_id ASC".$limitsql, array($this->_table, $limit, $num));
 	}
 
-	public function select_block_log_by_uid($userid) {
+	public function select_block_log_by_uid($userid,$limit = null, $num = null) {
+		$limitsql = '';
+		if ($limit !== null && $num !== null) {
+			$limitsql = ' LIMIT %d, %d';
+		}
 		return DB::fetch_all("SELECT t1.block_id, t2.block_name FROM %t AS t1
 		LEFT JOIN ".DB::table('forum_kouei_block')." AS t2 ON t1.block_id = t2.block_id
-		WHERE user_id=%d", array($this->_table, $userid));
+		WHERE user_id=%s".$limitsql, array($this->_table, $userid, $limit, $num));
 	}
 
 	private function make_where($userid = 0, $blockid = 0, $idtype = '', $blockidglue = '=') {

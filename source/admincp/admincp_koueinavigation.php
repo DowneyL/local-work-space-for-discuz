@@ -133,7 +133,7 @@ if ($operation == 'base') {
         if (!empty($sorts)) {
             $sort_list = "<select name=\"sort_id\">\n<option value='0'>$lang[block_sort]</option>";
             foreach ($sorts as $sort) {
-                if($sort['sort_id'] != $block[$blockid]['sort_id']) {
+                if ($sort['sort_id'] != $block[$blockid]['sort_id']) {
                     $sort_list .= "<option value=\"$sort[sort_id]\">$sort[sort_name]</option>\n";
                 } else {
                     $sort_list .= "<option value=\"$sort[sort_id]\" selected='selected'>$sort[sort_name]</option>\n";
@@ -240,7 +240,7 @@ if ($operation == 'base') {
     }
 } else if ($operation == 'other') {
     $setting = C::t('common_setting')->fetch_all(null);
-    
+
     showsubmenu('kouei_navigation_title', array(
         array('view', 'koueinavigation&operation=base'),
         array('add', 'koueinavigation&operation=create'),
@@ -268,17 +268,32 @@ if ($operation == 'base') {
         array('kouei_block_log', "koueinavigation&operation=log", '1'),
         array('other', "koueinavigation&operation=other"),
     ));
-
     showtips('kouei_navigation_log_tips');
-
+//    $_G['tpp'] = 2;
     $page = max(1, $_G['page']);
     $start_limit = ($page - 1) * $_G['tpp'];
-
-    $all_block_logs = C::t('forum_kouei_blockitem')->select_log_by_uid();
-    $block_logs = C::t('forum_kouei_blockitem')->select_block_log_by_uid(1);
-    $logs_count = count($all_block_logs);
-    dd($logs_count);
-    dd($block_logs);
+    if (!isset($_GET['userid'])) {
+        $logs_count = count(C::t('forum_kouei_blockitem')->select_log_by_uid());
+        $all_block_logs = C::t('forum_kouei_blockitem')->select_log_by_uid($start_limit, $_G['tpp']);
+        $multipage = multi($logs_count, $_G['tpp'], $page, ADMINSCRIPT . "?action=koueinavigation&operation=log");
+        showtableheader(cplang('kouei_navigation_log_count', array('logs_count' => $logs_count)), 'kouei-short-width');
+        if ($logs_count) {
+            showsubtitle(array('', 'kouei_user_id', 'kouei_user_name', ''));
+            echo getLogs($all_block_logs);
+            showsubmit('', '', '', '', $multipage);
+        }
+    } else {
+        $user_id = dintval(trim($_GET['userid']));
+        $block_logs_count = count(C::t('forum_kouei_blockitem')->select_block_log_by_uid($user_id));
+        $block_logs = C::t('forum_kouei_blockitem')->select_block_log_by_uid($user_id, $start_limit, $_G['tpp']);
+        $multipage = multi($block_logs_count, $_G['tpp'], $page, ADMINSCRIPT . "?action=koueinavigation&operation=log&userid=$user_id");
+        showtableheader(cplang('kouei_navigation_count', array('block_count' => $block_logs_count)), 'kouei-short-width');
+        if ($block_logs_count) {
+            showsubtitle(array('', 'kouei_nav_id', 'kouei_nav_name', ''));
+            echo getBlockLogs($block_logs);
+            showsubmit('', '', '', '', $multipage);
+        }
+    }
 }
 
 /**
@@ -312,6 +327,40 @@ function getBlocks($params)
         }
     }
     return $blocks;
+}
+
+function getLogs($params)
+{
+    global $_G, $lang;
+    $logs = '';
+    if (!empty($params)) {
+        foreach ($params as $param) {
+            $logs .= showtablerow('', array(), array(
+                '',
+                $param['user_id'],
+                $param['username'],
+                "<a href='?action=koueinavigation&operation=log&userid=" . $param['user_id'] . "'>$lang[view]</a>"
+            ), TRUE);
+        }
+    }
+    return $logs;
+}
+
+function getBlockLogs($params)
+{
+    global $_G, $lang;
+    $blocklogs = '';
+    if (!empty($params)) {
+        foreach ($params as $param) {
+            $blocklogs .= showtablerow('', array(), array(
+                '',
+                $param['block_id'],
+                $param['block_name'],
+                '',
+            ), TRUE);
+        }
+    }
+    return $blocklogs;
 }
 
 /**

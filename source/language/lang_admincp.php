@@ -7065,6 +7065,9 @@ $lang = array
     'update_block_success' => '成功修改',
     'kouei_navigation_count' => '共有<strong> {block_count} </strong>个导航',
     'kouei_nav_id' => '导航 id',
+    'kouei_user_id' => '用户 id',
+    'kouei_user_name' => '用户名',
+    'kouei_check_blocks' => '查看他的标签',
     'kouei_nav_name' => '导航名',
     'kouei_nav_item' => '关联的版块',
     'kouei_sort_type' => '所在分类',
@@ -7087,6 +7090,7 @@ $lang = array
     'no_sort' => '暂未分类',
     'kouei_block_log' => '标签记录',
     'kouei_navigation_log_tips' => '用于查看你的标签关注记录',
+    'kouei_navigation_log_count' => '共有<strong> {logs_count} </strong>个会员正在使用标签功能',
 
     // 论坛小导航分类
     'kouei_navsort_title' => '论坛小导航分类',
