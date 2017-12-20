@@ -16,11 +16,13 @@
                     <a href="{$selfurl}" <!--{if $tag_order == 'count'}-->class="type-selected"<!--{/if}-->>{$lang[hotest]}</a>
                     <a href="{$selfurl}&sort=newest" <!--{if $tag_order == 'block_id'}-->class="type-selected"<!--{/if}-->>{$lang[newest]}</a>
                     <!--{/if}-->
+                    <!--{if $mobile_flag == -1}-->
                     <form action="/forum.php?mod=navigation&action=tag&do=search&searchsubmit=yes" method="post">
                         <input type="hidden" name="formhash" value="{FORMHASH}" />
                         <input type="text" placeholder="{$lang[search_tag]}" name="tagname" maxlength="14" autocomplete="off" <!--{if $search_name}-->value = "{$search_name}"<!--{/if}-->>
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
+                    <!--{/if}-->
                 </div>
                 <section class="block-item-list">
                     <div class="item-list-side">
