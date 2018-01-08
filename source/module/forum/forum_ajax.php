@@ -13,9 +13,14 @@ if(!defined('IN_DISCUZ')) {
 define('NOROBOT', TRUE);
 
 if($_GET['action'] == 'checkusername') {
-
-
-	$username = trim($_GET['username']);
+    $username = trim($_GET['username']);
+    if (isset($_GET['mobile']) && $_GET['mobile'] == 8) {
+        $username =  iconv('UTF-8', CHARSET, $username);
+        if (!$username) {
+            echo 'something wrong';
+            exit;
+        }
+    }
 	$usernamelen = dstrlen($username);
 	if($usernamelen < 3) {
 		showmessage('profile_username_tooshort', '', array(), array('handle' => false));
