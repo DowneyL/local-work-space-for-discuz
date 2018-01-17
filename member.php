@@ -35,5 +35,6 @@ runhooks();
 
 
 require DISCUZ_ROOT.'./source/module/member/member_'.$mod.'.php';
+//echo DISCUZ_ROOT.'./source/module/member/member_'.$mod.'.php';
 
 ?>

@@ -88,8 +88,32 @@
 		<!--{/if}-->
 	</div>
 <!--{/if}-->
-
-
+	<!--
+	<style>
+		#wechat_qrcode {
+			text-align: center;
+			float: left;
+			position: fixed;
+			top: 220px;
+			z-index: 100;
+			margin-left: 2px;
+			width: 110px;
+			left: 0;
+			right: auto;
+			padding:5px;
+		}
+		#wechat_qrcode img {
+			width: 100%;
+			height: auto;
+			display: block;
+			margin-bottom: 10px;
+		}
+	</style>
+<div id="wechat_qrcode" class="p_pop xg1">
+	<img src="{$_G[staticurl]}/image/common/mouldbbs500.png" alt="qrcode">
+	<p>111111<br>2222222</p>
+</div>
+-->
 
 <!--{if !$_G['setting']['bbclosed'] && !$_G['member']['freeze'] && !$_G['member']['groupexpiry']}-->
 	<!--{if $_G[uid] && !isset($_G['cookie']['checkpm'])}-->

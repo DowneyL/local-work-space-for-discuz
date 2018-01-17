@@ -24,5 +24,31 @@
     </script>
     <!--{/if}-->
     <script src="{$_G[setting][jspath]}extend_common/material-scrolltop/material-scrolltop.js?{VERHASH}"></script>
+    <script>
+        $(function () {
+            /*
+            $.ajax({
+                type : 'get',
+                url : 'http://localhost/api/mobile/index.php?module=forumnav',
+                dataType : 'json',
+                success : function (data) {
+                    console.log(data)
+                }
+            })
+            */
+            $.ajax({
+                type: 'post',
+                url : 'http://localhost/api/mobile/index.php?module=login&loginsubmit=yes',
+                data : {
+                    username : 'user6',
+                    password : '123456'
+                },
+                dataType : 'json',
+                success : function(data) {
+                    console.log(data)
+                }
+            })
+        })
+    </script>
     </body>
 </html>
