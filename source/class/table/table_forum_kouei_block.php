@@ -12,6 +12,10 @@ class table_forum_kouei_block extends discuz_table
 		parent::__construct();
 	}
 
+	public function fetch_all_block_id(){
+	    return DB::fetch_all('SELECT block_id FROM %t', array($this->_table));
+    }
+
 	public function fetch_by_pagenum($limit, $num){
 		return DB::fetch_all('SELECT * FROM %t ORDER BY block_id DESC LIMIT %d, %d', array($this->_table, $limit, $num));
 	}

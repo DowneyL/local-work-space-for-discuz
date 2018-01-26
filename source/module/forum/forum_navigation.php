@@ -24,13 +24,9 @@ $mobile = checkmobile();
 $mobile ? $mobile_flag = dintval($mobile) : $mobile_flag = -1;
 /* 判断用户是否关注了标签，根据结果，执行不同的代码段。 */
 $uid = $_G['uid'];
-
-/* alert 这行代码，看懂别说破，uid 为 这个数的用户，关注的标签最好不要改了。 */
-$uid = $uid ? $uid : 1;
-
 $follow_flag = false;
 $me_flag = false;
-$follow_ids = C::t('forum_kouei_blockitem')->select($uid);
+$follow_ids = $uid ? C::t('forum_kouei_blockitem')->select($uid) : C::t('forum_kouei_block')->fetch_all_block_id();
 $lang = lang('forum/navigation');
 $filters = array('sort');
 if (!empty($follow_ids) && !($action == 'tag')) {
