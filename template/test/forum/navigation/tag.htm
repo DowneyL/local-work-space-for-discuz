@@ -81,6 +81,29 @@
         </div>
     </div>
 </div>
+<!--{if $_G[uid] == 0}-->
+<script>
+    $('body').html('');
+    swal({
+            'title' : "{$lang[notice][sorry]}",
+            'text' : "{$lang[notice][unlogin]}",
+            'type' : 'error',
+            'confirmButtonText' : "{$lang[notice][ok]}",
+            'confirmButtonColor' : '#DD6B55',
+            'closeOnConfirm' : false
+        },
+        function (isConfirm){
+            var mobile_flag = parseInt("{$mobile_flag}");
+            if (mobile_flag == -1) {
+                location.href = 'member.php?mod=logging&action=login';
+            } else if (mobile_flag == 2){
+                location.href = 'member.php?mod=logging&action=login&mobile=2';
+            } else {
+                location.href = 'forum.php';
+            }
+        });
+</script>
+<!--{/if}-->
 <script>
     $(function () {
         $('.get-next .kouei-back, .get-next button:first').click(function () {
